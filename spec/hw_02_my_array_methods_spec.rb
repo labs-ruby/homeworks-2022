@@ -4,7 +4,7 @@ require 'rspec'
 require 'require_all'
 require_relative 'spec_helper'
 if File.exist?('HW02')
-  require require_all 'HW02'
+  require_all 'HW02'
 
   using MyArrayMethods
 
