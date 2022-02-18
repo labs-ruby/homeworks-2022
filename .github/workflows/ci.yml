@@ -1,0 +1,24 @@
+name: CI
+on: [push,pull_request]
+jobs:
+  rubocop-test:
+    name: Rubocop
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ruby/setup-ruby@v1
+      - name: Install Rubocop
+        run: bundle
+      - name: Check code
+        run: bundle exec rubocop
+  rspec-test:
+    name: Rspec
+    needs: rubocop-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ruby/setup-ruby@v1
+      - name: Install RSpec
+        run: bundle
+      - name: Run tests
+        run: bundle exec rspec
