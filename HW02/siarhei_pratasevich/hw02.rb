@@ -3,19 +3,11 @@
 module MyArrayMethods
   refine Array do
     def my_map
-      result = []
-      size.times do |index|
-        result.push(yield(self[index]))
-      end
-      result
+      reduce([]) { |result, array_element| result.push(yield(array_element)) }
     end
 
     def my_select
-      result = []
-      size.times do |index|
-        result.push(self[index]) if yield(self[index])
-      end
-      result
+      reduce([]) { |result, array_element| yield(array_element) ? result.push(array_element) : result }
     end
 
     def my_each
