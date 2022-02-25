@@ -14,6 +14,7 @@ module MyArrayMethods
       end
       clone
     end
+
     # my select
     def my_select
       if block_given?
