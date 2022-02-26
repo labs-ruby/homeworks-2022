@@ -32,7 +32,7 @@ if File.exist?('HW02')
         context 'when array is empty' do
           let(:array) { [] }
 
-          it 'returns true' do
+          it 'returns Enumerator object' do
             expect(array.my_each).to be_kind_of(Enumerator)
           end
 
@@ -44,7 +44,7 @@ if File.exist?('HW02')
         context 'when array is not empty' do
           let(:array) { [1, 2, 3, 4, 5] }
 
-          it 'returns true' do
+          it 'returns Enumerator object' do
             expect(array.my_each).to be_kind_of(Enumerator)
           end
 
@@ -78,7 +78,7 @@ if File.exist?('HW02')
         context 'when array is empty' do
           let(:array) { [] }
 
-          it 'returns true' do
+          it 'returns Enumerator object' do
             expect(array.my_map).to be_kind_of(Enumerator)
           end
 
@@ -90,7 +90,7 @@ if File.exist?('HW02')
         context 'when array is not empty' do
           let(:array) { [1, 2, 3, 4, 5] }
 
-          it 'returns true' do
+          it 'returns Enumerator object' do
             expect(array.my_map).to be_kind_of(Enumerator)
           end
 
@@ -124,7 +124,7 @@ if File.exist?('HW02')
         context 'when array is empty' do
           let(:array) { [] }
 
-          it 'returns true' do
+          it 'returns Enumerator object' do
             expect(array.my_select).to be_kind_of(Enumerator)
           end
 
@@ -136,7 +136,7 @@ if File.exist?('HW02')
         context 'when array is not empty' do
           let(:array) { [1, 2, 3, 4, 5] }
 
-          it 'returns true' do
+          it 'returns Enumerator object' do
             expect(array.my_select).to be_kind_of(Enumerator)
           end
 
