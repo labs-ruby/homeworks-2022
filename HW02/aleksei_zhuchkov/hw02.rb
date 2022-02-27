@@ -6,7 +6,8 @@ module MyArrayMethods
     def my_select; end
 
     def my_each
-      each unless block_given?
+      return each unless block_given?
+
       if empty?
         []
       else
