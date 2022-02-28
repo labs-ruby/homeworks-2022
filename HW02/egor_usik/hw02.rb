@@ -1,41 +1,33 @@
-#!/usr/bin/ruby
+# frozen_string_literal: true
 
 module MyArrayMethods
   refine Array do
     def my_map
-      return "No block given" unless block_given?
-      
+      return 'No block given' unless block_given?
+
       result = []
-      for element in self do
-        result << yield(element)
-      end
+      compact.cycle(1) { |element| result << yield(element) }
 
       result
     end
 
     def my_select
-      return "No block given" unless block_given?
+      return 'No block given' unless block_given?
 
-      result = []
-      for element in self do
-        result << element if yield(element)
-      end
-
-      result
+      compact.cycle(1) { |element| [] << element if yield(element) }
     end
-    
-    def my_each
-      return "No block given" unless block_given?
 
-      for element in self do
-        yield(element)
-      end
+    def my_each(&block)
+      return 'No block given' unless block_given?
+
+      compact.cycle(1, &block)
     end
   end
 end
 
 using MyArrayMethods
 
-p [1, 2.0, "bar"].my_map { |el| el * 2 }
-p [1, 2, 5].my_select { |el| not el.even? }
-[1, 2, 5].my_each { |el| print el, ' - ' }
+my_array = [1, nil, 2.0, 'bar']
+p my_array.my_map(&:to_s)
+my_array.my_select { |el| puts el * 2 }
+my_array.my_each { |el| print el, ' - ' }
