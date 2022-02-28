@@ -12,7 +12,7 @@ module MyArrayMethods
         end
         return results
       end
-      clone
+      enum_for(:map)
     end
 
     def my_select
@@ -25,17 +25,18 @@ module MyArrayMethods
         end
         return results
       end
-      clone
+      enum_for(:select)
     end
 
     def my_each
-      return unless block_given?
+      return enum_for(:each) unless block_given?
 
       i = 0
       while i < size
         yield(self[i])
         i += 1
       end
+      self
     end
   end
 end
