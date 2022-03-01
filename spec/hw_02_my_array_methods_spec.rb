@@ -32,16 +32,24 @@ if File.exist?('HW02')
         context 'when array is empty' do
           let(:array) { [] }
 
-          it 'returns nil' do
-            expect(array.my_each).to eq(nil)
+          it 'returns Enumerator object' do
+            expect(array.my_each).to be_kind_of(Enumerator)
+          end
+
+          it 'returns Enumerator/array size = 0' do
+            expect(array.my_each.to_a.size).to eq(0)
           end
         end
 
         context 'when array is not empty' do
           let(:array) { [1, 2, 3, 4, 5] }
 
-          it 'returns nil' do
-            expect(array.my_each).to eq(nil)
+          it 'returns Enumerator object' do
+            expect(array.my_each).to be_kind_of(Enumerator)
+          end
+
+          it 'returns Enumerator/array size = 5' do
+            expect(array.my_each.to_a.size).to eq(5)
           end
         end
       end
@@ -70,16 +78,24 @@ if File.exist?('HW02')
         context 'when array is empty' do
           let(:array) { [] }
 
-          it 'returns nil' do
-            expect(array.my_map).to eq(nil)
+          it 'returns Enumerator object' do
+            expect(array.my_map).to be_kind_of(Enumerator)
+          end
+
+          it 'returns Enumerator/array size = 0' do
+            expect(array.my_each.to_a.size).to eq(0)
           end
         end
 
         context 'when array is not empty' do
           let(:array) { [1, 2, 3, 4, 5] }
 
-          it 'returns nil' do
-            expect(array.my_map).to eq(nil)
+          it 'returns Enumerator object' do
+            expect(array.my_map).to be_kind_of(Enumerator)
+          end
+
+          it 'returns Enumerator/array size = 5' do
+            expect(array.my_map.to_a.size).to eq(5)
           end
         end
       end
@@ -108,16 +124,24 @@ if File.exist?('HW02')
         context 'when array is empty' do
           let(:array) { [] }
 
-          it 'returns nil' do
-            expect(array.my_select).to eq(nil)
+          it 'returns Enumerator object' do
+            expect(array.my_select).to be_kind_of(Enumerator)
+          end
+
+          it 'returns Enumerator/array size = 0' do
+            expect(array.my_select.to_a.size).to eq(0)
           end
         end
 
         context 'when array is not empty' do
           let(:array) { [1, 2, 3, 4, 5] }
 
-          it 'returns nil' do
-            expect(array.my_select).to eq(nil)
+          it 'returns Enumerator object' do
+            expect(array.my_select).to be_kind_of(Enumerator)
+          end
+
+          it 'returns Enumerator/array size = 5' do
+            expect(array.my_select.to_a.size).to eq(5)
           end
         end
       end
