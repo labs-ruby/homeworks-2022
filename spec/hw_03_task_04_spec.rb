@@ -4,9 +4,11 @@ require 'rspec'
 require 'require_all'
 require_relative 'spec_helper'
 if File.exist?('HW03')
+  return unless Object.const_defined?('Homework3')
+
   require_all 'HW03'
 
-  RSpec.describe Task3 do
+  RSpec.describe Homework3 do
     let(:obj) { described_class.new }
 
     describe 'counter of letters and digits in the string' do
