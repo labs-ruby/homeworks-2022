@@ -6,6 +6,7 @@ require_relative 'spec_helper'
 
 if File.exist?('HW03')
   return unless Object.const_defined?('Homework3')
+
   require_all 'HW03'
 
   RSpec.describe Homework3 do
