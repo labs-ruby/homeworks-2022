@@ -16,6 +16,7 @@ if File.exist?('HW02')
     end
 
     RSpec.describe "MyArrayMethods: #{f}" do
+      puts "MyArrayMethods object ID: #{MyArrayMethods.object_id}"
       using MyArrayMethods
 
       describe '#my_each' do
