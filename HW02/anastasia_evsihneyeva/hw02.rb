@@ -25,8 +25,3 @@ module MyArrayMethods
     end
   end
 end
-
-using MyArrayMethods
-puts [12].my_map.class
-
-
