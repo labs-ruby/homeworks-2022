@@ -7,7 +7,7 @@ module MyArrayMethods
       for i in self
         new_arr << block.call(i) if block_given?
       end
-      new_arr
+      new_arr.to_enum
     end
 
     def my_select(&block)
@@ -15,7 +15,7 @@ module MyArrayMethods
       for i in self
         new_arr << i if block_given? && block.call(i)
       end
-      new_arr
+      new_arr.to_enum
     end
 
     def my_each
@@ -25,3 +25,8 @@ module MyArrayMethods
     end
   end
 end
+
+using MyArrayMethods
+puts [12].my_map.class
+
+
