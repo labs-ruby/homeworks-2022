@@ -8,15 +8,13 @@ if File.exist?('HW02')
   Dir.glob('*').select do |f|
     next unless File.directory? f
 
-    # load_all f
     self.class.send(:remove_const, 'MyArrayMethods') if self.class.const_defined?('MyArrayMethods')
     Dir["#{f}/*.rb"].each do |file|
       load file
       puts file
     end
 
-    RSpec.describe "MyArrayMethods: #{f}" do
-      puts "MyArrayMethods object ID: #{MyArrayMethods.object_id}"
+    RSpec.describe "MyArrayMethods: #{f}, Object ID: #{MyArrayMethods.object_id}" do
       using MyArrayMethods
 
       describe '#my_each' do
