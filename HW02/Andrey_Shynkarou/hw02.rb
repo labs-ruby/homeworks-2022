@@ -17,6 +17,14 @@ module MyArrayMethods
     def my_select
     end
     def my_each
+      if block_given?
+        self.size.times do |i|
+          yield(self[i])
+        end
+        return self
+      else
+        return self.to_enum
+      end
     end
   end
 end
