@@ -32,11 +32,13 @@ Example:
 ```ruby
 logs = "..." # logs information with error
 
-def task_1()
-  # your implementation goes here
+class Homework3
+  def task1
+    # your implementation goes here
+  end
 end
 
-task_1(logs) # => returns the following line:
+task1(logs) # => returns the following line:
 # 2018-04-23 20:30:42: SSL error, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSLError: System error: Undefined error: 0 - 0>
 ```
 
@@ -49,7 +51,7 @@ task_1(logs) # => returns the following line:
 10.6.246.101 - - [23/Apr/2018:20:31:39 +0300] "POST /test/2/messages HTTP/1.1" 200 48 0.0290
 ```
 
-Method `task_2` should return:
+Method `task2` should return:
 - an array of formatted strings containing information about post requests;
     - for the example above, the result should be:
 
@@ -86,6 +88,6 @@ Method `task_2` should return:
 Example:
 
 ```ruby
-task_4("hel2!lo") # --> {letters: 5, digits: 1}
-task_4("wicked .. !") # --> 6 --- {letters: 6, digits: 0}
+task4("hel2!lo") # --> {letters: 5, digits: 1}
+task4("wicked .. !") # --> 6 --- {letters: 6, digits: 0}
 ```
