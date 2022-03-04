@@ -15,6 +15,15 @@ module MyArrayMethods
     end
 
     def my_select
+      if block_given?
+        a = []
+        self.size.times do |i|
+          a << self[i] if yield(self[i])
+        end
+        return a
+      else
+        return self.to_enum
+      end
     end
     def my_each
       if block_given?
