@@ -27,7 +27,7 @@ module MyArrayMethods
       end
     end
 
-    def my_select
+    def my_each
       if block_given?
         size.times do |i|
           self[i] = yield(self[i])
