@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
 require 'rspec'
-require 'require_all'
 require_relative 'spec_helper'
 
 if File.exist?('HW03')
-  return unless Object.const_defined?('Homework3')
-
   Dir.chdir('HW03')
   Dir.glob('*').select do |f|
     next unless File.directory? f
