@@ -34,7 +34,7 @@ module MyArrayMethods
         end
         self
       else
-        enum_for 
+        enum_for
       end
     end
   end
