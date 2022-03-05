@@ -18,6 +18,16 @@ module MyArrayMethods
 
     def my_select
       return nil unless block_given?
+
+      if empty?
+        []
+      else
+        temp_array = []
+        for item in self
+          temp_array << item if yield(item)
+        end
+        temp_array
+      end
     end
 
     def my_each
