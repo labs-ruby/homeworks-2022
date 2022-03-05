@@ -2,9 +2,23 @@
 
 module MyArrayMethods
   refine Array do
-    def my_map; end
+    def my_map
+      return nil unless block_given?
 
-    def my_select; end
+      if empty?
+        []
+      else
+        temp_array = []
+        for item in self
+          temp_array << yield(item)
+        end
+        temp_array
+      end
+    end
+
+    def my_select
+      return nil unless block_given?
+    end
 
     def my_each
       return nil unless block_given?
@@ -13,7 +27,7 @@ module MyArrayMethods
         []
       else
         for item in self
-          yield item
+          yield(item)
         end
       end
     end
