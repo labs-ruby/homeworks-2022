@@ -7,7 +7,7 @@ module MyArrayMethods
       return to_enum :my_map unless block_given?
 
       res = []
-      each do |value|
+      for value in self do
         res << (yield value)
       end
       res
@@ -17,16 +17,18 @@ module MyArrayMethods
       return to_enum :my_select unless block_given?
 
       res = []
-      each do |value|
+      for value in self do
         res << value if yield value
       end
       res
     end
 
-    def my_each(&block)
+    def my_each
       return to_enum :my_each unless block_given?
 
-      each(&block)
+      for i in self
+        yield(i)
+      end
     end
   end
 end
