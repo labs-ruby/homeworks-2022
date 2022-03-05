@@ -6,7 +6,7 @@ module MyArrayMethods
       if block_given?
         mapped_array = []
         length.times do |i|
-          mapped_array.push yield self[i]
+          mapped_array.push(yield self[i])
         end
         mapped_array
       else
