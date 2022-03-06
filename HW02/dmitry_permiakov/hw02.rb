@@ -28,6 +28,6 @@ module MyArrayMethods
       for i in self
         yield(i)
       end
-          end
+    end
   end
 end
