@@ -3,6 +3,7 @@
 require 'rspec'
 require 'require_all'
 require_relative 'spec_helper'
+
 if File.exist?('HW02')
   Dir.chdir('HW02')
   Dir.glob('*').select do |f|
