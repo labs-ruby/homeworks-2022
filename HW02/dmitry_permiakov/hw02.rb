@@ -7,7 +7,7 @@ module MyArrayMethods
 
       total = []
       for i in self
-        total << i
+        total << yield(i)
       end
       total
     end
@@ -17,7 +17,7 @@ module MyArrayMethods
 
       total = []
       for i in self
-        total << i if i
+        total << i if yield(i)
       end
       total
     end
@@ -26,9 +26,8 @@ module MyArrayMethods
       return to_enum unless block_given?
 
       for i in self
-        yield i
+        yield(i)
       end
-      self
-    end
+          end
   end
 end
