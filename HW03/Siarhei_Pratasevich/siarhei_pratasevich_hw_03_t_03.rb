@@ -1,23 +1,20 @@
 # frozen_string_literal: true
 
+require 'time'
+
 class Homework3
   def task3(log)
     return '0' if total_lines(log).size <= 1
 
-    array = total_lines(log)
-            .map { |element| element.scan(/\d+-\d+-\d+ \d{1,2}:\d{1,2}:\d{1,2}[.]\d/) }
-            .flatten.map { |element| element.split(/[- :]/).map(&:to_f) }
-
+    array = total_lines(log).map { |string| Time.parse(string) }
     result_array(array).size == 1 ? result_array(array).join : result_array(array)
   end
 
   private
 
-  def result_array(array, result = [])
-    (array.size - 1).times do |index|
-      result.push(Time.at(Time.gm(*array[index + 1]) - Time.gm(*array[index])).to_f.round(1).to_s)
-    end
-    result
+  def result_array(array)
+    array.each_with_index
+         .reduce([]) { |memo, (element, index)| array[index + 1] ? memo.push((array[index + 1] - element).to_s) : memo }
   end
 
   def total_lines(log)
