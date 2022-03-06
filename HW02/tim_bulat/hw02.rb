@@ -4,7 +4,7 @@
 module MyArrayMethods
   refine Array do
     def my_map
-      return to_enum :my_map unless block_given?
+      return to_enum unless block_given?
 
       res = []
       for value in self do
@@ -14,7 +14,7 @@ module MyArrayMethods
     end
 
     def my_select
-      return to_enum :my_select unless block_given?
+      return to_enum unless block_given?
 
       res = []
       for value in self do
@@ -24,7 +24,7 @@ module MyArrayMethods
     end
 
     def my_each
-      return to_enum :my_each unless block_given?
+      return to_enum unless block_given?
 
       for i in self
         yield(i)
