@@ -3,42 +3,33 @@
 module MyArrayMethods
   refine Array do
     def my_map
-      return nil unless block_given?
+      return to_enum unless block_given?
+      return [] if empty?
 
-      if empty?
-        []
-      else
-        temp_array = []
-        for item in self
-          temp_array << yield(item)
-        end
-        temp_array
+      temp_array = []
+      for item in self
+        temp_array << yield(item)
       end
+      temp_array
     end
 
     def my_select
-      return nil unless block_given?
+      return to_enum unless block_given?
+      return [] if empty?
 
-      if empty?
-        []
-      else
-        temp_array = []
-        for item in self
-          temp_array << item if yield(item)
-        end
-        temp_array
+      temp_array = []
+      for item in self
+        temp_array << item if yield(item)
       end
+      temp_array
     end
 
     def my_each
-      return nil unless block_given?
+      return to_enum unless block_given?
+      return [] if empty?
 
-      if empty?
-        []
-      else
-        for item in self
-          yield(item)
-        end
+      for item in self
+        yield(item)
       end
     end
   end
