@@ -1,13 +1,18 @@
 # frozen_string_literal: true
 
 require 'rspec'
-require 'require_all'
 require_relative 'spec_helper'
-if File.exist?('HW03')
-  require_all 'HW03'
+require_relative 'support/reload_file'
 
-  RSpec.describe Task3 do
-    let(:obj) { described_class.new }
+Dir.chdir('../HW03')
+
+Dir.glob('*').select do |name|
+  next unless File.directory? name
+
+  RSpec.describe "Homework3 Task2: #{name}" do
+    let(:obj) { Object.const_get('Homework3').new }
+
+    before { reload_file(name, 2) }
 
     describe 'Log that has wrong output' do
       context 'when text are not given' do
