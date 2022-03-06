@@ -21,4 +21,4 @@ jobs:
       - name: Install RSpec
         run: bundle
       - name: Run tests
-        run: bundle exec rspec
+        run: bundle exec rspec -fd
