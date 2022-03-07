@@ -5,7 +5,7 @@
   already done)
 - then create a new branch `my_hw_03`
 - and go to the directory to `HW03`
-- create a folder with your name `Name_Surname`
+- create a folder with your name `name_surname`
 - inside the folder create a file .rb for every task, for example `name_surname_hw_03_t_01.rb` for the task 1
 - in each file, define a `class Homework3; end` with `#task1`/ `#task2` / `#task3` ... interface accordingly
 - and then create a PR (pull request) containing your changes
