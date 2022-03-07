@@ -3,31 +3,40 @@
 module MyArrayMethods
   refine Array do
     def my_map
-      return 'No block given' unless block_given?
+      return to_enum unless block_given?
 
       result = []
-      compact.cycle(1) { |element| result << yield(element) }
+      for element in self do
+        result << yield(element)
+      end
 
       result
     end
 
     def my_select
-      return 'No block given' unless block_given?
+      return to_enum unless block_given?
 
-      compact.cycle(1) { |element| [] << element if yield(element) }
+      result = []
+      for element in self do
+        result << element if yield(element)
+      end
+
+      result
     end
 
-    def my_each(&block)
-      return 'No block given' unless block_given?
+    def my_each
+      return to_enum unless block_given?
 
-      compact.cycle(1, &block)
+      for element in self do
+        yield(element)
+      end
     end
   end
 end
 
 using MyArrayMethods
 
-my_array = [1, nil, 2.0, 'bar']
+my_array = [1, 2.0, 'bar']
 p my_array.my_map(&:to_s)
 my_array.my_select { |elem| puts elem * 2 }
-my_array.my_each { |elem| print elem, '-' }
+my_array.my_each { |elem| puts "#{elem}-" }
