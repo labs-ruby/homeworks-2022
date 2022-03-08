@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Homework3
-  def task_1(input)
-    input.lines.each do
+  def task1(input)
+    input.lines.each do |line|
       return line if line.include? 'error'
     end
     ''
