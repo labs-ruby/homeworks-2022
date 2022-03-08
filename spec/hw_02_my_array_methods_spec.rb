@@ -48,6 +48,7 @@ if File.exist?('HW02')
             it 'returns Enumerator/array size = 0' do
               expect(array.my_each.to_a.size).to eq(0)
             end
+
           end
 
           context 'when array is not empty' do
@@ -60,6 +61,7 @@ if File.exist?('HW02')
             it 'returns Enumerator/array size = 5' do
               expect(array.my_each.to_a.size).to eq(5)
             end
+
           end
         end
       end
@@ -94,6 +96,7 @@ if File.exist?('HW02')
             it 'returns Enumerator/array size = 0' do
               expect(array.my_each.to_a.size).to eq(0)
             end
+
           end
 
           context 'when array is not empty' do
@@ -106,6 +109,7 @@ if File.exist?('HW02')
             it 'returns Enumerator/array size = 5' do
               expect(array.my_map.to_a.size).to eq(5)
             end
+
           end
         end
       end
@@ -140,6 +144,7 @@ if File.exist?('HW02')
             it 'returns Enumerator/array size = 0' do
               expect(array.my_select.to_a.size).to eq(0)
             end
+
           end
 
           context 'when array is not empty' do
@@ -152,6 +157,7 @@ if File.exist?('HW02')
             it 'returns Enumerator/array size = 5' do
               expect(array.my_select.to_a.size).to eq(5)
             end
+
           end
         end
       end
