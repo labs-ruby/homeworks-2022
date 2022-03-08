@@ -20,9 +20,13 @@ class Homework3
   def format_lines(strings)
     temp_array = []
     strings.each do |string|
-      temp_array << ("DATE: " + string.scan(%r{\d{2}\/\w{3}\/\d{4}:\d{2}:\d{2}:\d{2}\s\+\d{4}}).join + 
-        " FROM: " + string.scan(%r{\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}}).join +
-        " TO: " + string.scan(%r{\/\w*\/\d*\/\w*}).join.upcase) unless string.include?('error')
+      next if string.include?('error')
+
+      # temp_array << ('DATE: ' + string.scan(%r{\d{2}/\w{3}/\d{4}:\d{2}:\d{2}:\d{2}\s\+\d{4}}).join +
+      #    ' FROM: ' + string.scan(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/).join +
+      #    ' TO: ' + string.scan(%r{/\w*/\d*/\w*}).join.upcase)
+
+      temp_array << "DATE: #{string.scan(%r{\d{2}/\w{3}/\d{4}:\d{2}:\d{2}:\d{2}\s\+\d{4}}).join} FROM: #{string.scan(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/).join} TO: #{string.scan(%r{/\w*/\d*/\w*}).join.upcase}"
     end
     temp_array
   end
