@@ -22,10 +22,6 @@ class Homework3
     strings.each do |string|
       next if string.include?('error')
 
-      # temp_array << ('DATE: ' + string.scan(%r{\d{2}/\w{3}/\d{4}:\d{2}:\d{2}:\d{2}\s\+\d{4}}).join +
-      #    ' FROM: ' + string.scan(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/).join +
-      #    ' TO: ' + string.scan(%r{/\w*/\d*/\w*}).join.upcase)
-
       temp_array << "DATE: #{string.scan(%r{\d{2}/\w{3}/\d{4}:\d{2}:\d{2}:\d{2}\s\+\d{4}}).join} FROM: #{string.scan(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/).join} TO: #{string.scan(%r{/\w*/\d*/\w*}).join.upcase}"
     end
     temp_array
