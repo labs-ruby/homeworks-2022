@@ -2,7 +2,5 @@
 
 class Homework3
   def task2(log)
-
   end
-
 end
