@@ -7,7 +7,3 @@ class Homework3
   end
 
 end
-
-hw = Homework3.new
-
-puts hw.task4("wicked .. !")
