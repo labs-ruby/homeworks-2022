@@ -22,8 +22,20 @@ class Homework3
     strings.each do |string|
       next if string.include?('error')
 
-      temp_array << "DATE: #{string.scan(%r{\d{2}/\w{3}/\d{4}:\d{2}:\d{2}:\d{2}\s\+\d{4}}).join} FROM: #{string.scan(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/).join} TO: #{string.scan(%r{/\w*/\d*/\w*}).join.upcase}"
+      temp_array << "DATE: #{convert_date(string)} FROM: #{convert_ip(string)} TO: #{convert_path(string)}"
     end
     temp_array
+  end
+
+  def convert_date(string)
+    string.scan(%r{\d{2}/\w{3}/\d{4}:\d{2}:\d{2}:\d{2}\s\+\d{4}}).join
+  end
+
+  def convert_ip(string)
+    string.scan(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/).join
+  end
+
+  def convert_path(string)
+    string.scan(%r{/\w*/\d*/\w*}).join.upcase
   end
 end
