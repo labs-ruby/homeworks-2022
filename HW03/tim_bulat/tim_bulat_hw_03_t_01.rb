@@ -7,6 +7,6 @@ class Homework3
 
   def task1(log)
     err_log = get_lines(log, 'error')
-    err_log.empty? ? '' : err_log
+    err_log.empty? ? '' : err_log[0].to_s
   end
 end

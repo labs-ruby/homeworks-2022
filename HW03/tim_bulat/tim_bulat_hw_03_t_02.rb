@@ -11,10 +11,13 @@ class Homework3
 
   def task2(log)
     err_log = get_lines(log, 'POST')
+
     err_log.map do |line|
       "DATE: #{line[DATE_REGEX].delete('[]')} "\
       "FROM: #{line[IP_REGEX]} "\
       "TO: #{line[TO_REGEX].delete!('POST').split[1].upcase}"
     end
+  rescue StandardError
+    []
   end
 end
