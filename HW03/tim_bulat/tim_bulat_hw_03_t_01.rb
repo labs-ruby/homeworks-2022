@@ -10,4 +10,3 @@ class Homework3
     err_log.empty? ? '' : err_log
   end
 end
-
