@@ -1,29 +1,28 @@
 # frozen_string_literal: true
 
 class Homework3
+  TIME_SCAN = /\d+\.?\d/
+
   def change(arr)
-    arr.map { |el| el.to_s.match(/^.+?(?=\s).+?(?=\s)/) }
-       .map { |el| el.to_s.scan(/\d+\.?\d/).flatten }
-       .map { |el| Time.new(el[0], el[1], el[2], el[3], el[4], el[5].to_f) }
+    arr.map do |el|
+      time_data = el.to_s.scan(TIME_SCAN).flatten
+      Time.new(time_data[0], time_data[1], time_data[2], time_data[3], time_data[4], time_data[5].to_f)
+    end
   end
 
   def changing_time(arr)
     result = []
-    index = 1
-    while index < arr.length
-      result << format('%.1f', arr[index] - arr[index - 1])
-      index += 1
-    end
-    return result[0] if result.size == 1
-
+    arr.each_cons(2) { |el, el_next| result << format('%.1f', el_next - el) }
     result
   end
 
   def task3(data_log)
     array_with_call = data_log.split("\n").select { |el| el.include?('Calling core with action:') }
-    return '0' if array_with_call.length <= 1
-
     correct_lines = change(array_with_call)
-    changing_time(correct_lines)
+
+    return '0' if correct_lines.size < 2
+
+    result = changing_time(correct_lines)
+    result.size == 1 ? result[0] : result
   end
 end
