@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ClassName
+class Homework3
   def get_lines(log, key_word)
     log.split("\n").select { |line| line != '' && line.include?(key_word) }
   end

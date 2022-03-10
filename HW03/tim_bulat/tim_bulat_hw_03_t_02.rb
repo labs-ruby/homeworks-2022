@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ClassName
+class Homework3
   IP_REGEX = /\b(?:\d{1,3}\.){3}\d{1,3}\b/
   DATE_REGEX = /\[.*?\]/
   TO_REGEX = /".*?"/
