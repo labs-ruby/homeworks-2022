@@ -10,12 +10,24 @@ class Homework3
       post_requests_log
     else
       post_requests_log.map do |e|
-        "DATE: #{e.match(REGEX_DATE).to_s.delete('[]')} FROM: #{e.match(REGEX_IP)} TO: #{e.match(REGEX_MESSAGE).to_s.split.slice(1).upcase}"
+        "DATE: #{process_date(e)} FROM: #{match_ip(e)} TO: #{process_message(e)}"
       end
     end
   end
 
   private
+
+  def process_date(str)
+    str.match(REGEX_DATE).to_s.delete('[]')
+  end
+
+  def match_ip(str)
+    str.match(REGEX_IP)
+  end
+
+  def process_message(str)
+    str.match(REGEX_MESSAGE).to_s.split.slice(1).upcase
+  end
 
   def post_requests(str)
     str.lines(chomp: true).select { |line| line.match?(Regexp.new("#{REGEX_IP} - - #{REGEX_DATE} #{REGEX_MESSAGE}")) }
