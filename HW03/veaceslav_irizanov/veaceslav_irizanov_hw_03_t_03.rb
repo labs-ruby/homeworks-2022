@@ -3,26 +3,32 @@
 require 'time'
 
 class Homework3
+  ZERO_S = '0'
+  ZERO_I = 0
+  ONE = 1
+  TWO = 2
+  CONDITION = 'Calling core with action'
+
   def task3(log)
-    return '0' if total_rows(log).size < 2
+    return ZERO_S if total_rows(log).size < TWO
 
     time_line = total_rows(log).map { |line| Time.parse(line).to_f }.reverse
-    results(time_line).size > 1 ? results(time_line).reverse! : results(time_line)[0].to_s
+    results(time_line).size > ONE ? results(time_line).reverse! : results(time_line)[0].to_s
   end
 
   private
 
   def total_rows(log)
     rows = log.split("\n")
-    rows.select { |var| var.include?('Calling') }
+    rows.select { |var| var.include?(CONDITION) }
   end
 
   def results(arr)
-    i = 0
+    iterator = ZERO_I
     result = []
-    while i < arr.size - 1
-      i += 1
-      result << (arr[i - 1] - arr[i]).round(1).to_s
+    while iterator < arr.size - ONE
+      iterator += ONE
+      result << (arr[iterator - ONE] - arr[iterator]).round(ONE).to_s
     end
     result
   end
