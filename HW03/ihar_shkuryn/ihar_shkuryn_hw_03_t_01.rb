@@ -5,4 +5,3 @@ class Homework3
     log.split("\n").select { |line| line.include?('error') } [0].to_s
   end
 end
-
