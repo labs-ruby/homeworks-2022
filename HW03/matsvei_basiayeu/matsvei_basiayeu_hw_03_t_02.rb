@@ -6,11 +6,7 @@ class Homework3
   SPLIT_REGEX = /[\[(.*)\]]/
 
   def task2(log)
-    res = []
-    log.split("\n").each do |i|
-      good_format?(i) == i ? res << (print_string(i)) : res
-    end
-    res
+    log.split("\n").delete_if { |string| good_format?(string) != string }.map { |str| print_string(str) }
   end
 
   private

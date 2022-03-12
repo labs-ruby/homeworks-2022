@@ -21,16 +21,16 @@ class Homework3
   end
 
   def result_array(array)
-    res = []
-    len = array.length
-    array.each_with_index do |_i, index|
-      return res if index >= len - 1
+    array.length
+    array.each_with_index.map do |_i, index|
+      return array if index >= array.length - 1
 
-      res << (array[index + 1] - array[index]).to_s
+      array[index] = (array[index + 1] - array[index]).to_s
     end
   end
 
-  def return_result(result_arr)
-    result_arr.length == 1 ? result_arr.first.to_s : result_arr
+  def return_result(res_arr)
+    res_arr.delete(res_arr.last)
+    res_arr.length == 1 ? res_arr.first.to_s : res_arr
   end
 end
