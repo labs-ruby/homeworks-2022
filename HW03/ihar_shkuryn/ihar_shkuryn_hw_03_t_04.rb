@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 class Homework3
-  def task4(log, output = {})
-    count_letters = log.count 'a-zA-Z'
-    count_digits = log.count '0-9'
-    output[:letters] = count_letters
-    output[:digits] = count_digits
-    output
+  def task4(log)
+    letters_count = log.count('a-zA-Z')
+    digits_count = log.count('0-9')
+    { letters: letters_count, digits: digits_count }
   end
 end
