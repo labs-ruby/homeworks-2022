@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Homework3
-  PATTERN = %r{(?:[0-9]{1,3}\.){3}[0-9]{1,3} - - \[\d{2}+/\w{3}/\d{4}:\d{2}:\d{2}:\d{2} \+\d{4}\]}
+  PATTERN = %r{(?:[0-9]{1,3}\.){3}[0-9]{1,3} - - \[\d{2}+/\w{3}/\d{4}:\d{2}:\d{2}:\d{2} \+\d{4}\]}.freeze
   def task2(log)
     arr_lines = find_lines_by_pattern log
     return [] unless arr_lines.size.positive?
