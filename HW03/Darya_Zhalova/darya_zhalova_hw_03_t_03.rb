@@ -11,6 +11,8 @@ class Homework3
     (times.size - 1).times do |i|
       arr.append (times[i + 1] - times[i]).round(1).to_s
     end
+    return arr.first if arr.size == 1
+
     arr
   end
 
