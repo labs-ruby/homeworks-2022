@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class Homework3
-  PATTERN = %r{(?:[0-9]{1,3}\.){3}[0-9]{1,3} - - \[\d{2}+/\w{3}/\d{4}:\d{2}:\d{2}:\d{2} \+\d{4}\]}.freeze
+  PATTERN = %r{(?:[0-9]{1,3}\.){3}[0-9]{1,3} - - \[\d{2}+/\w{3}/\d{4}:\d{2}:\d{2}:\d{2} \+\d{4}\]}
+  REG_IP = /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/
+  REG_DATETIME = %r{(\[\d+/\w+/\d+:\d+:\d+:\d+ \+\d{4}\])}
+  REG_TEXT = /(".+")/
+
   def task2(log)
     arr_lines = find_lines_by_pattern log
     return [] unless arr_lines.size.positive?
@@ -10,14 +14,10 @@ class Homework3
   end
 
   def format_text(arr_lines)
-    formatted_lines = []
-    arr_lines.each do |line|
-      words = line.split
-      date_part = "DATE: #{words[3].delete('[')} #{words[4].delete(']')} "
-      from_to_part = "FROM: #{words[0]} TO: #{words[6].upcase}"
-      formatted_lines << date_part + from_to_part
+    arr_lines.map do |line|
+      "DATE: #{line.match(REG_DATETIME).to_s.delete('[]')} \FROM: #{line.match(REG_IP)} \TO: #{line.match(REG_TEXT)
+        .to_s.split.slice(1).upcase}"
     end
-    formatted_lines
   end
 
   def find_lines_by_pattern(log)
