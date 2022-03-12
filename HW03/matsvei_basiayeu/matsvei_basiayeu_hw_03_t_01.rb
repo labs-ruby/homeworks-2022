@@ -2,6 +2,6 @@
 
 class Homework3
   def task1(log)
-    log.split("\n").select { |message| message.include?('error') }.first.to_s
+    log.split("\n").find { |message| message.include?('error') }.to_s
   end
 end
