@@ -7,7 +7,7 @@ class Homework3
 
   def task2(log)
     log.lines.map do |line|
-      "DATE: #{line[REG_DATE]} FROM: #{line[REG_ADR]} TO: #{line[REG_PATH].upcase}" unless line[REG_DATE] == nil
+      "DATE: #{line[REG_DATE]} FROM: #{line[REG_ADR]} TO: #{line[REG_PATH].upcase}" unless line[REG_DATE].nil?
     end.compact
   end
 end
