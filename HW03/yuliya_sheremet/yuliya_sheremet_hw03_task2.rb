@@ -3,13 +3,20 @@
 
 class Homework3
   def task2(logs)
-    array_of_strings = logs.split("\n")
-    no_error = array_of_strings.reject! { |i| i.include?('error') }
-    no_error.map! do |p|
-      data = p.split(' ')
-      ['DATE: ' + data[3].to_s.delete_prefix('['), data[4].to_s.delete_suffix(']'),
-       + 'FROM: ' + data[0], + 'TO: ' + data[6].upcase].join(' ')
+    result = []
+    logs.each_line do |i|
+      ip, datetime, address = parse_line(i)
+      if [ip, datetime, address].all?
+        result << "DATE: #{datetime[1..-2]} FROM: #{ip[0..-4].strip} TO: #{address[1..-3].upcase}"
+      end
     end
-    puts no_error
+    puts result
+  end
+
+  def parse_line(data)
+    ip = data[/^.* - -/]
+    datetime = data[/\[.*\]/]
+    address = data[/T .* H/]
+    [ip, datetime, address]
   end
 end
