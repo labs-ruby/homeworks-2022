@@ -7,34 +7,31 @@ module Mod
     logs.split("\n").select { |i| i.match('Calling core with action:') }.each { |i| i.to_s unless i }
   end
 
-  def res(tim)
-    res = []
-    tim.each do
-      res << (tim[-1] - tim[-2]).ceil(1).to_s if tim.length >= 2
-      tim.delete_at(-1)
-    end
-    res
+  def true_strs(arr)
+    arr.reduce([]) { |data, i| data << i.match(REG).to_s.gsub(/[-\s:]/, '*').split('*').map(&:to_f) }
   end
 
   def time(data)
-    t = []
-    data.each do |i|
+    data.reduce([]) do |t, i|
       t << Time.utc(i[0], i[1], i[2], i[3], i[4], i[5]).ceil(2)
     end
-    t
+  end
+
+  def res(tim)
+    minus(tim.reverse).reduce([]) { |arr, i| arr << (i[0] - i[1]).ceil(1).to_s }
+  end
+
+  def minus(tim)
+    tim.map { [tim.delete_at(0), tim[0]] }
   end
 end
 
 class Homework3
   include Mod
   def task3(logs)
-    data = []
-    arr = pars(logs)
-    return '0' if arr.length <= 1
+    return '0' if pars(logs).length <= 1
 
-    arr.each { |i| data << i.match(REG).to_s.gsub(/[-\s:]/, '*').split('*').map(&:to_f) }
-    t = time(data)
-    res = res(t)
+    res = res(time(true_strs(pars(logs))))
     res.length == 1 ? res.first : res.reverse
   end
 end
