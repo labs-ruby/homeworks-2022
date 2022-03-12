@@ -22,7 +22,7 @@ module Mod
   end
 
   def minus(tim)
-    tim.map { [tim.delete_at(0), tim[0]] }
+    tim.each_cons(2)
   end
 end
 
