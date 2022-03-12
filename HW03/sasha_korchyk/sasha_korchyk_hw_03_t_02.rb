@@ -11,12 +11,16 @@ class Homework3
   def task2(logs)
     return [] if logs.empty?
 
-    arr = []
-    res = []
-    logs.split("\n").map { |i| i.match(REG) }.each { |i| arr << i.to_s unless i.nil? }
-    arr.each do |i|
+    result(true_strs(logs))
+  end
+
+  def true_strs(str)
+    str.split("\n").reduce([]) { |arr, i| arr << i.match(REG).to_s }.select { |i| i unless i.empty? }
+  end
+
+  def result(arr)
+    arr.reduce([]) do |res, i|
       res << "DATE: #{i.match(DATE)} FROM: #{i.match(FROM)} TO: #{i.match(TO).to_s.upcase}"
     end
-    res
   end
 end
