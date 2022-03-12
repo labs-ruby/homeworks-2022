@@ -41,6 +41,7 @@ if File.exist?('HW02')
           context 'when array is empty' do
             let(:array) { [] }
 
+<<<<<<< HEAD
             it 'returns Enumerator object' do
               expect(array.my_each).to be_kind_of(Enumerator)
             end
@@ -48,11 +49,16 @@ if File.exist?('HW02')
             it 'returns Enumerator/array size = 0' do
               expect(array.my_each.to_a.size).to eq(0)
             end
+=======
+          it 'returns nil' do
+            expect(array.my_each).to eq(nil)
+>>>>>>> parent of a9a336c... fix methods for tests
           end
 
           context 'when array is not empty' do
             let(:array) { [1, 2, 3, 4, 5] }
 
+<<<<<<< HEAD
             it 'returns Enumerator object' do
               expect(array.my_each).to be_kind_of(Enumerator)
             end
@@ -60,6 +66,10 @@ if File.exist?('HW02')
             it 'returns Enumerator/array size = 5' do
               expect(array.my_each.to_a.size).to eq(5)
             end
+=======
+          it 'returns nil' do
+            expect(array.my_each).to eq(nil)
+>>>>>>> parent of a9a336c... fix methods for tests
           end
         end
       end
@@ -87,6 +97,7 @@ if File.exist?('HW02')
           context 'when array is empty' do
             let(:array) { [] }
 
+<<<<<<< HEAD
             it 'returns Enumerator object' do
               expect(array.my_map).to be_kind_of(Enumerator)
             end
@@ -94,11 +105,16 @@ if File.exist?('HW02')
             it 'returns Enumerator/array size = 0' do
               expect(array.my_each.to_a.size).to eq(0)
             end
+=======
+          it 'returns nil' do
+            expect(array.my_map).to eq(nil)
+>>>>>>> parent of a9a336c... fix methods for tests
           end
 
           context 'when array is not empty' do
             let(:array) { [1, 2, 3, 4, 5] }
 
+<<<<<<< HEAD
             it 'returns Enumerator object' do
               expect(array.my_map).to be_kind_of(Enumerator)
             end
@@ -106,6 +122,10 @@ if File.exist?('HW02')
             it 'returns Enumerator/array size = 5' do
               expect(array.my_map.to_a.size).to eq(5)
             end
+=======
+          it 'returns nil' do
+            expect(array.my_map).to eq(nil)
+>>>>>>> parent of a9a336c... fix methods for tests
           end
         end
       end
@@ -133,6 +153,7 @@ if File.exist?('HW02')
           context 'when array is empty' do
             let(:array) { [] }
 
+<<<<<<< HEAD
             it 'returns Enumerator object' do
               expect(array.my_select).to be_kind_of(Enumerator)
             end
@@ -140,11 +161,16 @@ if File.exist?('HW02')
             it 'returns Enumerator/array size = 0' do
               expect(array.my_select.to_a.size).to eq(0)
             end
+=======
+          it 'returns nil' do
+            expect(array.my_select).to eq(nil)
+>>>>>>> parent of a9a336c... fix methods for tests
           end
 
           context 'when array is not empty' do
             let(:array) { [1, 2, 3, 4, 5] }
 
+<<<<<<< HEAD
             it 'returns Enumerator object' do
               expect(array.my_select).to be_kind_of(Enumerator)
             end
@@ -152,6 +178,10 @@ if File.exist?('HW02')
             it 'returns Enumerator/array size = 5' do
               expect(array.my_select.to_a.size).to eq(5)
             end
+=======
+          it 'returns nil' do
+            expect(array.my_select).to eq(nil)
+>>>>>>> parent of a9a336c... fix methods for tests
           end
         end
       end
