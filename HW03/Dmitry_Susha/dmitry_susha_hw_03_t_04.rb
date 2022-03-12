@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Homework3
-  def task4(string, result = {})
-    result[:letters] = string.downcase.count('a-z')
-    result[:digits] = string.downcase.count('0-9')
-    result
+  def task4(string)
+    letters = string.count('a-zA-Z')
+    digits = string.count('0-9')
+    { letters: letters, digits: digits }
   end
 end
