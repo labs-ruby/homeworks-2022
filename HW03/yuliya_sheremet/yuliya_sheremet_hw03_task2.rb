@@ -2,15 +2,15 @@
 # frozen_string_literal: true
 
 class Homework3
-  def task2(logs)
+  def task2(log)
     result = []
-    logs.each_line do |i|
+    log.each_line do |i|
       ip, datetime, address = parse_line(i)
       if [ip, datetime, address].all?
-        result << "DATE: #{datetime[1..-2]} FROM: #{ip[0..-4].strip} TO: #{address[1..-3].upcase}"
+        result << "DATE: #{datetime[1..-2]} FROM: #{ip[0..-4].strip} TO:#{address[1..-3].upcase}"
       end
     end
-    puts result
+    result
   end
 
   def parse_line(data)
