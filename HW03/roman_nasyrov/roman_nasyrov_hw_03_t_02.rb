@@ -1,4 +1,4 @@
-class homework3
+class Homework3
   REGEX = %r{^([\d+.\d+]+).*(?<=\[)(.*)(?=\]).*(?<=\s)((?:/\w+)*?)(?=\s).*$}
   def task2(log)
     log.split("\n").each_with_object([]) do |verse, memo|
