@@ -4,9 +4,9 @@ class Homework3
   REG_TIME = /\d{2}:\d{2}\.\d/
 
   def task3(log)
-    return '0' unless if_log_valid(log)
+    return '0' unless log_valid?(log)
 
-    times = make_array_time(log)
+    times = array_time(log)
     arr = []
     (times.size - 1).times do |i|
       arr.append (times[i + 1] - times[i]).abs.round(1).to_s
@@ -16,13 +16,13 @@ class Homework3
     arr
   end
 
-  def if_log_valid(log)
+  def log_valid?(log)
     log.sub('Calling core with action:', '').include? 'Calling core with action:'
   end
 
-  def make_array_time(log)
-    log.lines.map do |line|
-      time = line.include?('Calling core with action:') ? line[REG_TIME] : nil
+  def array_time(log)
+    log.lines.select { |line| line.include? 'Calling core with action:'  }.map do |line|
+      time = line[REG_TIME]
       (time[0, 2] == '00' ? 60.0 : time[0, 2].to_f) * 60.0 + time[3, 7].to_f unless time.nil?
     end.compact
   end
