@@ -3,22 +3,16 @@
 require 'time'
 
 class Homework3
-  def get_lines(log, key_word)
-    log.split("\n").select { |line| line != '' && line.include?(key_word) }
+  def get_lines(log)
+    log.split("\n").find_all { |line| line.include?('core') }
   end
 
   def calc_time(core_lines)
-    i = 0
-    res = []
-    while i < core_lines.length - 1
-      res << (core_lines[i + 1] - core_lines[i]).to_s
-      i += 1
-    end
-    res
+    core_lines.each_cons(2).map { |first, second| (second - first).to_s }
   end
 
   def task3(log)
-    core_lines = get_lines(log, 'core')
+    core_lines = get_lines(log)
 
     return '0' if core_lines.empty? || core_lines.length == 1
 

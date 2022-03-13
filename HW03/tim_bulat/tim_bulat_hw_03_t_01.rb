@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Homework3
-  def get_lines(log, key_word)
-    log.split("\n").select { |line| line != '' && line.include?(key_word) }
+  def get_lines(log)
+    log.split("\n").find_all { |line| line.include?('error') }
   end
 
   def task1(log)
