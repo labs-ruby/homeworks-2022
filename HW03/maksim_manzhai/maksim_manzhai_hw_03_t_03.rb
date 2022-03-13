@@ -5,15 +5,14 @@ require 'time'
 class Homework3
   def task3(log)
     lines = log.split(/\n/)
-    temp_array = []
-    lines.each do |line|
-      temp_array << Time.parse(line) if event_valid?(line)
-    end
-    return '0' if temp_array.empty?
 
-    return '0' if temp_array.size == 1
+    lines.map! { |line| Time.parse(line) if event_valid?(line) }
 
-    duration(temp_array)
+    return '0' if lines.empty?
+
+    return '0' if lines.size == 1
+
+    duration(lines.compact)
   end
 
   private
@@ -23,12 +22,10 @@ class Homework3
   end
 
   def duration(events)
-    temp_array = []
-    (0...events.size).each do |i|
-      temp_array << (events[i + 1] - events[i]).to_s unless events[i + 1].nil?
-    end
-    return temp_array[0] if temp_array.size == 1
+    events.map!.with_index { |_event, index| (events[index + 1] - events[index]).to_s unless events[index + 1].nil? }
+    return '0' if events.compact == []
+    return events[0] if events.compact.size == 1
 
-    temp_array
+    events.compact
   end
 end
