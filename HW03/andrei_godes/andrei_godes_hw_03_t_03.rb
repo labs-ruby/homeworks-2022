@@ -3,11 +3,11 @@
 require 'time'
 class Homework3
   def task3(logs)
-    array = include_string(logs)
-    if subtraction(array).length == 1
-      subtraction(array)[0]
+    action_duration = include_string(logs)
+    if subtraction(action_duration).length == 1
+      subtraction(action_duration)[0]
     else
-      subtraction(array)
+      subtraction(action_duration)
     end
   end
 
