@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../lib/notification'
 
 class Student
@@ -19,8 +21,8 @@ class Student
   end
 
   def to_work!(homework)
-    add_notification_to_file_for_student(filename_for_add_notification,
-                                         "Taked to work #{homework.title} \"#{homework.description}\" (#{name} #{surname})")
+    add_notification_to_file_for_student(filename_for_add_notification, "Taked to work #{homework
+    .title} \"#{homework.description}\" (#{name} #{surname})")
   end
 
   def homeworks
@@ -32,8 +34,8 @@ class Student
   end
 
   def to_check!(homework)
-    add_notification_to_file_for_student(filename_for_add_notification,
-                                         "Sent to check #{homework.title} \"#{homework.description}\" (#{name} #{surname})")
+    add_notification_to_file_for_student(filename_for_add_notification, "Sent to check #{homework
+    .title} \"#{homework.description}\" (#{name} #{surname})")
   end
 
   private

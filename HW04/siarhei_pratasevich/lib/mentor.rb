@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Mentor
   include Notification
   attr_reader :name, :surname
@@ -30,13 +32,13 @@ class Mentor
   end
 
   def reject_to_work!(homework, student)
-    add_notification_to_file_for_mentor(filename_for_add_notification(student),
-                                        "Wrong answer for #{homework.title} \"#{homework.description}\" (#{name} #{surname})")
+    add_notification_to_file_for_mentor(filename_for_add_notification(student), "Wrong answer for #{homework
+    .title} \"#{homework.description}\" (#{name} #{surname})")
   end
 
   def accept!(homework, student)
-    add_notification_to_file_for_mentor(filename_for_add_notification(student),
-                                        "Good job! #{homework.title} \"#{homework.description}\" - accepted! (#{name} #{surname})")
+    add_notification_to_file_for_mentor(filename_for_add_notification(student), "Good job! #{homework
+    .title} \"#{homework.description}\" - accepted! (#{name} #{surname})")
   end
 
   private

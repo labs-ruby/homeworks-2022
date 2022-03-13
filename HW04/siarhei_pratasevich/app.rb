@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'lib/student'
 require_relative 'lib/mentor'
 require_relative 'lib/homework'
