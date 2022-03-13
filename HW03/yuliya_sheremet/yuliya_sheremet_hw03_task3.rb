@@ -6,9 +6,9 @@ require 'date'
 require 'time'
 
 class Homework3
-  def task3(logs)
-    array_of_strings = logs.split(/\n/)
-    cases_for_output(logs, array_of_strings)
+  def task3(log)
+    array_of_strings = log.split(/\n/)
+    cases_for_output(log, array_of_strings)
   end
 
   def cases_for_output(logs, array_of_strings)
@@ -17,19 +17,18 @@ class Homework3
       seconds = array_of_strings
       check_and_print(seconds)
     else
-      puts '0'
+      '0'
     end
   end
 
   def print_a(seconds)
-    arr = []
     i = 0
-    print arr << (Time.parse(seconds[i + 1]) - Time.parse(seconds[i])).to_s
+    (Time.parse(seconds[i + 1]) - Time.parse(seconds[i])).to_s
   end
 
   def print_b(seconds)
     arr = [] << (Time.parse(seconds[1]) - Time.parse(seconds[0])).to_s
-    print arr << (Time.parse(seconds[2]) - Time.parse(seconds[1])).to_s
+    arr << (Time.parse(seconds[2]) - Time.parse(seconds[1])).to_s
   end
 
   def check_and_print(seconds)
