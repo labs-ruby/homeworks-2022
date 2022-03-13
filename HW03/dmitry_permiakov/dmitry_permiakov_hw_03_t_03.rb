@@ -8,6 +8,6 @@ class Homework3
 
     return '0' if arr.length < 2
 
-    arr.each_cons(2).map { |x, y| (x - y).abs.to_s }
+    if arr.length==1 ? arr.each_cons(2).map { |x, y| (x - y).abs.to_s }[0] : arr.each_cons(2).map { |x, y| (x - y).abs.to_s }
   end
 end
