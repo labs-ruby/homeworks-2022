@@ -2,14 +2,9 @@
 
 class Homework3
   def task1(logs)
-    if logs.empty?
-      ''
-    else
-      lines = logs.split(/\n/)
-      lines.each do |line|
-        return line if line.include?('error')
-      end
-    end
-    ''
+    return '' if logs.empty?
+
+    lines = logs.split(/\n/)
+    lines.find { |line| line.downcase.include?('error') } || ''
   end
 end
