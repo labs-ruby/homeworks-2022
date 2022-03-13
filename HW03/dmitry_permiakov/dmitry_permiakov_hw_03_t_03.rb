@@ -8,6 +8,8 @@ class Homework3
 
     return '0' if arr.length < 2
 
-    if arr.length==1 ? arr.each_cons(2).map { |x, y| (x - y).abs.to_s }[0] : arr.each_cons(2).map { |x, y| (x - y).abs.to_s }
+    time_difference = arr.each_cons(2).map { |x, y| (x - y).abs.to_s }
+
+    arr.length == 1 ? time_difference[0] : time_difference
   end
 end
