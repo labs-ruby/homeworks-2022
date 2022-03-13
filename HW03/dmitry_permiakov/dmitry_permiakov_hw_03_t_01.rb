@@ -2,6 +2,6 @@
 
 class Homework3
   def task1(logs)
-    logs.split("\n").select { |v| v.include? 'error' }
+    logs.split("\n").select { |v| v.include? 'error' }.to_s
   end
 end
