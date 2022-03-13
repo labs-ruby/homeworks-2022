@@ -5,8 +5,7 @@ class Homework3
   def task1(log)
     array_of_strings = log.split(/\n/)
     if log.include?('error')
-      array_of_strings.select! { |line| line.include? 'error' }
-      array_of_strings[0]
+      array_of_strings.select { |line| line.include? 'error' }.first
     else
       ''
     end
