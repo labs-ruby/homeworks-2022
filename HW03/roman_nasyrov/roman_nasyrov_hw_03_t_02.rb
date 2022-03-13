@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Homework3
   REGEX = %r{^([\d+.\d+]+).*(?<=\[)(.*)(?=\]).*(?<=\s)((?:/\w+)*?)(?=\s).*$}
   def task2(log)
