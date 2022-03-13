@@ -21,14 +21,22 @@ class Homework3
     end
   end
 
-  def check_and_print(seconds)
+  def print_a(seconds)
     arr = []
     i = 0
+    print arr << (Time.parse(seconds[i + 1]) - Time.parse(seconds[i])).to_s
+  end
+
+  def print_b(seconds)
+    arr = [] << (Time.parse(seconds[1]) - Time.parse(seconds[0])).to_s
+    print arr << (Time.parse(seconds[2]) - Time.parse(seconds[1])).to_s
+  end
+
+  def check_and_print(seconds)
     if seconds.size <= 2
-      print arr << (Time.parse(seconds[i + 1]) - Time.parse(seconds[i]))
+      print_a(seconds)
     elsif seconds.size > 2
-      arr << (Time.parse(seconds[i + 1]) - Time.parse(seconds[i])).to_s
-      print arr << (Time.parse(seconds[i + 2]) - Time.parse(seconds[i + 1])).to_s
+      print_b(seconds)
     end
   end
 
