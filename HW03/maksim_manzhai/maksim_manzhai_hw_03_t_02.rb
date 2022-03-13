@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+CONVERT_DATE = %r{\d{2}/\w{3}/\d{4}:\d{2}:\d{2}:\d{2}\s\+\d{4}}
+CONVERT_IP = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/
+CONVERT_PATH = %r{/\w*/\d*/\w*}
+
 class Homework3
   def task2(logs)
     return [] if logs.empty?
@@ -28,14 +32,14 @@ class Homework3
   end
 
   def convert_date(string)
-    string.scan(%r{\d{2}/\w{3}/\d{4}:\d{2}:\d{2}:\d{2}\s\+\d{4}}).join
+    string.scan(CONVERT_DATE).join
   end
 
   def convert_ip(string)
-    string.scan(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/).join
+    string.scan(CONVERT_IP).join
   end
 
   def convert_path(string)
-    string.scan(%r{/\w*/\d*/\w*}).join.upcase
+    string.scan(CONVERT_PATH).join.upcase
   end
 end
