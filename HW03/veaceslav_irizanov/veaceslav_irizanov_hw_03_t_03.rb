@@ -3,12 +3,9 @@
 require 'time'
 
 class Homework3
-  ZERO_S = '0'
-  ONE = 1
-
   def task3(log)
     rasult_array = time_line(total_rows(log))
-    array_of_duration(rasult_array).size == ONE ? array_of_duration(rasult_array)[0] : array_of_duration(rasult_array)
+    array_of_duration(rasult_array).size == 1 ? array_of_duration(rasult_array)[0] : array_of_duration(rasult_array)
   end
 
   private
@@ -22,7 +19,7 @@ class Homework3
   end
 
   def array_of_duration(array)
-    return ZERO_S if array.size <= ONE
+    return '0' if array.size <= 1
 
     array.each_cons(2).map { |a, b| (b - a).to_s }
   end
