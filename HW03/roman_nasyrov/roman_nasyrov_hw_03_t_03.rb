@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'time'
-
+# declaring class
 class Homework3
   def task3(log)
     result_array(log).size == 1 ? result_array(log)[0] : result_array(log)
