@@ -5,24 +5,25 @@ require 'time'
 class Homework3
   ZERO_S = '0'
   ONE = 1
-  TWO = 2
-  CONDITION = 'Calling core with action'
 
   def task3(log)
-    return ZERO_S if total_rows(log).size < TWO
-
-    time_line = total_rows(log).map { |line| Time.parse(line) }
-    results(time_line).size > ONE ? results(time_line) : results(time_line).join
+    rasult_array = time_line(total_rows(log))
+    array_of_duration(rasult_array).size == ONE ? array_of_duration(rasult_array)[0] : array_of_duration(rasult_array)
   end
 
   private
 
   def total_rows(log)
-    log.split("\n").select { |var| var.include?(CONDITION) }
+    log.split("\n").select { |var| var.include?('Calling core with action') }
   end
 
-  def results(array)
-    array.each_with_index
-         .inject([]) { |memo, (element, index)| array[index + 1] ? memo.push((array[index + 1] - element).to_s) : memo }
+  def time_line(array)
+    array.collect { |line| Time.parse(line) }
+  end
+
+  def array_of_duration(array)
+    return ZERO_S if array.size <= ONE
+
+    array.each_cons(2).map { |a, b| (b - a).to_s }
   end
 end
