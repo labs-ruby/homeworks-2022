@@ -4,6 +4,6 @@
 
 class Homework3
   def task1(logs)
-    logs.strip("\n").first.include?('error') ? lines.first.to_s : ''
+    logs.split("\n").find { |el| el.include?('error') }.to_s
   end
 end
