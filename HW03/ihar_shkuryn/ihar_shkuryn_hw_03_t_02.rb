@@ -21,10 +21,10 @@ class Homework3
   end
 
   def find_lines_by_pattern(log)
-    arr = []
+    arr_lines = []
     log.split("\n").each do |line|
-      arr << line unless line.match(PATTERN).nil?
+      arr_lines << line unless line.match(PATTERN).nil?
     end
-    arr
+    arr_lines
   end
 end
