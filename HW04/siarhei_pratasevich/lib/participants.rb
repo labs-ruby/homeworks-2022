@@ -36,5 +36,4 @@ class Participants
       "#{student.name}_#{student.surname}_notifications.txt"
     end
   end
-
 end

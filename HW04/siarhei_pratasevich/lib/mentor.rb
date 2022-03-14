@@ -23,5 +23,4 @@ class Mentor < Participants
     add_notification_to_file_for_mentor(filename_for_add_notification(student), "Good job! #{homework
     .title} \"#{homework.description}\" - accepted! (#{name} #{surname})")
   end
-
 end

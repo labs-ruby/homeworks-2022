@@ -21,5 +21,4 @@ class Student < Participants
     add_notification_to_file_for_student(filename_for_add_notification, "Sent to check #{homework
     .title} \"#{homework.description}\" (#{name} #{surname})")
   end
-
 end
