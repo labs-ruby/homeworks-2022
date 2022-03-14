@@ -7,14 +7,8 @@ class Homework3
   def task2(logs)
     return [] if logs.nil?
 
-    variable = logs.to_s.split("\n")
-    info = []
-    variable.each do |log|
-      next unless log.include?('POST') && log =~ /(.*) - - \[(.*)\] "(.*)" (.*)/
-
-      str = "DATE: #{DATE.match(log)[1]} FROM: #{FROM.match(log)} TO: #{TO.match(log).to_s.upcase}"
-      info << str
-    end
-    info
+    logs.split("\n")
+        .select { |log| log.include?('POST') && log =~ /(.*) - - \[(.*)\] "(.*)" (.*)/ }
+        .map { |log| "DATE: #{DATE.match(log)[1]} FROM: #{FROM.match(log)} TO: #{TO.match(log).to_s.upcase}" }
   end
 end
