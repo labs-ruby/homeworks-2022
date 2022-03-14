@@ -14,8 +14,8 @@ class Homework3
     log.split("\n").select { |var| var.include?('Calling core with action') }
   end
 
-  def time_line(array)
-    array.collect { |line| Time.parse(line) }
+  def time_line(lines)
+    lines.collect { |line| Time.parse(line) }
   end
 
   def array_of_duration(array)
