@@ -24,9 +24,4 @@ class Mentor < Participants
     .title} \"#{homework.description}\" - accepted! (#{name} #{surname})")
   end
 
-  private
-
-  def filename_for_add_notification(student)
-    "#{student.name}_#{student.surname}_notifications.txt"
-  end
 end

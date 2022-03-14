@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Notification
+  
   def add_notification_to_file_for_student(filename, notification)
     notification_color(filename, notification, 'cyan')
   end

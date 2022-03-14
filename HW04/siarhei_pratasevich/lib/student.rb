@@ -22,9 +22,4 @@ class Student < Participants
     .title} \"#{homework.description}\" (#{name} #{surname})")
   end
 
-  private
-
-  def filename_for_add_notification
-    "#{name}_#{surname}_notifications.txt"
-  end
 end

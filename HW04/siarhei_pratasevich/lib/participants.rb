@@ -26,4 +26,15 @@ class Participants
                                           "Read all notifications (#{name} #{surname})")
     end
   end
+
+  private
+
+  def filename_for_add_notification(student = (no_argument = true))
+    if no_argument
+      "#{name}_#{surname}_notifications.txt"
+    else
+      "#{student.name}_#{student.surname}_notifications.txt"
+    end
+  end
+
 end
