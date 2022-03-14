@@ -24,11 +24,6 @@ class Homework3
   end
 
   def finding_dur(logs)
-    results = []
-
-    (0..logs.length - 2).each do |i|
-      results << (logs[i + 1] - logs[i]).round(1).to_s
-    end
-    results
+    (0..logs.length - 2).map { |i| (logs[i + 1] - logs[i]).round(1).to_s }
   end
 end
