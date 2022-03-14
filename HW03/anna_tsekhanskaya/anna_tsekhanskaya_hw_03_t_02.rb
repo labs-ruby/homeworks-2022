@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # anna_tsekhanskaya_hw_03_t_02.rb
 
 class Homework3
@@ -9,6 +10,7 @@ class Homework3
   def task2(logs)
     logs.split("\n").map do |line|
       return [] unless line ~= FORM
+
       "DATE: #{line.match(DATE)[1]} FROM: #{line.match(IP)[0]} TO: #{line.match(TO)[1].upcase}"
     end
   end
