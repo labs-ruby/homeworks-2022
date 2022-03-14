@@ -1,18 +1,20 @@
 # frozen_string_literal: true
 
 require 'rspec'
-require 'require_all'
 require_relative 'spec_helper'
+require_relative 'support/reload_file'
 
-if File.exist?('HW03')
-  require_all 'HW03'
+Dir.chdir('../HW03')
 
-  RSpec.describe Task3 do
-    let(:obj) { described_class.new }
+Dir.glob('*').select do |name|
+  next unless File.directory? name
+
+  RSpec.describe "Homework3 Task1: #{name}" do
+    let(:obj) { Object.const_get('Homework3').new }
+
+    before { reload_file(name, 1) }
 
     describe 'Log that has right output' do
-      subject { obj.task1(log) }
-
       context 'when logs have one error' do
         let(:log) do
           <<~LOGS
@@ -27,7 +29,7 @@ if File.exist?('HW03')
         end
 
         it 'returns full text of the first line with an error' do
-          expect(subject).to eq(right_output)
+          expect(obj.task1(log)).to eq(right_output)
         end
       end
 
@@ -47,7 +49,7 @@ if File.exist?('HW03')
         end
 
         it 'returns full text of the first line with an error' do
-          expect(subject).to eq(right_output)
+          expect(obj.task1(log)).to eq(right_output)
         end
       end
 
@@ -61,7 +63,7 @@ if File.exist?('HW03')
         end
 
         it 'returns an empty string' do
-          expect(subject).to eq('')
+          expect(obj.task1(log)).to eq('')
         end
       end
     end
@@ -69,7 +71,7 @@ if File.exist?('HW03')
     describe 'Log that has wrong output' do
       context 'when text are not given' do
         it 'returns an empty string' do
-          expect('').to eq('')
+          expect(obj.task1('')).to eq('')
         end
       end
 
