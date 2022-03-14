@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-# require_relative '../lib/participants'
-
 class Mentor < Participants
-
   def add_homework(title:, description:, student:)
     add_new_file(filename_for_add_notification(student),
                  "New homework: #{title} \"#{description}\" for #{student.name} #{student.surname}")

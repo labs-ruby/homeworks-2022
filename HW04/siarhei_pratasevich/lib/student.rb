@@ -4,7 +4,6 @@ require_relative '../lib/notification'
 require_relative '../lib/participants'
 
 class Student < Participants
- 
   def to_work!(homework)
     add_notification_to_file_for_student(filename_for_add_notification, "Taked to work #{homework
     .title} \"#{homework.description}\" (#{name} #{surname})")
