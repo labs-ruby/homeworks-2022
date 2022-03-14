@@ -6,17 +6,13 @@ require 'time'
 
 class Homework3
   def task3(logs)
-    return '0' unless calling_core_with_action(logs).size < 2
-
-    splited_transformed(logs).size == 1 ? splited_transformed(logs)[0] : splited_transformed(logs)
-  end
-
-  def calling_core_with_action(logs)
-    logs.split("\n").select { |log| log.include?('Calling core with action:') }
+    return splited_transformed(logs)[0] if splited_transformed(logs.size == 1)
+    return "0" if logs.map {|log| Time.parse(log)}.size <=1    
   end
 
   def splited_transformed(logs)
-    logs.split("\n").map { |elem| Time.parse(elem) }
-        .each_cons(2).map { |time1, time2| (time2 - time1).abs.to_s }
+    logs.split("\n").select{|log| log.include?("Calling core with action:'")}
+      .map{|log| Time.parse(log)}
+      .each_cons(2).map! { |time1, time2| (time1 - time2).abs.to_s })
   end
 end
