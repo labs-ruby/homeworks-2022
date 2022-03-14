@@ -1,22 +1,8 @@
 # frozen_string_literal: true
 
-class Mentor
-  include Notification
-  attr_reader :name, :surname
+# require_relative '../lib/participants'
 
-  def initialize(name:, surname:)
-    @name = name
-    @surname = surname
-  end
-
-  def notifications(student)
-    read_notification_file(filename_for_add_notification(student))
-  end
-
-  def mark_as_read!(student)
-    add_notification_to_file_for_mentor(filename_for_add_notification(student),
-                                        "Read all notifications (#{name} #{surname})")
-  end
+class Mentor < Participants
 
   def add_homework(title:, description:, student:)
     add_new_file(filename_for_add_notification(student),

@@ -1,25 +1,10 @@
 # frozen_string_literal: true
 
 require_relative '../lib/notification'
+require_relative '../lib/participants'
 
-class Student
-  include Notification
-  attr_reader :name, :surname
-
-  def initialize(name:, surname:)
-    @name = name
-    @surname = surname
-  end
-
-  def notifications
-    read_notification_file(filename_for_add_notification)
-  end
-
-  def mark_as_read!
-    add_notification_to_file_for_student(filename_for_add_notification,
-                                         "Read all notifications (#{name} #{surname})")
-  end
-
+class Student < Participants
+ 
   def to_work!(homework)
     add_notification_to_file_for_student(filename_for_add_notification, "Taked to work #{homework
     .title} \"#{homework.description}\" (#{name} #{surname})")
