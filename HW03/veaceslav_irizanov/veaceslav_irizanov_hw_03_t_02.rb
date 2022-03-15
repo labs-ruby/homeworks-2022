@@ -7,9 +7,7 @@ class Homework3
   ADDRESS = %r{/\w*/\d*/\w*}
   def task2(log)
     rows = log.split("\n").select { |str| str.include?('POST') }
-    rows.map do |element|
-      return [] unless element == element.scan(CONDITION).join
-
+    rows.select { _1 == _1.scan(CONDITION).join }.map do |element|
       "DATE: #{element.scan(DATETIME).join} FROM: #{element.scan(IP).join} TO: #{element.scan(ADDRESS).join.upcase}"
     end
   end

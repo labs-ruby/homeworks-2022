@@ -5,13 +5,14 @@ require 'time'
 class Homework3
   def task3(log)
     rasult_array = time_line(total_rows(log))
-    array_of_duration(rasult_array).size == 1 ? array_of_duration(rasult_array)[0] : array_of_duration(rasult_array)
+    final_array = array_of_duration(rasult_array)
+    final_array.size == 1 ? final_array[0] : final_array
   end
 
   private
 
   def total_rows(log)
-    log.split("\n").select { |var| var.include?('Calling core with action') }
+    log.split("\n").select { _1.include?('Calling core with action') }
   end
 
   def time_line(lines)
