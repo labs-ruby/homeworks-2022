@@ -4,14 +4,13 @@ require_relative '../lib/notification'
 require_relative '../lib/participant'
 
 class Student < Participant
-  
   def notifications
     read_notification_file(filename_for_add_notification)
   end
 
   def mark_as_read!
-      add_notification_to_file_for_student(filename_for_add_notification,
-                                           "Read all notifications (#{name} #{surname})")
+    add_notification_to_file_for_student(filename_for_add_notification,
+                                         "Read all notifications (#{name} #{surname})")
   end
 
   def to_work!(homework)
@@ -35,6 +34,6 @@ class Student < Participant
   private
 
   def filename_for_add_notification
-      "#{name}_#{surname}_notifications.txt"
+    "#{name}_#{surname}_notifications.txt"
   end
 end

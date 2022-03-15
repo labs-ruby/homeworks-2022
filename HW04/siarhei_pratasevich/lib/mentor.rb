@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 class Mentor < Participant
-
   def notifications(student)
     read_notification_file(filename_for_add_notification(student))
   end
-  
-  def mark_as_read!(student = (no_argument = true))
+
+  def mark_as_read!(student)
     add_notification_to_file_for_mentor(filename_for_add_notification(student),
-                                          "Read all notifications (#{name} #{surname})")
+                                        "Read all notifications (#{name} #{surname})")
   end
 
   def add_homework(title:, description:, student:)
@@ -37,6 +36,6 @@ class Mentor < Participant
   private
 
   def filename_for_add_notification(student)
-      "#{student.name}_#{student.surname}_notifications.txt"
+    "#{student.name}_#{student.surname}_notifications.txt"
   end
 end
