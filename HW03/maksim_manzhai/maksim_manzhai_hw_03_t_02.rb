@@ -10,16 +10,16 @@ class Homework3
 
     lines = logs.split(/\n/)
 
-    formated_lines = lines.find_all { |line| line.include?('POST') }
-    formated_lines.each { |line| return [] if wrong_format?(line) }
-    formated_lines.collect do |line|
+    return [] if lines.find { |line| wrong_format?(line) }
+
+    lines.find_all { |line| line.include?('POST') }.collect do |line|
       "DATE: #{line.scan(DATETIME).join} FROM: #{line.scan(IP).join} TO: #{line.scan(ADDRESS).join.upcase}"
     end
   end
 
   private
 
-  def wrong_format?(string)
-    string.match(/^\W/) ? true : false
+  def wrong_format?(line)
+    line.match(/^\W/) ? true : false
   end
 end
