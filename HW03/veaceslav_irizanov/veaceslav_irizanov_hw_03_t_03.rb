@@ -4,8 +4,7 @@ require 'time'
 
 class Homework3
   def task3(log)
-    rasult_array = time_line(total_rows(log))
-    final_array = array_of_duration(rasult_array)
+    final_array = array_of_duration(time_line(total_rows(log)))
     final_array.size == 1 ? final_array[0] : final_array
   end
 
