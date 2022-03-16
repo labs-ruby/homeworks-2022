@@ -21,6 +21,6 @@ class Homework3
   def array_of_duration(array)
     return '0' if array.size <= 1
 
-    array.each_cons(2).map { |a, b| (b - a).to_s }
+    array.each_cons(2).map { |element1, element2| (element2 - element1).to_s }
   end
 end
