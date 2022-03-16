@@ -5,12 +5,9 @@ require 'time'
 class Homework3
   def task3(log)
     lines = log.split(/\n/)
+    lines.select! { |line| event_valid?(line) }.map! { |line| Time.parse(line) }
 
-    lines.map! { |line| Time.parse(line) if event_valid?(line) }
-
-    return '0' if lines.empty?
-
-    return '0' if lines.size == 1
+    return '0' if lines.empty? || lines.size == 1
 
     duration(lines.compact)
   end
