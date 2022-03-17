@@ -7,7 +7,7 @@ class Homework3
   REG_TEXT = /(".+")/
 
   def task2(log)
-    arr_lines = find_lines_by_pattern log
+    arr_lines = find_lines_by_pattern(log)
     return [] unless arr_lines.size.positive?
 
     format_text arr_lines
