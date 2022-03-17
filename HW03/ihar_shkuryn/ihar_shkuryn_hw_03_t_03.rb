@@ -8,6 +8,13 @@ class Homework3
     durations = log.split("\n").select { |line| line.match(PATTERN) }
                    .map { |line| Time.parse(line) }
                    .each_cons(2).map { |a, b| (b - a).to_s }
+
+    output_answer(durations)
+  end
+
+  private
+
+  def output_answer(durations)
     if durations.size > 1
       durations
     else
