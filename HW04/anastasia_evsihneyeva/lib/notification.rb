@@ -1,12 +1,20 @@
 # frozen_string_literal: true
 
-require 'singleton'
-
 class Notification
-  attr_reader :log
+  attr_accessor :logs
 
-  def initialize(log = { log: nil })
-    @log = log
-    puts @log[:log]
+  def initialize(text = nil)
+    @logs =  []
+    @logs << text if text
   end
+
+  def mark_as_read!
+    @logs.clear
+  end
+end
+
+class StudentNotification < Notification
+end
+
+class MentorNotification < Notification
 end

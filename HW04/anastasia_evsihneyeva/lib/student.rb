@@ -1,42 +1,45 @@
 # frozen_string_literal: true
 
 class Student
-  attr_accessor :notification
+  attr_reader :name, :surname
+  attr_accessor :all_hw, :hw_in_progress, :notification_s
 
   def initialize(data)
     @name = data[:name]
     @surname = data[:surname]
-    @homeworks = []
-  end
-
-  def name
-    "#{@name} #{@surmane}"
+    @notification_s = StudentNotification.new
+    @all_hw = []
+    @hw_in_progress = []
   end
 
   def notifications
-    Notification.new
+    puts '*'
+    puts notification_s.logs
   end
 
   def mark_as_read!
-    Notification.new(log: '-Mark_as_read!')
+    notification_s.mark_as_read!
+    puts 'Read!'
   end
 
   def homeworks
-    @homeworks.each { |hw| puts hw.title }
+    hw_in_progress.each do |hw|
+      puts "#{hw.title} - #{hw.description}"
+    end
   end
 
   def to_work!(homework)
-    Notification.new(log: "-Student #{@name} #{@surname} working on #{homework.title}")
-    @homeworks << homework
+    hw_in_progress << homework
+    homework.mentor.notification_m.logs << "Student #{name} work on #{homework.title}"
   end
 
   def add_answer!(homework, answer)
-    text = "#{@name} #{@surname}: #{answer}"
-    homework.add_answer!(text)
+    homework.answers << answer
   end
 
   def to_check!(homework)
-    Notification.new(log: "-Student #{@name} #{@surname} add to check #{homework.title}")
-    homework.to_check!(@name, @surname)
+    homework.mentor.hw_to_check << homework
+    all_hw.delete(homework)
+    homework.mentor.notification_m.logs << "Student #{name} added homework #{homework.title} to check"
   end
 end

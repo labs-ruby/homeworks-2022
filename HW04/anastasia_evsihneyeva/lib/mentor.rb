@@ -3,7 +3,7 @@
 class Mentor
   attr_reader :name, :surname, :homework, :self
   attr_accessor :notification_m, :all_hw, :hw_to_check
-  
+
   def initialize(data)
     @name = data[:name]
     @surname = data[:surname]
@@ -20,7 +20,7 @@ class Mentor
 
   def mark_as_read!
     notification_m.mark_as_read!
-    puts "Read!"
+    puts 'Read!'
   end
 
   def add_homework(data)
@@ -45,5 +45,5 @@ class Mentor
     hw_to_check.delete(homework)
     homework.student.hw_in_progress.delete(homework)
     homework.student.notification_s.logs << "Mentor #{name} accepted homework #{homework.title}"
-  end 
+  end
 end
