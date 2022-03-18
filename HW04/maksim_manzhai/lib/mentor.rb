@@ -29,4 +29,9 @@ class Mentor
   def reject_to_work!(homework)
     homework.student.notifications << Notification.new(title: homework.title, description: 'Your homework rejected')
   end
+
+  def accept!(homework)
+    homework.acceptable = true
+    homework.student.notifications << Notification.new(title: homework.title, description: 'Your homework accepted')
+  end
 end
