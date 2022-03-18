@@ -38,9 +38,9 @@ mentor.reject_to_work!(homework)
 student.notifications
 # ---
 student.add_answer!(homework, 'new students answer_after reject')
-# student.to_check!(homework)
+student.to_check!(homework)
 # ---
 # mentor accept homework
-# mentor.accept!(homework)
+mentor.accept!(homework)
 # student see notification about homework was accept
-# student.notifications
+student.notifications
