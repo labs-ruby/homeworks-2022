@@ -1,29 +1,17 @@
 # frozen_string_literal: true
 
 class Homework
+  attr_reader :title, :description, :student, :mentor
+  attr_accessor :notification_s, :notification_m, :answers
+
   def initialize(data, mentor)
     @title = data[:title]
-    @description = data[:desription]
+    @description = data[:description]
     @student = data[:student]
     @mentor = mentor
-    @status = 'new'
+    data[:student].notification_s.logs  << ("Homework #{@title} was added to #{@student.name} by mentor #{@mentor.name}")
+    @notification_m
     @answers = []
-    @to_check = []
   end
 
-  def add_answer!(answer)
-    @answers << answer
-  end
-
-  def change_status(status)
-    @status = status
-    @to_check.clear
-  end
-
-  attr_reader :title
-
-  def to_check!(_name, _surname)
-    change_status('in progress')
-    @to_check << self
-  end
 end
