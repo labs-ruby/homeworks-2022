@@ -2,7 +2,7 @@
 
 class Homework
   attr_reader :title
-  attr_accessor :mentor, :answers, :student
+  attr_accessor :mentor, :answers, :student, :acceptable
 
   def initialize(attributes)
     @title = attributes.fetch(:title)
@@ -11,5 +11,6 @@ class Homework
     @mentor = attributes.fetch(:mentor)
     @student.notifications << Notification.new(title: @title, description: @description)
     @answers = []
+    @acceptable = false
   end
 end
