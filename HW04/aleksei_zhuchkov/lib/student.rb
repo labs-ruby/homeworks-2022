@@ -1,12 +1,22 @@
 class Student
-
+  attr_accessor :storage
+  attr_reader :name, :surname
+  
   def initialize (name, surname)
     @name = name
     @surname = surname
+    @storage = []
   end
 
   def student_here
     p "I'm student #{@name} #{@surname} and I am here!"
+  end
+  def add(hw)
+    @storage << hw
+    puts @storage
+  end
+  def say
+    @storage.each{|el| puts el.title}
   end
 
   def notifications
