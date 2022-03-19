@@ -6,8 +6,6 @@ ADDRESS = %r{/\w*/\d*/\w*}
 
 class Homework3
   def task2(logs)
-    return [] if logs.empty?
-
     lines = logs.split(/\n/)
 
     return [] if lines.find { |line| wrong_format?(line) }
@@ -20,6 +18,6 @@ class Homework3
   private
 
   def wrong_format?(line)
-    line.match(/^\W/) ? true : false
+    line.match(/^\W/)
   end
 end
