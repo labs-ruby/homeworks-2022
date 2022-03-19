@@ -6,16 +6,13 @@ class Homework3
   def task3(log)
     lines = log.split(/\n/)
     lines.select! { |line| event_valid?(line) }.map! { |line| Time.parse(line) }
-
-    return '0' if lines.empty? || lines.size == 1
-
-    duration(lines.compact)
+    lines.size <= 1 ? '0' : duration(lines.compact)
   end
 
   private
 
   def event_valid?(string)
-    string.include?('Calling core with action') ? true : false
+    string.include?('Calling core with action')
   end
 
   def duration(events)
