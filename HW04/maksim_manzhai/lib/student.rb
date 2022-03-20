@@ -3,9 +3,9 @@
 class Student
   attr_accessor :notifications, :homeworks
 
-  def initialize(attributes)
-    @name = attributes.fetch(:name)
-    @surname = attributes.fetch(:surname)
+  def initialize(name:, surname:)
+    @name = name
+    @surname = surname
     @notifications = []
     @homeworks = []
   end

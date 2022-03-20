@@ -3,9 +3,9 @@
 class Mentor
   attr_accessor :subscriptions, :notifications
 
-  def initialize(attributes)
-    @name = attributes.fetch(:name)
-    @surname = attributes.fetch(:surname)
+  def initialize(name:, surname:)
+    @name = name
+    @surname = surname
     @subscriptions = []
     @notifications = []
   end

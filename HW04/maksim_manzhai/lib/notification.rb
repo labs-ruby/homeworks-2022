@@ -3,9 +3,9 @@
 class Notification
   attr_accessor :readed
 
-  def initialize(attributes)
-    @title = attributes.fetch(:title)
-    @description = attributes.fetch(:description)
+  def initialize(title:, description:)
+    @title = title
+    @description = description
     @readed = false
   end
 end
