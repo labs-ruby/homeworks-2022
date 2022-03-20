@@ -12,9 +12,3 @@ class Notification
     @logs.clear
   end
 end
-
-class StudentNotification < Notification
-end
-
-class MentorNotification < Notification
-end
