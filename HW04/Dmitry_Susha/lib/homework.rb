@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'homework_observable'
 require_relative 'notification'
 class Homework

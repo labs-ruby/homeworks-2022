@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'lib/student'
 require_relative 'lib/mentor'
 require_relative 'lib/homework'
@@ -18,7 +20,7 @@ student.mark_as_read!
 mentor.subscribe_to!(homework)
 # student see homeworks data
 student.homeworks
-# student take to work andsubscribe to homework 
+# student take to work andsubscribe to homework
 student.to_work!(homework)
 # student see homeworks data
 student.homeworks

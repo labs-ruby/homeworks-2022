@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'user'
 class Mentor < User
   def add_homework(title:, description:, student:)
