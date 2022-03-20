@@ -9,8 +9,12 @@ class Homework
     @description = description
     @student = student
     @mentor = mentor
-    @student.notifications << Notification.new(title: @title, description: @description)
+    send_notification
     @answers = []
     @acceptable = false
+  end
+
+  def send_notification
+    @student.notifications << Notification.new(title: @title, description: @description)
   end
 end
