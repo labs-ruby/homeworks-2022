@@ -36,4 +36,10 @@ class Student
     homework.answers.push(answer)
   end
 
+  def to_check!(homework)
+    homework.mentor.homeworks_for_check.push(homework)
+    homeworks_todo.delete(homework)
+    homework.mentor.notice.queue.push("Student: #{name} #{surname} finished homework #{homework.title}")
+  end
+
 end
