@@ -33,6 +33,8 @@ class Student
 
   def add_answer!(homework, answer)
     homework.answers.push(answer)
+    homeworks_todo.delete(homework)
+    homeworks_in_progress.push(homework)
   end
 
   def to_check!(homework)
