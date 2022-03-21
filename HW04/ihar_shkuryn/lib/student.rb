@@ -30,4 +30,10 @@ class Student
     homeworks_in_progress.push(homework)
     homework.mentor.notice.queue.push("Student: #{name} #{surname} started homework #{homework.title}")
   end
+
+  def add_answer!(homework, answer)
+    debugger
+    homework.answers.push(answer)
+  end
+
 end

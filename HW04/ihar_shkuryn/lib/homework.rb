@@ -13,6 +13,6 @@ class Homework
     message = "Student #{@student.name} #{@student.surname} got a new homework "\
     "from #{@mentor.name} #{@mentor.surname} title: #{@title}"
     data[:student].notice.queue.push(message)
-    answers = []
+    @answers = []
   end
 end
