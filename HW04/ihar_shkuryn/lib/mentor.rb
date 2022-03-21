@@ -21,8 +21,16 @@ class Mentor
   end
 
   def subscribe_to!(student)
-    debugger
     @subscriptions.push(student)
     student.notice.queue.push("Mentor #{@name} subscribed to #{student.name}")
   end
+
+  def notifications
+    # any logic here'
+  end
+
+  def mark_as_read!
+    notice.mark_as_read!
+  end
+
 end

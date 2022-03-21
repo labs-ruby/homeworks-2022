@@ -13,7 +13,7 @@ class Student
   end
 
   def notifications
-    # notice.push(Notification.new)
+    # any logic here
   end
 
   def mark_as_read!
@@ -27,7 +27,6 @@ class Student
   end
 
   def to_work!(homework)
-    debugger
     homeworks_in_progress.push(homework)
     homework.mentor.notice.queue.push("Student: #{name} #{surname} started homework #{homework.title}")
   end

@@ -4,7 +4,6 @@ class Notification
   attr_accessor :queue
 
   def initialize(message = nil)
-    debugger
     @queue = []
     @queue.push(message) if message
   end
