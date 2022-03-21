@@ -42,5 +42,4 @@ class Student
     homeworks_todo.delete(homework)
     homework.mentor.notice.queue.push("Student: #{name} #{surname} finished homework #{homework.title}")
   end
-
 end

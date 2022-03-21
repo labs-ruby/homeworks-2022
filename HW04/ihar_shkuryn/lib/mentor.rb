@@ -40,10 +40,8 @@ class Mentor
   end
 
   def accept!(homework)
-    debugger
     homeworks_for_check.delete(homework)
     homework.student.homeworks_in_progress.delete(homework)
     homework.student.notice.queue.push("Mentor #{name} accepted homework #{homework.title}")
   end
-
 end
