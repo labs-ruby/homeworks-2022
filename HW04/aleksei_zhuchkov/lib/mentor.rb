@@ -18,14 +18,14 @@ class Mentor
   end
 
   def subscribe_to!(student)
-    @storage_students << student
+    storage_students << student
   end
 
   def notifications
-    return 'None notification' if @storage_students.empty?
+    return 'None notification' if storage_students.empty?
 
     puts "Notification for mentor (#{name} #{surname})"
-    @storage_students.each do |student|
+    storage_students.each do |student|
       puts "Students: #{student.name} #{student.surname}"
       student.storage_notification_for_mentor.each { |el| puts "Title: #{el.title}, discription: #{el.description}" }
       puts "\n"
@@ -34,7 +34,7 @@ class Mentor
   end
 
   def mark_as_read!
-    @storage_students.each { |student| student.storage_notification_for_mentor.clear }
+    storage_students.each { |student| student.storage_notification_for_mentor.clear }
   end
 
   def reject_to_work!(homework)
