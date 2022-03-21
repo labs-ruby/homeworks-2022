@@ -32,7 +32,6 @@ class Student
   end
 
   def add_answer!(homework, answer)
-    debugger
     homework.answers.push(answer)
   end
 

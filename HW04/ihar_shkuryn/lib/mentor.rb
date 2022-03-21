@@ -33,4 +33,10 @@ class Mentor
     notice.mark_as_read!
   end
 
+  def reject_to_work!(homework)
+    homework.student.homeworks_todo.push(homework)
+    homeworks_for_check.delete(homework)
+    homework.student.notice.queue.push("Mentor #{name} rejected homework #{homework.title}")
+  end
+
 end
