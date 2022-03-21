@@ -8,7 +8,6 @@ class Student
     @name = data[:name]
     @surname = data[:surname]
     @notice = Notification.new
-    # @notice = []
     @homeworks_todo = []
     @homeworks_in_progress = []
   end
@@ -18,7 +17,18 @@ class Student
   end
 
   def mark_as_read!
-    debugger
     notice.mark_as_read!
+  end
+
+  def homeworks
+    homeworks_todo.each do |hw|
+      # any logic with hw
+    end
+  end
+
+  def to_work!(homework)
+    debugger
+    homeworks_in_progress.push(homework)
+    homework.mentor.notice.queue.push("Student: #{name} #{surname} started homework #{homework.title}")
   end
 end
