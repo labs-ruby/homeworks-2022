@@ -1,19 +1,26 @@
 # frozen_string_literal: true
 
-def print_notification_for_students_and_mentor(name, surname, array_notifications, type_person)
-  return 'None notification' if array_notifications.empty?
+def print_notification_for_students_and_mentor(name, surname, notifications, type_person)
+  return 'None notification' if notifications.empty?
 
-  if type_person == "mentor"
-    puts "Notification for #{type_person} (#{name} #{surname})"
-    storage_students.each do |student|
-      puts "Students: #{student.name} #{student.surname}"
-      student.storage_notification_for_mentor.each(&:print_notification)
-      puts "\n"
-    end
-    puts '-----------------------------'
-  else  
-    puts "Notification for #{type_person} (#{name} #{surname}):"
-    storage_notification_for_student.each(&:print_notification)
-    puts '-----------------------------'
+  if type_person == 'mentor'
+    print_notification_for_mentor(name, surname, notifications)
+  else
+    print_notification_for_student(name, surname, notifications)
   end
+  puts '====================='
+end
+
+def print_notification_for_mentor(name, surname, notifications)
+  puts "Notification for mentor (#{name} #{surname})"
+  notifications.each do |student|
+    puts "Students: #{student.name} #{student.surname}"
+    student.storage_notification_for_mentor.each(&:print_notification)
+    puts "\n"
+  end
+end
+
+def print_notification_for_student(name, surname, notifications)
+  puts "Notification for student (#{name} #{surname}):"
+  notifications.each(&:print_notification)
 end

@@ -11,6 +11,4 @@ class Notification
   def print_notification
     puts "Title: #{title}, discription: #{description}"
   end
-
-
 end
