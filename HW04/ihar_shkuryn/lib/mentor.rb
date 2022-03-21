@@ -15,9 +15,14 @@ class Mentor
 
   def add_homework(data)
     homework = Homework.new(data, self)
-    debugger
     all_homeworks.push(homework)
     data[:student].homeworks_todo.push(homework)
     homework
+  end
+
+  def subscribe_to!(student)
+    debugger
+    @subscriptions.push(student)
+    student.notice.queue.push("Mentor #{@name} subscribed to #{student.name}")
   end
 end
