@@ -8,12 +8,17 @@ class Student
     @name = data[:name]
     @surname = data[:surname]
     @notice = Notification.new
+    # @notice = []
     @homeworks_todo = []
     @homeworks_in_progress = []
   end
 
   def notifications
-    # puts 'notice has been accepted by student!'
+    # notice.push(Notification.new)
   end
 
+  def mark_as_read!
+    debugger
+    notice.mark_as_read!
+  end
 end
