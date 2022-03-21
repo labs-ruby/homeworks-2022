@@ -17,9 +17,7 @@ class Student
   end
 
   def notifications
-    puts "Notification for student (#{name} #{surname}):"
-    storage_notification_for_student.each { |el| puts "Title: #{el.title}, discription: #{el.description}" }
-    puts '-----------------------------'
+    print_notification_for_students_and_mentor(name, surname,storage_notification_for_student, "student")
   end
 
   def mark_as_read!

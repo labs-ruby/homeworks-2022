@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require_relative 'util.rb'
 
 class Mentor
   attr_accessor :storage_students
@@ -22,15 +23,7 @@ class Mentor
   end
 
   def notifications
-    return 'None notification' if storage_students.empty?
-
-    puts "Notification for mentor (#{name} #{surname})"
-    storage_students.each do |student|
-      puts "Students: #{student.name} #{student.surname}"
-      student.storage_notification_for_mentor.each { |el| puts "Title: #{el.title}, discription: #{el.description}" }
-      puts "\n"
-    end
-    puts '-----------------------------'
+    print_notification_for_students_and_mentor(name, surname, storage_students, "mentor")
   end
 
   def mark_as_read!
