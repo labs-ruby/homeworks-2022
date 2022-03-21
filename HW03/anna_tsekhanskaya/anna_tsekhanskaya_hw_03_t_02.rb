@@ -9,7 +9,7 @@ class Homework3
   IP = /\d{2}\.\d\.\d{3}\.\d{3}/
   def task2(logs)
     logs.split("\n").map do |line|
-      return [] unless line ~= FORM
+      return [] unless line =~ FORM
 
       "DATE: #{line.match(DATE)[1]} FROM: #{line.match(IP)[0]} TO: #{line.match(TO)[1].upcase}"
     end
