@@ -12,12 +12,4 @@ class Homework
     @status = status
     @answers = []
   end
-
-  def notify_mentor(notification)
-    mentor.notifications << notification
-  end
-
-  def notify_student(notification)
-    student.notifications << notification
-  end
 end

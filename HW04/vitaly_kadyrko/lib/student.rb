@@ -10,14 +10,18 @@ class Student
     @notifications = []
   end
 
+  def notify_mentor(notification)
+    mentor.notifications << notification
+  end
+
   def mark_as_read!
-    @notifications.clear
+    notifications.clear
   end
 
   def to_work!(homework)
-    notification = Notification.new(homework: homework, text: "Homework '#{homework.title}' was started")
-    homework.notify_mentor(notification)
-    homework.status = 'In_progress'
+    notification = Notification.new(homework: homework, text: :to_work).notification_messages
+    notify_mentor(notification)
+    homework.status = 'In progress'
   end
 
   def add_answer!(homework, answer)
@@ -25,8 +29,8 @@ class Student
   end
 
   def to_check!(homework)
-    notification = Notification.new(homework: homework, text: "New answers to homework '#{homework.title}' was added")
-    homework.notify_mentor(notification)
+    notification = Notification.new(homework: homework, text: :to_check).notification_messages
+    notify_mentor(notification)
     homework.status = 'Awaiting to check'
   end
 end

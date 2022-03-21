@@ -10,12 +10,16 @@ class Mentor
     @notifications = []
   end
 
+  def notify_student(notification)
+    student.notifications << notification
+  end
+
   def add_homework(title:, description:, student:)
     homework = Homework.new(title: title, description: description, student: student, mentor: self)
-    notification = Notification.new(homework: homework, text: "New homework '#{homework.title}' was added")
+    notification = Notification.new(homework: homework, text: :new_homework).notification_messages
 
     student.homeworks << homework
-    homework.notify_student(notification)
+    notify_student(notification)
 
     homework
   end
@@ -25,18 +29,18 @@ class Mentor
   end
 
   def mark_as_read!
-    @notifications.clear
+    notifications.clear
   end
 
   def reject_to_work!(homework)
-    notification = Notification.new(homework: homework, text: "Answers to homework '#{homework.title}' was rejected")
-    homework.notify_student(notification)
+    notification = Notification.new(homework: homework, text: :reject_work).notification_messages
+    notify_student(notification)
     homework.status = 'Rejected'
   end
 
   def accept!(homework)
-    notification = Notification.new(homework: homework, text: "Homework '#{homework.title}' was accepted")
-    homework.notify_student(notification)
+    notification = Notification.new(homework: homework, text: :accept_work).notification_messages
+    notify_student(notification)
     homework.status = 'Accepted'
   end
 end
