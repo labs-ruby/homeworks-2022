@@ -4,31 +4,48 @@ require_relative './person'
 require_relative './notification'
 
 class Student < Person
-  include Notification
   def notifications
-    read_file("#{name}_#{surname}_notification.txt")
+    read_file('notification.txt')
   end
 
   def mark_as_read!
-    write_to_file("#{name}_#{surname}_notification.txt", "Student #{name} #{surname} read all notifications.\n")
+    notification = Notification.new("#{student.name} #{student.surname}", 'read all notifications')
+    write_to_file('notification.txt', "#{notification.sender} left message #{notification.message}.\n")
   end
 
   def homeworks
-    read_file("#{name}_#{surname}_homework.txt")
+    read_file('homework.txt')
   end
 
   def to_work!(homework)
-    write_to_file("#{name}_#{surname}_notification.txt",
-                  "Homework #{homework.title}, #{homework.description} is being done.\n")
+    notification = Notification.new("#{student.name} #{student.surname}", "#{homework.title} is doing")
+    write_to_file('notification.txt',
+                  "#{notification.sender} left message #{notification.message}.\n")
   end
 
   def add_answer!(homework, answer)
-    write_to_file("#{name}_#{surname}_notification.txt",
-                  "Homework #{homework.title}, #{homework.description} has done. Answer is #{answer}.\n")
+    notification = Notification.new("#{student.name} #{student.surname}", "#{homework.title} was solved")
+    write_to_file('notification.txt',
+                  "#{notification.sender} left message #{notification.message}. Answer is #{answer}.\n")
   end
 
   def to_check!(homework)
-    write_to_file("#{name}_#{surname}_notification.txt",
-                  "Please, check homework #{homework.title}, #{homework.description}.\n")
+    notification = Notification.new("#{student.name} #{student.surname}", "#{homework.title} needs to check")
+    write_to_file('notification.txt',
+                  "#{notification.sender} left message #{notification.message}.\n")
+  end
+
+  private
+
+  def read_file(filename)
+    f = File.open(filename, 'r')
+    f.each_line { |line| puts line }
+    f.close
+  end
+
+  def write_to_file(filename, message)
+    f = File.open(filename, 'w')
+    f.write(message)
+    f.close
   end
 end
