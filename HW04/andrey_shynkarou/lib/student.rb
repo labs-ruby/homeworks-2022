@@ -1,22 +1,34 @@
 # frozen_string_literal: true
 
-require_relative 'lib/person'
+require_relative './person'
+require_relative './notification'
 
 class Student < Person
-  def notifications(notification_filename)
-    read_file(notification_filename)
+  include Notification
+  def notifications
+    read_file("#{name}_#{surname}_notification.txt")
   end
 
   def mark_as_read!
-    f = File.open('notification.txt', 'a')
-    f.write("Student #{name} #{surname} read all notifications")
-    f.close
+    write_to_file("#{name}_#{surname}_notification.txt", "Student #{name} #{surname} read all notifications.\n")
   end
 
-  def homeworks(homeworks_filename)
-    read_file(homeworks_filename)
+  def homeworks
+    read_file("#{name}_#{surname}_homework.txt")
   end
 
-  private
+  def to_work!(homework)
+    write_to_file("#{name}_#{surname}_notification.txt",
+                  "Homework #{homework.title}, #{homework.description} is being done.\n")
+  end
 
+  def add_answer!(homework, answer)
+    write_to_file("#{name}_#{surname}_notification.txt",
+                  "Homework #{homework.title}, #{homework.description} has done. Answer is #{answer}.\n")
+  end
+
+  def to_check!(homework)
+    write_to_file("#{name}_#{surname}_notification.txt",
+                  "Please, check homework #{homework.title}, #{homework.description}.\n")
+  end
 end
