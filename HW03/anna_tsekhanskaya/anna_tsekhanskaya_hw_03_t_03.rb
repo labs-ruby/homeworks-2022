@@ -7,18 +7,20 @@ require 'time'
 class Homework3
   TIMESTAMP = /^\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}.\d/
   def task3(logs)
-    return '0' if events(logs).length < 2
+    return '0' if events(logs).size <= 1
 
     difference(events)
   end
 
   def events(logs)
-    logs.split("\n").select { |line| line.include?('Calling core with action') }.map { |line| line =~ TIMESTAMP }
+    logs.split("\n").select { |line| line.include?('Calling core with action') }.map { |line| line[TIMESTAMP] }
   end
 
   def difference(logs)
     diff = []
-    diff << logs.each_cons(2).map! { |previos_event, next_event| (next_event - previos_event).to_s }
+    logs.each_cons(2) do |previos_event, next_event|
+      diff << Time.parse(next_event) - Time.parse(previos_event)
+    end
     diff.join(',')
   end
 end
