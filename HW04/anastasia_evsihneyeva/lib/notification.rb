@@ -3,12 +3,11 @@
 class Notification
   attr_accessor :logs
 
-  def initialize(text = nil)
-    @logs =  []
-    @logs << text if text
+  def initialize(logs)
+    @logs = logs
   end
 
-  def mark_as_read!
-    @logs.clear
+  def output
+    puts logs
   end
 end
