@@ -25,16 +25,16 @@ student.mark_as_read!
 # mentor subscribe to student
 mentor.subscribe_to!(student)
 # student take to work homework
-student.homeworks
+student.show_homeworks
 student.to_work!(homework)
-student.homeworks
+student.show_homeworks
 # mentor see notification about homework to work
 mentor.notifications
 # mentor mark as read all notifications
 mentor.mark_as_read!
 mentor.notifications
 # student can see homeworks
-student.homeworks
+student.show_homeworks
 # student add answer to homework
 student.add_answer!(homework, 'new students answer')
 # student sent to check homework

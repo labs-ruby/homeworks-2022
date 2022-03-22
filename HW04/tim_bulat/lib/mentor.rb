@@ -18,12 +18,12 @@ class Mentor < Person
   end
 
   def reject_to_work!(homework)
-    homework.is_reject = true
+    homework.status = 'rejected'
     homework.student.notes << "Homework #{homework.title} is rejected\n"
   end
 
   def accept!(homework)
-    homework.is_accept = true
+    homework.status = 'accepted'
     homework.student.notes << "Homework #{homework.title} is accepted\n"
   end
 end

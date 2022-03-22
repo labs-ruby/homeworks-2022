@@ -13,12 +13,12 @@ class Student < Person
   end
 
   def to_check!(homework)
-    homework.is_check = true
+    homework.status = 'to check'
     homework.mentor.notes << "Student #{name} send homework #{homework.title} to check\n" \
                               "Answer:#{homework.answer}\n"
   end
 
-  def homeworks
+  def show_homeworks
     @homeworks.each do |homework|
       print "Homeworks:\n
             Title: #{homework.title}\n

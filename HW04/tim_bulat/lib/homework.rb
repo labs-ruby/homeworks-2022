@@ -2,7 +2,7 @@
 
 class Homework
   attr_reader :title, :description, :student, :mentor
-  attr_accessor :answer, :is_accept, :is_reject, :is_check
+  attr_accessor :answer, :status
 
   def initialize(title:, description:, student:, mentor:)
     @title = title
@@ -10,8 +10,6 @@ class Homework
     @student = student
     @mentor = mentor
     @answer = ''
-    @is_accept = false
-    @is_reject = false
-    @is_check = false
+    @status = ''
   end
 end
