@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'util'
-
 class Mentor
   attr_accessor :storage_students
   attr_reader :name, :surname
@@ -24,7 +22,8 @@ class Mentor
   end
 
   def notifications
-    print_notification_for_students_and_mentor(name, surname, storage_students, 'mentor')
+    notification_message = Notification.new
+    notification_message.print_notification_for_students_and_mentor(name, surname, storage_students, 'mentor')
   end
 
   def mark_as_read!

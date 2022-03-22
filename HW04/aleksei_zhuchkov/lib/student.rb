@@ -17,7 +17,9 @@ class Student
   end
 
   def notifications
-    print_notification_for_students_and_mentor(name, surname, storage_notification_for_student, 'student')
+    notification_message = Notification.new
+    notification_message.print_notification_for_students_and_mentor(name, surname, storage_notification_for_student,
+                                                                    'student')
   end
 
   def mark_as_read!
