@@ -3,15 +3,18 @@
 # anna_tsekhanskaya_hw_03_t_02.rb
 
 class Homework3
-  FORM = %r{\d{2}\.\d\.\d{3}\.\d{3}\s-\s-\s\[\S+\s\+\d{4}\]\s"POST\s/\S+\s\S+"\s\d+\s+\S+\s+\S+}
-  DATE = /.*?\[([^)]*)\].*/
-  TO = /.*?POST ([^)]*)\ HTTP.*/
-  IP = /\d{2}\.\d\.\d{3}\.\d{3}/
-  def task2(logs)
-    logs.split("\n").map do |line|
-      return [] unless line =~ FORM
+  def task2(log)
+    log.split("\n")
+       .reduce([]) { |result, string| right_format?(string) ? result.push(output_string(string)) : result }
+  end
 
-      "DATE: #{line.match(DATE)[1]} FROM: #{line.match(IP)[0]} TO: #{line.match(TO)[1].upcase}"
-    end
+  private
+
+  def right_format?(string)
+    string.scan(%r{\S+\s-\s-\s\D\d+/\w+/\S+\s\+\S+\s\S+\s\S+\s\w+/\d\.\d"\s\d+\s\S+\s\S+}).join == string
+  end
+
+  def output_string(string)
+    "DATE: #{string.split(/[\[\]]/)[1]} FROM: #{string.split(' ')[0]} TO: #{string.split(' ')[6].upcase}"
   end
 end

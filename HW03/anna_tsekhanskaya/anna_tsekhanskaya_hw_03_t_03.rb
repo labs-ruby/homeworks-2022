@@ -5,22 +5,21 @@
 require 'time'
 
 class Homework3
-  TIMESTAMP = /^\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}.\d/
-  def task3(logs)
-    return '0' if events(logs).size <= 1
+  def task3(log)
+    return '0' if total_lines(log).size <= 1
 
-    difference(events)
+    array = total_lines(log).map { |string| Time.parse(string) }
+    result_array(array).size == 1 ? result_array(array).join : result_array(array)
   end
 
-  def events(logs)
-    logs.split("\n").select { |line| line.include?('Calling core with action') }.map { |line| line[TIMESTAMP] }
+  private
+
+  def result_array(array)
+    array.each_with_index
+         .reduce([]) { |memo, (element, index)| array[index + 1] ? memo.push((array[index + 1] - element).to_s) : memo }
   end
 
-  def difference(logs)
-    diff = []
-    logs.each_cons(2) do |previos_event, next_event|
-      diff << Time.parse(next_event) - Time.parse(previos_event)
-    end
-    diff.join(',')
+  def total_lines(log)
+    log.split("\n").select { |string| string.include?('Calling core with action:') }
   end
 end
