@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
 class Notification
-  def notification_for_student; end
+  attr_reader :text
+
+  def initialize(text)
+    @text = text
+  end
 end
