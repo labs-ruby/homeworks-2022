@@ -1,1 +1,29 @@
+# frozen_string_literal: true
 
+class Student
+  attr_accessor :notifications, :homeworks
+
+  def initialize(name:, surname:)
+    @name = name
+    @surname = surname
+    @notifications = []
+    @homeworks = []
+  end
+
+  def mark_as_read!
+    @notifications.clear
+  end
+
+  def to_work!(homework)
+    @homeworks << homework
+    homework.mentor.notifications << Notification.new(title: homework.title, description: 'Homework started')
+  end
+
+  def add_answer!(homework, answer)
+    homework.answers << answer
+  end
+
+  def to_check!(homework)
+    homework.mentor.notifications << Notification.new(title: homework.title, description: 'Homework finished')
+  end
+end
