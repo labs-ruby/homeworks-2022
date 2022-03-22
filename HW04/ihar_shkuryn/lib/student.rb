@@ -2,12 +2,12 @@
 
 class Student
   attr_reader :name, :surname
-  attr_accessor :notice, :homeworks_todo, :homeworks_in_progress
+  attr_accessor :notices, :homeworks_todo, :homeworks_in_progress
 
   def initialize(data)
     @name = data[:name]
     @surname = data[:surname]
-    @notice = Notification.new
+    @notices = []
     @homeworks_todo = []
     @homeworks_in_progress = []
   end
@@ -17,7 +17,7 @@ class Student
   end
 
   def mark_as_read!
-    notice.mark_as_read!
+    notices.clear
   end
 
   def homeworks
@@ -28,7 +28,7 @@ class Student
 
   def to_work!(homework)
     homeworks_in_progress.push(homework)
-    homework.mentor.notice.queue.push("Student: #{name} #{surname} started homework #{homework.title}")
+    homework.mentor.notices.push("Student: #{name} #{surname} started homework #{homework.title}")
   end
 
   def add_answer!(homework, answer)
@@ -40,6 +40,6 @@ class Student
   def to_check!(homework)
     homework.mentor.homeworks_for_check.push(homework)
     homeworks_todo.delete(homework)
-    homework.mentor.notice.queue.push("Student: #{name} #{surname} finished homework #{homework.title}")
+    homework.mentor.notices.push("Student: #{name} #{surname} finished homework #{homework.title}")
   end
 end

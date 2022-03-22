@@ -2,7 +2,7 @@
 
 class Homework
   attr_reader :title, :description, :student, :mentor
-  attr_accessor :notice, :answers
+  attr_accessor :notices, :answers
 
   def initialize(data, mentor)
     @title = data[:title]
@@ -12,7 +12,7 @@ class Homework
     @status = data[:status]
     message = "Student #{@student.name} #{@student.surname} got a new homework "\
     "from #{@mentor.name} #{@mentor.surname} title: #{@title}"
-    data[:student].notice.queue.push(message)
+    @student.notices.push(message)
     @answers = []
   end
 end

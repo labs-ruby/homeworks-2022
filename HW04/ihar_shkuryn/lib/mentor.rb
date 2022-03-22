@@ -2,13 +2,13 @@
 
 class Mentor
   attr_reader :name, :surname, :homework, :self
-  attr_accessor :notice, :all_homeworks, :homeworks_for_check
+  attr_accessor :notices, :all_homeworks, :homeworks_for_check
 
   def initialize(data)
     @name = data[:name]
     @surname = data[:surname]
     @subscriptions = []
-    @notice = Notification.new
+    @notices = []
     @all_homeworks = []
     @homeworks_for_check = []
   end
@@ -17,12 +17,14 @@ class Mentor
     homework = Homework.new(data, self)
     all_homeworks.push(homework)
     data[:student].homeworks_todo.push(homework)
+    notice = Notification.new(homework.title)
+    data[:student].notices.push(notice)
     homework
   end
 
   def subscribe_to!(student)
     @subscriptions.push(student)
-    student.notice.queue.push("Mentor #{@name} subscribed to #{student.name}")
+    student.notices.push("Mentor #{@name} subscribed to #{student.name}")
   end
 
   def notifications
@@ -30,18 +32,18 @@ class Mentor
   end
 
   def mark_as_read!
-    notice.mark_as_read!
+    notices.clear
   end
 
   def reject_to_work!(homework)
     homework.student.homeworks_todo.push(homework)
     homeworks_for_check.delete(homework)
-    homework.student.notice.queue.push("Mentor #{name} rejected homework #{homework.title}")
+    homework.student.notices.push("Mentor #{name} rejected homework #{homework.title}")
   end
 
   def accept!(homework)
     homeworks_for_check.delete(homework)
     homework.student.homeworks_in_progress.delete(homework)
-    homework.student.notice.queue.push("Mentor #{name} accepted homework #{homework.title}")
+    homework.student.notices.push("Mentor #{name} accepted homework #{homework.title}")
   end
 end

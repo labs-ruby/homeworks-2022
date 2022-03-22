@@ -1,14 +1,9 @@
 # frozen_string_literal: true
 
 class Notification
-  attr_accessor :queue
+  attr_accessor :message
 
-  def initialize(message = nil)
-    @queue = []
-    @queue.push(message) if message
-  end
-
-  def mark_as_read!
-    @queue.clear
+  def initialize(message)
+    @message = message
   end
 end
