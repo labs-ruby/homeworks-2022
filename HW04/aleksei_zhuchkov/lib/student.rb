@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
 class Student
-  attr_accessor :storage_homework, :storage_notification_for_student, :storage_notification_for_mentor
+  attr_accessor :storage_homework, :notifications_list
   attr_reader :name, :surname
 
-  def initialize(student)
-    @name = student[:name].capitalize
-    @surname = student[:surname].capitalize
+  def initialize(name:, surname:)
+    @name = name.capitalize
+    @surname = surname.capitalize
     @storage_homework = []
-    @storage_notification_for_student = []
-    @storage_notification_for_mentor = []
+    @notifications_list = []
   end
 
   def add_homework_to_student_storage(homework)
@@ -17,38 +16,29 @@ class Student
   end
 
   def notifications
-    notification_message = Notification.new
-    notification_message.print_notification_for_students_and_mentor(name, surname, storage_notification_for_student,
-                                                                    'student')
+    Notification.new.print_notifications(notifications_list)
   end
 
   def mark_as_read!
-    storage_notification_for_student.clear
+    notifications_list.clear
   end
 
   def homeworks
-    puts "Homework for student (#{name} #{surname})"
-    storage_homework.each do |el|
-      puts "Task: #{el.title}, discription: #{el.description}, \n\
-Is homework in work: #{el.homework_in_work}; \n\
-Is homework ready for check: #{el.homework_ready_for_check}, \n\
-Is homework access by mentor: #{el.homework_accept_by_mentor} \n"
-    end
-    puts '-----------------------------'
+    storage_homework.each(&:print_homework)
   end
 
   def to_work!(homework)
-    homework.homework_in_work = true
-    storage_notification_for_mentor << Notification.new('To work!', homework.title)
+    homework.status_homework = 'in work'
+    homework.mentor.notifications_list << Notification.new('To work!', homework.title)
   end
 
   def add_answer!(homework, answer)
     homework.storage_homework_answer << answer
-    storage_notification_for_mentor << Notification.new('New answer!', homework.title)
+    homework.mentor.notifications_list << Notification.new('New answer!', homework.title)
   end
 
   def to_check!(homework)
-    homework.homework_ready_for_check = true
-    storage_notification_for_mentor << Notification.new('Ready to check!', homework.title)
+    homework.status_homework = 'to check'
+    homework.mentor.notifications_list << Notification.new('Ready to check!', homework.title)
   end
 end

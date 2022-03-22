@@ -1,42 +1,42 @@
 # frozen_string_literal: true
 
 class Mentor
-  attr_accessor :storage_students
+  attr_accessor :students_list, :notifications_list
   attr_reader :name, :surname
 
-  def initialize(mentor)
-    @name = mentor[:name].capitalize
-    @surname = mentor[:surname].capitalize
-    @storage_students = []
+  def initialize(name:, surname:)
+    @name = name.capitalize
+    @surname = surname.capitalize
+    @students_list = []
+    @notifications_list = []
   end
 
-  def add_homework(info_homework)
-    homework = Homework.new(info_homework[:title], info_homework[:description], info_homework[:student])
-    info_homework[:student].add_homework_to_student_storage(homework)
-    info_homework[:student].storage_notification_for_student << Notification.new('Add homework', homework.title)
+  def add_homework(title:, description:, student:)
+    homework = Homework.new(title, description, student, self)
+    student.add_homework_to_student_storage(homework)
+    student.notifications_list << Notification.new('Add homework', homework.title)
     homework
   end
 
   def subscribe_to!(student)
-    storage_students << student
+    students_list << student
   end
 
   def notifications
-    notification_message = Notification.new
-    notification_message.print_notification_for_students_and_mentor(name, surname, storage_students, 'mentor')
+    Notification.new.print_notifications(notifications_list)
   end
 
   def mark_as_read!
-    storage_students.each { |student| student.storage_notification_for_mentor.clear }
+    notifications_list.clear
   end
 
   def reject_to_work!(homework)
-    homework.homework_ready_for_check = false
-    homework.student.storage_notification_for_student << Notification.new('Reject homework', homework.title)
+    homework.status_homework = 'rejected'
+    homework.student.notifications_list << Notification.new('Reject homework', homework.title)
   end
 
   def accept!(homework)
-    homework.homework_accept_by_mentor = true
-    homework.student.storage_notification_for_student << Notification.new('Accept', homework.title)
+    homework.status_homework = 'accepted'
+    homework.student.notifications_list << Notification.new('Accept', homework.title)
   end
 end
