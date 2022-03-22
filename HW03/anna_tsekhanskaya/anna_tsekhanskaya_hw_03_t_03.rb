@@ -20,6 +20,6 @@ class Homework3
   def difference(logs)
     diff = []
     diff << logs.each_cons(2).map! { |previos_event, next_event| (next_event - previos_event).to_s }
-    diff.join(,)
+    diff.join(",")
   end
 end
