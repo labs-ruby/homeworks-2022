@@ -13,8 +13,7 @@ class Homework3
   end
 
   def events(logs)
-    log = logs.split("\n")
-    events = log.select { |log| log.include?('Calling core with action') }.map
+    logs.split("\n").select { |line| line.include?('Calling core with action') }.map { |line| line =~ TIMESTAMP }
   end
 
   def difference(logs)
