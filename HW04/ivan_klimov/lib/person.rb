@@ -2,7 +2,7 @@
 
 class Person
   include Notification
-  attr_reader :name, :surname,:notifications,:homeworks
+  attr_reader :name, :surname, :notifications, :homeworks
 
   def initialize(name:, surname:)
     @name = name
