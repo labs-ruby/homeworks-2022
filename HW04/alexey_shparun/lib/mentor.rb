@@ -21,7 +21,7 @@ class Mentor
 
   def add_homework(title:, description:, student:)
     homework = Homework.new(title, description, student, mentor: self)
-    notification = Notification.new("Add new homework: #{homework.title}").display
+    notification = Notification.new("Add new homework: #{homework.title}")
     notify_student(notification)
     student.homeworks_list.push(homework)
     homework
@@ -32,12 +32,12 @@ class Mentor
   end
 
   def reject_to_work!(homework)
-    notification = Notification.new("Add new homework: #{homework.title}").display
+    notification = Notification.new("Reject homework: #{homework.title}")
     homework.student.notify_mentor(notification)
   end
 
   def accept!(homework)
-    notification = Notification.new("#{homework.title} accepted").display
+    notification = Notification.new("#{homework.title} accepted")
     homework.student.notify_mentor(notification)
   end
 end
