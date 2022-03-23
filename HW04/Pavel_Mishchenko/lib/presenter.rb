@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class CLI
+class Presenter
   def self.print_notifications(notifications)
     notifications.each do |notification|
-      puts "#New notification:\n #{notification.title}, #{notification.description}"
+      puts "New notification:\n #{notification.title}, #{notification.description}"
     end
   end
 

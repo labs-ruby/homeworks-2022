@@ -6,18 +6,17 @@ class Mentor
   attr_accessor :notifications_list
 
   def initialize(name:, surname:)
-    super()
     @name = name
     @surname = surname
     @notifications_list = []
   end
 
-  def add_homework(homework_parameters)
-    new_homework = Homework.new(title: homework_parameters[:title],
-                                description: homework_parameters[:description],
-                                student: homework_parameters[:student],
+  def add_homework(title:, description:, student:)
+    new_homework = Homework.new(title: title,
+                                description: description,
+                                student: student,
                                 mentor: self)
-    notify_student(homework_parameters[:student], "New homework! #{homework_parameters[:title]}")
+    notify_student(student, "New homework! #{title}")
     new_homework
   end
 
@@ -37,6 +36,6 @@ class Mentor
   def notifications
     unread_notifications = notifications_list.select { |notification| notification.status == 'unread' }
     puts '0 notification to read' if unread_notifications.empty?
-    CLI.print_notifications(unread_notifications)
+    Presenter.print_notifications(unread_notifications)
   end
 end

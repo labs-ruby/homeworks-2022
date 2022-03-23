@@ -2,7 +2,7 @@
 
 require_relative 'lib/student_notificator'
 require_relative 'lib/mentor_notificator'
-require_relative 'lib/cli'
+require_relative 'lib/presenter'
 require_relative 'lib/student'
 require_relative 'lib/mentor'
 require_relative 'lib/homework'
@@ -16,8 +16,6 @@ student.notifications
 # student mark as read all notifications
 student.mark_as_read!
 student.notifications
-# mentor subscribe to student
-mentor.subscribe_to!(student)
 # student take to work homework
 student.homeworks
 student.to_work!(homework)

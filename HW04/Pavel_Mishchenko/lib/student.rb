@@ -6,7 +6,6 @@ class Student
   attr_accessor :homeworks_list, :notifications_list
 
   def initialize(name:, surname:)
-    super()
     @name = name
     @surname = surname
     @homeworks_list = []
@@ -14,11 +13,11 @@ class Student
   end
 
   def homeworks
-    CLI.print_homeworks(homeworks_list.select { |hw| hw.accepted == false })
+    Presenter.print_homeworks(homeworks_list.select { |hw| hw.accepted == false })
   end
 
   def mark_as_read!
-    @notifications_list.each { |notification| notification.status = 'read' }
+    notifications_list.each { |notification| notification.status = 'read' }
   end
 
   def to_work!(homework)
@@ -38,6 +37,6 @@ class Student
   def notifications
     unread_notifications = notifications_list.select { |notification| notification.status == 'unread' }
     puts '0 notification to read' if unread_notifications.empty?
-    CLI.print_notifications(unread_notifications)
+    Presenter.print_notifications(unread_notifications)
   end
 end
