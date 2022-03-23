@@ -12,6 +12,10 @@ mentor = Mentor.new(name: 'Jack', surname: 'Gonsales')
 homework = mentor.add_homework(title: 'HW03',
                                description: 'description homework',
                                student: student)
+# invite a student to work
+mentor.invite_student_to_work(homework)
+# create file with homework
+homework.add_homework_file
 # student see notification about new homework
 student.notifications
 # student mark as read all notifications

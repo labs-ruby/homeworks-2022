@@ -14,13 +14,16 @@ class Homework
     @description = description
     @student = student
     @state = state
-    add_notification(student, "You have new homework: #{title}")
-    add_homework(student)
+  end
+
+  def add_homework_file
+    homework_data = "State: #{state}\nTitle: #{title}\nDescription: #{description}"
+    add_data(folder(student), homework_file, homework_data)
   end
 
   def to_work!
     self.state = 'In work'
-    update_state_in_file(student)
+    update_state_in_file
     notify_mentors
   end
 
@@ -30,31 +33,31 @@ class Homework
 
   def to_check!
     self.state = 'Pending rewiev'
-    update_state_in_file(student)
+    update_state_in_file
     notify_mentors
   end
 
   def reject!(mentor, remarks)
     self.state = 'Rejected'
-    update_state_in_file(student)
+    update_state_in_file
     add_remarks(mentor, remarks)
     notify_students
   end
 
   def accept!(grade)
     self.state = 'Passed'
-    update_state_in_file(student)
+    update_state_in_file
     add_grade(grade)
     notify_students
   end
 
   private
 
-  def update_state_in_file(user)
-    file = File.read("#{folder(user)}/#{homework_file}")
+  def update_state_in_file
+    file = File.read("#{folder(student)}/#{homework_file}")
     new_content = file.split("\n")
     new_content = new_content.map { |line| line.include?('State:') ? "State: #{state}" : line }.join("\n")
-    File.open("#{folder(user)}/#{homework_file}", 'w') { |line| line.puts new_content }
+    File.open("#{folder(student)}/#{homework_file}", 'w') { |line| line.puts new_content }
   end
 
   def add_remarks(mentor, remarks)
@@ -66,11 +69,6 @@ class Homework
     star = "\u{1F31F}"
     stars_grade = "Grade: #{star * grade}"
     add_data(folder(student), homework_file, stars_grade)
-  end
-
-  def add_homework(student)
-    homework_data = "State: #{state}\nTitle: #{title}\nDescription: #{description}"
-    add_data(folder(student), homework_file, homework_data)
   end
 
   def homework_file

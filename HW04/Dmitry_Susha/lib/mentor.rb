@@ -6,6 +6,10 @@ class Mentor < User
     Homework.new(title: title, description: description, student: student)
   end
 
+  def invite_student_to_work(homework)
+    add_notification(homework.student, "You have new homework: #{homework.title}")
+  end
+
   def subscribe_to!(homework)
     homework.add_mentor_observer(self)
   end
