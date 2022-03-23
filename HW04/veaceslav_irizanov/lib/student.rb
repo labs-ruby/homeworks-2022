@@ -14,7 +14,15 @@ class Student
     notifications.clear
   end
 
-  def to_work!(homework); end
+  def notify_mentor(notification, mentor)
+    mentor.notifications << notification
+  end
+
+  def to_work!(homework)
+    notification = Notification.new("Homework: #{homework.title} in progress")
+    homework.status = 'In Progress'
+    notify_mentor(notification, homework.mentor)
+  end
 
   def add_answer!(homework, answer); end
 

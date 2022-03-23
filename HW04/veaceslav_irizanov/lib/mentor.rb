@@ -20,6 +20,7 @@ class Mentor
 
     student.homeworks << homework
     notify_student(notification, homework.student)
+    homework
   end
 
   def subscribe_to!(student)
