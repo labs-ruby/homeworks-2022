@@ -7,7 +7,7 @@ require_relative 'lib/notification'
 
 student = Student.new(name: 'Eric', surname: 'Cartman')
 mentor = Mentor.new(name: 'Stan', surname: 'Marsh')
-homework = mentor.add_homework(title: 'HW03', description: 'OOP in Ruby', student: student, mentor: mentor)
+homework = mentor.add_homework(title: 'HW03', description: 'OOP in Ruby', student: student)
 
 # student see notification about new homework
 student.notifications
