@@ -9,8 +9,9 @@ class Student < Person
   end
 
   def mark_as_read!
-    notification = Notification.new('read all notifications')
-    write_to_file('notification.txt', "#{name} #{surname} left message #{notification.message}.\n")
+    @notification = Notification.new if @notification.nil?
+    write_to_file('notification.txt',
+                  "#{name} #{surname} left message: #{@notification.mark_as_read!}.\n")
   end
 
   def homeworks
@@ -18,34 +19,20 @@ class Student < Person
   end
 
   def to_work!(homework)
-    notification = Notification.new("#{homework.title} is doing")
+    @notification = Notification.new if @notification.nil?
     write_to_file('notification.txt',
-                  "#{name} #{surname} left message #{notification.message}.\n")
+                  "#{name} #{surname} left message #{homework.title} #{@notification.to_work!}.\n")
   end
 
   def add_answer!(homework, answer)
-    notification = Notification.new("#{homework.title} was solved")
+    @notification = Notification.new if @notification.nil?
     write_to_file('notification.txt',
-                  "#{name} #{surname} left message #{notification.message}. Answer is #{answer}.\n")
+                  "#{name} #{surname} #{@notification.add_answer!} for #{homework.title}. Answer is #{answer}.\n")
   end
 
   def to_check!(homework)
-    notification = Notification.new("#{homework.title} needs to check")
+    @notification = Notification.new if @notification.nil?
     write_to_file('notification.txt',
-                  "#{name} #{surname} left message #{notification.message}.\n")
-  end
-
-  private
-
-  def read_file(filename)
-    f = File.open(filename, 'r')
-    f.each_line { |line| puts line }
-    f.close
-  end
-
-  def write_to_file(filename, message)
-    f = File.open(filename, 'w')
-    f.write(message)
-    f.close
+                  "#{name} #{surname} left message #{homework.title} #{@notification.to_check!}.\n")
   end
 end
