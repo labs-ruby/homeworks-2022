@@ -21,44 +21,31 @@ class Student
     # student take to work homework
     
     def homeworks
+        answer << homework
     end
 
 
     # student mark as read all notifications
     def mark_as_read
-        noties_for_mentor << "Read at #{Time.now}"
+        noties_for_mentor << "#{firstname.capitalize} #{lastname.capitalize} read at #{Time.now}"
     end
 
-    def to_work
-        noties_for_mentor << "Working at #{Time.now}"
+    def to_work(homework)
+        noties_for_mentor << "#{firstname.capitalize} #{lastname.capitalize} work at #{Time.now}"
+        answer << homework
 
     end
 
     def add_answer(homework, str)
         return '0' if str.class != String)
-        answer << str
-        noties_for_mentor << "Add answer at #{Time.now}"
+
+        noties_for_mentor << str
+        noties_for_mentor << "#{firstname.capitalize} #{lastname.capitalize} add answer at #{Time.now}"
+        answer << homework
     end
 
     def to_check
-        noties_for_mentor << "Ready for chek at #{Time.now}"
+        noties_for_mentor << "#{firstname.capitalize} #{lastname.capitalize} ready for chek at #{Time.now}"
     end
 
 end
-
-
-
-# student can see homeworks
-student.homeworks
-# student add answer to homework
-student.add_answer!(homework, 'new students answer')
-# student sent to check homework
-student.to_check!(homework)
-
-# ---
-student.add_answer!(homework, 'new students answer_after reject')
-student.to_check!(homework)
-# ---
-
-# student see notification about homework was accept
-student.notifications
