@@ -9,8 +9,8 @@ class Student < Person
   end
 
   def mark_as_read!
-    notification = Notification.new("#{student.name} #{student.surname}", 'read all notifications')
-    write_to_file('notification.txt', "#{notification.sender} left message #{notification.message}.\n")
+    notification = Notification.new('read all notifications')
+    write_to_file('notification.txt', "#{name} #{surname} left message #{notification.message}.\n")
   end
 
   def homeworks
@@ -18,21 +18,21 @@ class Student < Person
   end
 
   def to_work!(homework)
-    notification = Notification.new("#{student.name} #{student.surname}", "#{homework.title} is doing")
+    notification = Notification.new("#{homework.title} is doing")
     write_to_file('notification.txt',
-                  "#{notification.sender} left message #{notification.message}.\n")
+                  "#{name} #{surname} left message #{notification.message}.\n")
   end
 
   def add_answer!(homework, answer)
-    notification = Notification.new("#{student.name} #{student.surname}", "#{homework.title} was solved")
+    notification = Notification.new("#{homework.title} was solved")
     write_to_file('notification.txt',
-                  "#{notification.sender} left message #{notification.message}. Answer is #{answer}.\n")
+                  "#{name} #{surname} left message #{notification.message}. Answer is #{answer}.\n")
   end
 
   def to_check!(homework)
-    notification = Notification.new("#{student.name} #{student.surname}", "#{homework.title} needs to check")
+    notification = Notification.new("#{homework.title} needs to check")
     write_to_file('notification.txt',
-                  "#{notification.sender} left message #{notification.message}.\n")
+                  "#{name} #{surname} left message #{notification.message}.\n")
   end
 
   private

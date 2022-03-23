@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class Notification
-  def initialize(sender:, message:)
-    @sender = sender
+  attr_reader :message
+
+  def initialize(message)
     @message = message
   end
 end
