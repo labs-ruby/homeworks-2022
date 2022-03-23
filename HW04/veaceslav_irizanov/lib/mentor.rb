@@ -31,7 +31,15 @@ class Mentor
     notifications.clear
   end
 
-  def reject_to_work!(homework); end
+  def reject_to_work!(homework)
+    notification = Notification.new("Homework: #{homework.title} reject_to_work")
+    homework.status = 'reject_to_work'
+    notify_student(notification, homework.student)
+  end
 
-  def accept!(homework); end
+  def accept!(homework)
+    notification = Notification.new("Homework: #{homework.title} accept!")
+    homework.status = 'accept!'
+    notify_student(notification, homework.student)
+  end
 end
