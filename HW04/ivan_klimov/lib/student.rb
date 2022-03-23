@@ -2,35 +2,24 @@
 
 require_relative '../lib/notification'
 require_relative '../lib/person'
-require_relative '../lib/homework'
 
 class Student < Person
-  def initialize(name:, surname:)
-    super
-    create_homeworks_file(self)
-  end
-
-  def notifications(homework)
-    notification_for_student(self, notification(homework.title))
-  end
-
-  def mark_as_read!(mentor)
-    notification_for_mentor(mentor, notification("#{name} #{surname} #{read_all}"))
-  end
-
-  def homeworks
-    read_file_hw(self)
+  def mark_as_read!
+    notifications.clear
+    notifications << read_all(self)
   end
 
   def to_work!(mentor, homework)
-    notification_for_mentor(mentor, notification("#{name} #{surname} took to work #{homework.title}."))
+    mentor.notifications << to_work(self, homework)
+    homeworks << ' <- in progress'
   end
 
-  def add_answer!(homework, ans)
-    create_answer_file(self, homework, ans)
+  def add_answer!(homework, answer)
+    homework.answers << answer.to_s
   end
 
   def to_check!(mentor, homework)
-    notification_for_mentor(mentor, notification("#{name} #{surname} sent answer to check #{homework.title}."))
+    mentor.notifications.clear if nf_is_empty(mentor)
+    mentor.notifications << to_check(self, homework)
   end
 end
