@@ -6,11 +6,11 @@ require_relative '../lib/person'
 class Student < Person
   def mark_as_read!
     notifications.clear
-    notifications << read_all(self)
+    notifications <<  read_all_notifications(self)
   end
 
   def to_work!(mentor, homework)
-    mentor.notifications << to_work(self, homework)
+    mentor.notifications << status_to_work(self, homework)
     homeworks << ' <- in progress'
   end
 
@@ -19,7 +19,7 @@ class Student < Person
   end
 
   def to_check!(mentor, homework)
-    mentor.notifications.clear if nf_is_empty(mentor)
-    mentor.notifications << to_check(self, homework)
+    mentor.notifications.clear if check_for_active_notifications(mentor)
+    mentor.notifications << status_to_check(self, homework)
   end
 end

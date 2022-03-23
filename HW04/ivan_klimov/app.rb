@@ -41,7 +41,7 @@ mentor.reject_to_work!(student, homework)
 # student see notification about homework was reject
 p student.notifications
 # ---
-student.add_answer!(homework, 'eval(2+3*2')
+student.add_answer!(homework, 'eval(2+3*2)')
 student.to_check!(mentor, homework)
 # ---
 # mentor accept homework
