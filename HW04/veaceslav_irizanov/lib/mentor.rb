@@ -22,7 +22,9 @@ class Mentor
     notify_student(notification, homework.student)
   end
 
-  def subscribe_to!(student); end
+  def subscribe_to!(student)
+    subscriptions << student
+  end
 
   def mark_as_read!
     notifications.clear

@@ -12,7 +12,7 @@ class Student
 
   def mark_as_read!
     notifications.clear
-   end
+  end
 
   def to_work!(homework); end
 
