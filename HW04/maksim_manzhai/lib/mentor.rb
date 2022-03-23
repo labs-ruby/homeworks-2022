@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Mentor
-  attr_accessor :subscriptions, :notifications
+  attr_reader :name, :surname, :subscriptions, :notifications
 
   def initialize(name:, surname:)
     @name = name
@@ -10,12 +10,8 @@ class Mentor
     @notifications = []
   end
 
-  def add_homework(attributes)
-    @title = attributes.fetch(:title)
-    @description = attributes.fetch(:description)
-    @student = attributes.fetch(:student)
-    @mentor = attributes.fetch(:mentor)
-    Homework.new(title: @title, description: @description, student: @student, mentor: @mentor)
+  def add_homework(title:, description:, student:)
+    Homework.new(title: title, description: description, student: student, mentor: self)
   end
 
   def subscribe_to!(student)
