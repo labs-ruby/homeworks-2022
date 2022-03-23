@@ -10,7 +10,9 @@ class Student
     @notifications = []
   end
 
-  def mark_as_read!; end
+  def mark_as_read!
+    notifications.clear
+   end
 
   def to_work!(homework); end
 

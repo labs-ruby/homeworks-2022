@@ -24,7 +24,9 @@ class Mentor
 
   def subscribe_to!(student); end
 
-  def mark_as_read!; end
+  def mark_as_read!
+    notifications.clear
+  end
 
   def reject_to_work!(homework); end
 
