@@ -6,8 +6,4 @@ class Notification
   def initialize(notify)
     @notify = notify
   end
-
-  def display
-    puts notify
-  end
 end
