@@ -20,7 +20,7 @@ class Student
   end
 
   def to_work!(homework)
-    notification = Notification.new("#{homework.title} taken to work").display
+    notification = Notification.new("#{homework.title} taken to work")
     notify_mentor(notification)
   end
 
@@ -29,11 +29,11 @@ class Student
   end
 
   def to_check!(homework)
-    notification = Notification.new("#{homework.title} ready for review").display
+    notification = Notification.new("#{homework.title} ready for review")
     notify_mentor(notification)
   end
 
   def homeworks
-    @homeworks_list.each { |homework| puts "Title: #{homework.title}, Description: #{homework.description}" }
+    homeworks_list
   end
 end
