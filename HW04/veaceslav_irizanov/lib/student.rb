@@ -12,9 +12,9 @@ class Student
 
   def mark_as_read!; end
 
-  def to_works!(homework); end
+  def to_work!(homework); end
 
-  def add_answer!(homework); end
+  def add_answer!(homework, answer); end
 
   def to_check!(homework); end
 end

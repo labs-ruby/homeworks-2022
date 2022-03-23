@@ -10,7 +10,17 @@ class Mentor
     @notifications = []
   end
 
-  def add_homework(title:, description:, student:); end
+  def notify_student(notification, student)
+    student.notifications << notification
+  end
+
+  def add_homework(title:, description:, student:)
+    homework = Homework.new(title: title, description: description, student: student, mentor: self)
+    notification = Notification.new("Add new Homework: #{homework.title}")
+
+    student.homeworks << homework
+    notify_student(notification, homework.student)
+  end
 
   def subscribe_to!(student); end
 
