@@ -1,4 +1,9 @@
 # frozen_string_literal: true
 
-module Notification
+class Notification
+  attr_reader :text
+
+  def initialize(text)
+    @text = text
+  end
 end

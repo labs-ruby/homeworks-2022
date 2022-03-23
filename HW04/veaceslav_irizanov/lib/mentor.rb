@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
-class Mentor < Member
-  def notifications; end
+class Mentor
+  attr_reader :name, :surname, :notifications, :subscriptions
+
+  def initialize(name:, surname:)
+    @name = name
+    @surname = surname
+    @subscriptions = []
+    @notifications = []
+  end
 
   def add_homework(title:, description:, student:); end
 
