@@ -24,7 +24,13 @@ class Student
     notify_mentor(notification, homework.mentor)
   end
 
-  def add_answer!(homework, answer); end
+  def add_answer!(homework, answer)
+    homework.answers << answer
+  end
 
-  def to_check!(homework); end
+  def to_check!(homework)
+    notification = Notification.new("Homework: #{homework.title} to_check!")
+    homework.status = 'to_check!'
+    notify_mentor(notification, homework.mentor)
+  end
 end
