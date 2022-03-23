@@ -1,19 +1,35 @@
 # frozen_string_literal: true
 
 module Notification
-  def add_hw(description)
-    "#{description}\n"
+  def nf_is_empty(person)
+    person.notifications.include?("#{person.name}, you have read all notifications.")
   end
 
-  def notification(text)
-    "#{text}\n"
+  def add_hw(title)
+    " '#{Time.new.strftime('%d-%m-%Y %H:%M:%S')}' new homework : #{title}"
   end
 
-  def hw_progress_nf(student, homework)
-    "#{Time.new.strftime('%d-%m-%Y %H:%M:%S ')} #{student.name} #{student.surname} started #{homework.title}."
+  def read_all(person)
+    "#{person.name}, you have read all notifications."
   end
 
-  def read_all
-    "#{Time.new.strftime('%H:%M:%S')} Read all notifications."
+  def subscribe_to(person)
+    "'#{Time.new.strftime('%d-%m-%Y %H:%M:%S')}' #{person.name} #{person.surname} subscribed to you."
+  end
+
+  def to_work(student, homework)
+    "'#{Time.new.strftime('%d-%m-%Y')}' #{student.name} #{student.surname} took to work #{homework.title}."
+  end
+
+  def to_check(student, homework)
+    "'#{Time.new.strftime('%d-%m-%Y %H:%M:%S')}' #{student.name} #{student.surname} added answer for #{homework.title}."
+  end
+
+  def hw_reject(homework)
+    "Answer for #{homework.title}, was rejected."
+  end
+
+  def hw_accept(homework)
+    "Answer for #{homework.title}, was accepted."
   end
 end
