@@ -17,9 +17,13 @@ class Mentor
     homework = Homework.new(data, self)
     all_homeworks.push(homework)
     data[:student].homeworks_todo.push(homework)
-    notice = Notification.new(homework.title)
-    data[:student].notices.push(notice)
+    notice_handler(homework, data[:student])
     homework
+  end
+
+  def notice_handler(homework, student)
+    notice = Notification.new(homework.title)
+    student.notices.push(notice)
   end
 
   def subscribe_to!(student)
