@@ -14,10 +14,13 @@ class Mentor
   end
 
   def add_homework(data)
+    student = data[:student]
     homework = Homework.new(data, self)
+    homework.message = "Student #{student.name} #{student.surname} got a new homework "\
+    "from #{name} #{surname} title: #{@title}"
     all_homeworks.push(homework)
-    data[:student].homeworks_todo.push(homework)
-    notice_handler(homework, data[:student])
+    student.homeworks_todo.push(homework)
+    notice_handler(homework, student)
     homework
   end
 
