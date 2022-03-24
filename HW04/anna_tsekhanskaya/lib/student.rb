@@ -3,8 +3,7 @@
 require 'time'
 
 class Student
-  atter_accessor :name, :surna
-  atter_reader :noties
+  atter_accessor :name, :surname, :noties_for_mentor
   def initialize
     @name = name
     @surname = surname
@@ -20,7 +19,7 @@ class Student
   # student see notification about homework was reject
   # student see notification about homework was accept
   def notifications
-    puts Mentor.notifications
+    puts Mentor.noties_for_student
   end
 
   # student mark as read all notifications
@@ -31,7 +30,7 @@ class Student
 
   # student can see homeworks
   def homeworks
-    puts Homework.new
+    Homework.Mentor.see_homework
   end
 
   # student take to work homework [1]

@@ -3,7 +3,7 @@
 require 'time'
 
 class Mentor
-  atter_accessor :name, :surname, :noties_for_student
+  atter_accessor :name, :surname, :noties_for_student, :hw
   def initialize
     @name = name
     @surname = surname
@@ -31,17 +31,16 @@ class Mentor
   # mentor see notification about homework to work
   # mentor see notification about homework to check
   def notifications
-    
+    puts noties_for_mentors
   end
 
   # mentor mark as read all notifications
   def mark_as_read
     noties_for_student << Notification.new(title: 'Mark as read',
-                                          description: "Mentor #{Mentor.full_name} mark as read at #{Time.now}")
+                                           description: "Mentor #{Mentor.full_name} mark as read at #{Time.now}")
   end
 
-
-# mentor reject homework
+  # mentor reject homework
   def reject_to_work(_homework)
     noties_for_student << Notification.new(title: 'Reject',
                                            description: "Mentor #{Mentor.full_name} reject homework at #{Time.now}")
