@@ -13,7 +13,9 @@ class Student
   end
 
   def notifications
-    # any logic here
+    @notices.each do |notice|
+      puts notice
+    end
   end
 
   def mark_as_read!
@@ -22,7 +24,7 @@ class Student
 
   def homeworks
     homeworks_todo.each do |hw|
-      # any logic with hw
+      puts hw.description
     end
   end
 

@@ -35,7 +35,9 @@ class Mentor
   end
 
   def notifications
-    # any logic here'
+    @notices.each do |notice|
+      puts notice
+    end
   end
 
   def mark_as_read!
