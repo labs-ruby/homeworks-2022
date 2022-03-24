@@ -7,9 +7,6 @@ class Notification
   def initialize
     @title = title
     @description = description
-  end
-
-  def mark_as_read
-    "Mark as read at #{Time.now}"
+    @mark_as_read = false
   end
 end

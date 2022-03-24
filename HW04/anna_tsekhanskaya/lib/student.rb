@@ -24,13 +24,13 @@ class Student
 
   # student mark as read all notifications
   def mark_as_read
-    noties_for_mentor << Notification.new(title: 'Mark as read',
-                                          description: "Student #{Student.full_name} mark as read at #{Time.now}")
+    Notification.mark_as_read = true
   end
 
   # student can see homeworks
   def homeworks
-    Homework.Mentor.see_homework
+    Homework.new(title: 'Continuation homework', description: answer, student: Student.full_name,
+                 mentor: Mentor.full_name)
   end
 
   # student take to work homework [1]
