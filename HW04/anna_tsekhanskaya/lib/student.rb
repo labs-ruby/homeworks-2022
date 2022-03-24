@@ -9,6 +9,7 @@ class Student
     @surname = surname
     @answer = []
     @noties_for_mentor = []
+    @list_homework = []
   end
 
   def full_name
@@ -19,11 +20,12 @@ class Student
   # student see notification about homework was reject
   # student see notification about homework was accept
   def notifications
-    puts Mentor.noties_for_student
+    noties_for_mentor.clear
   end
 
   # student mark as read all notifications
   def mark_as_read
+    noties_for_mentor.clear
     Notification.mark_as_read = true
   end
 
@@ -33,10 +35,11 @@ class Student
                  mentor: Mentor.full_name)
   end
 
-  # student take to work homework [1]
+  # student take to work homework
   def to_work(homework)
     noties_for_mentor << Notification.new(title: 'Working',
                                           description: "Student #{Student.full_name} starts working at #{Time.now}")
+    list_homework << Homework.new(title: '', description: answer, student: Student.full_name, mentor: Mentor.full_name)
     answer << homework
   end
 
@@ -50,6 +53,6 @@ class Student
   # student sent to check homework
   def to_check
     noties_for_mentor << Notification.new(title: 'Add answer',
-                                          description: "Student ##{Student.full_name} sent hw to check #{Time.now}")
+                                          description: "Student #{Student.full_name} sent hw to check #{Time.now}")
   end
 end

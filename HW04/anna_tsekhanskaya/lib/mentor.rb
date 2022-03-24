@@ -32,6 +32,7 @@ class Mentor
   # mentor see notification about homework to work
   # mentor see notification about homework to check
   def notifications
+    noties_for_student.clear
     Notification.mark_as_read = true
   end
 
