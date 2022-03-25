@@ -15,7 +15,7 @@ class Mentor
   end
 
   def subscribe_to!(student)
-    @subscriptions << student
+    subscriptions << student
   end
 
   def mark_as_read!
