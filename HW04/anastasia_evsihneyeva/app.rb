@@ -25,9 +25,9 @@ student.mark_as_read!
 # mentor subscribe to student
 mentor.subscribe_to!(student)
 # student take to work homework
-student.homeworks
+puts student.homeworks
 student.to_work!(homework)
-student.homeworks
+puts student.homeworks
 # mentor see notification about homework to work
 mentor.notifications
 # mentor mark as read all notifications

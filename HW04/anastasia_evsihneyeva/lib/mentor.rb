@@ -16,8 +16,8 @@ class Mentor
     notification_list.each(&:output)
   end
 
-  def notify(notification)
-    notification_list << notification
+  def notify(notification, student)
+    student.notification_list << notification
   end
 
   def mark_as_read!
@@ -26,23 +26,23 @@ class Mentor
 
   def add_homework(title:, description:, student:)
     homework = Homework.new(title, description, student, self)
-    homework.student.notify(Notification.new("Homework #{title} was added to #{student.name} by mentor #{name}"))
+    notify(Notification.new("Homework #{title} was added to #{student.name} by mentor #{name}"), homework.student)
     all_hw << homework
     homework
   end
 
   def subscribe_to!(student)
     @subscriptions << student
-    student.notify(Notification.new("Mentor #{@name} subscribe to #{student.name}"))
+    notify(Notification.new("Mentor #{@name} subscribe to #{student.name}"), student)
   end
 
   def reject_to_work!(homework)
     homework.status = 'Rejected'
-    homework.student.notify(Notification.new("Mentor #{name} rejected homework #{homework.title}"))
+    notify(Notification.new("Mentor #{name} rejected homework #{homework.title}"), homework.student)
   end
 
   def accept!(homework)
     homework.status = 'Finished'
-    homework.student.notify(Notification.new("Mentor #{name} accepted homework #{homework.title}"))
+    notify(Notification.new("Mentor #{name} accepted homework #{homework.title}"), homework.student)
   end
 end

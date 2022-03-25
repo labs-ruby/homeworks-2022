@@ -15,8 +15,8 @@ class Student
     notification_list.each(&:output)
   end
 
-  def notify(notification)
-    notification_list << notification
+  def notify(notification, mentor)
+    mentor.notification_list << notification
   end
 
   def mark_as_read!
@@ -24,15 +24,13 @@ class Student
   end
 
   def homeworks
-    all_hw.each do |hw|
-      puts "#{hw.title} - #{hw.description}" if hw.status != 'Finished'
-    end
+    all_hw
   end
 
   def to_work!(homework)
     homework.status = 'In progress'
     all_hw << homework
-    homework.mentor.notify(Notification.new("Student #{name} work on #{homework.title}"))
+    notify(Notification.new("Student #{name} work on #{homework.title}"), homework.mentor)
   end
 
   def add_answer!(homework, answer)
@@ -41,6 +39,6 @@ class Student
 
   def to_check!(homework)
     homework.status = 'To check'
-    homework.mentor.notify(Notification.new("Student #{name} added homework #{homework.title} to check"))
+    notify(Notification.new("Student #{name} added homework #{homework.title} to check"), homework.mentor)
   end
 end
