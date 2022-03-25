@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 module Notification
-  def check_for_active_notifications(person)
+  def current_time
+    Time.new.strftime('%d-%m-%Y %H:%M:%S')
+  end
+
+  def active_notifications_present?(person)
     person.notifications.include?("#{person.name}, you have read all notifications.")
   end
 
-  def push_homework(title)
-    " '#{Time.new.strftime('%d-%m-%Y %H:%M:%S')}' new homework : #{title}"
+  def new_homework(title)
+    "'#{current_time}' new homework: #{title}"
   end
 
   def read_all_notifications(person)
@@ -14,15 +18,15 @@ module Notification
   end
 
   def subscribe_to(person)
-    "'#{Time.new.strftime('%d-%m-%Y %H:%M:%S')}' #{person.name} #{person.surname} subscribed to you."
+    "'#{current_time}' #{person.name} #{person.surname} subscribed to you."
   end
 
   def status_to_work(student, homework)
-    "'#{Time.new.strftime('%d-%m-%Y')}' #{student.name} #{student.surname} took to work #{homework.title}."
+    "'#{current_time}' #{student.name} #{student.surname} took to work #{homework.title}."
   end
 
   def status_to_check(student, homework)
-    "'#{Time.new.strftime('%d-%m-%Y %H:%M:%S')}' #{student.name} #{student.surname} added answer for #{homework.title}."
+    "'#{current_time}' #{student.name} #{student.surname} added answer for #{homework.title}."
   end
 
   def homework_reject(homework)

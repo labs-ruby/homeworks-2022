@@ -19,7 +19,7 @@ class Student < Person
   end
 
   def to_check!(mentor, homework)
-    mentor.notifications.clear if check_for_active_notifications(mentor)
+    mentor.notifications.clear if active_notifications_present?(mentor)
     mentor.notifications << status_to_check(self, homework)
   end
 end
