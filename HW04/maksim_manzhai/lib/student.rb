@@ -15,7 +15,7 @@ class Student
   end
 
   def to_work!(homework)
-    @homeworks << homework
+    homeworks << homework
     homework.mentor.notifications << Notification.new(title: homework.title, description: 'Homework started')
   end
 
