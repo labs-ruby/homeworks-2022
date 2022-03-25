@@ -19,7 +19,7 @@ class Mentor
   end
 
   def mark_as_read!
-    @notifications.each { |notification| notification.readed = true }
+    notifications.each { |notification| notification.readed = true }
   end
 
   def reject_to_work!(homework)
