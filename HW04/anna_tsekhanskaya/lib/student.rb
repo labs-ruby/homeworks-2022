@@ -27,7 +27,7 @@ class Student
 
   # student mark as read all notifications
   def mark_as_read
-    notifications.clear
+    mentor.notifications.clear
     Notification.mark_as_read = true
   end
 
@@ -39,16 +39,16 @@ class Student
 
   # student take to work homework
   def to_work(homework)
-    notifications << Notification.new(title: 'Working',
-                                      description: "Student #{Student.full_name} starts working at #{Time.now}")
+    mentor.notifications << Notification.new(title: 'Working',
+                                             description: "Student #{Student.full_name} starts working at #{Time.now}")
     list_homework << Homework.new(title: '', description: answer, student: Student.full_name, mentor: Mentor.full_name)
     answer << homework
   end
 
   # student add answer to homework
   def add_answer(homework, str)
-    notifications << Notification.new(title: str,
-                                      description: "Student #{Student.full_name} added answer at #{Time.now}")
+    mentor.notifications << Notification.new(title: str,
+                                             description: "Student #{Student.full_name} added answer at #{Time.now}")
     answer << homework
   end
 

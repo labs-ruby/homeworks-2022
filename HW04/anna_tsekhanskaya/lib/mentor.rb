@@ -20,8 +20,9 @@ class Mentor
 
   # mentor add new homework
   def add_homework(title, description, student)
-    notifications << Notification.new(title: title,
-                                      description: "#{mentor.full_name} added hw at #{Time.now}", student: student)
+    student.notifications << Notification.new(title: title,
+                                              description: "#{mentor.full_name} added homework at #{Time.now}",
+                                              student: student.full_name)
     homeworks << Homework.new(title: title, description: description, student: Student.full_name,
                               mentor: Mentor.full_name)
   end
@@ -41,7 +42,7 @@ class Mentor
   # mentor mark as read all notifications
   def mark_as_read
     Notification.mark_as_read = true
-    notifications.clear
+    student.notifications.clear
   end
 
   # mentor reject homework
@@ -52,7 +53,7 @@ class Mentor
 
   # mentor accept homework
   def accept
-    notifications << Notification.new(title: 'Accept homework',
-                                      description: "Mentor #{Mentor.full_name} accept homework at #{Time.now}")
+    student.notifications << Notification.new(title: 'Accept homework',
+                                              description: "Mentor #{Mentor.full_name} accept homework at #{Time.now}")
   end
 end
