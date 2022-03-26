@@ -11,6 +11,7 @@ class Mentor
   end
 
   def add_homework(title:, description:, student:)
+    student.notifications << Notification.new(title: title, description: description)
     Homework.new(title: title, description: description, student: student, mentor: self)
   end
 
