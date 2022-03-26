@@ -11,7 +11,7 @@ class Student
   end
 
   def mark_as_read!
-    @notifications.each { |notification| notification.readed = true }
+    notifications.each { |notification| notification.readed = true }
   end
 
   def to_work!(homework)
