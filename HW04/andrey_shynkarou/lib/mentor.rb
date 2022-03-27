@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative './person'
 require_relative './notification'
 
 class Mentor
@@ -23,9 +22,7 @@ class Mentor
   end
 
   def mark_as_read!
-    @notification = Notification.new if @notification.nil?
-    write_to_file('notification.txt',
-                  "Mentor #{name} #{surname} #{@notification.mark_as_read!}.\n")
+    notification_storage_empty('notification.txt')
   end
 
   def accept!(homework)
@@ -57,6 +54,11 @@ class Mentor
   def write_to_file(filename, message)
     f = File.open(filename, 'w')
     f.write(message)
+    f.close
+  end
+
+  def notification_storage_empty(filename)
+    f = File.open(filename, 'w')
     f.close
   end
 end
