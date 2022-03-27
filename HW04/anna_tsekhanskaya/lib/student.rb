@@ -31,21 +31,20 @@ class Student
 
   # student take to work homework
   def to_work!(homework)
+    answer << homework
     notifications << Notification.new(title: 'Working',
                                       description: "Student #{full_name} starts working at #{Time.now}")
-    list_homework << Homework.new(title: '', description: answer, student: full_name, mentor: mentor.full_name)
-    answer << homework
   end
 
   # student add answer to homework
-  def add_answer(homework:, str:)
+  def add_answer!(homework, str)
     notifications << Notification.new(title: str,
                                       description: "Student #{full_name} added answer at #{Time.now}")
     answer << homework
   end
 
   # student sent to check homework
-  def to_check
+  def to_check!(_)
     notifications << Notification.new(title: 'Add answer',
                                       description: "Student #{full_name} sent hw to check #{Time.now}")
   end

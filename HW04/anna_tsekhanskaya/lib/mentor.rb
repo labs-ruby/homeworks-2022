@@ -3,7 +3,7 @@
 require 'time'
 
 class Mentor
-  attr_reader :homeworks, :name, :surname, :list_students
+  attr_reader :homeworks, :name, :surname, :list_students, :notifications
   attr_accessor :student
 
   def initialize(name:, surname:)
@@ -32,18 +32,18 @@ class Mentor
   end
 
   # mentor mark as read all notifications
-  def mark_as_read
+  def mark_as_read!
     notifications.clear
   end
 
   # mentor reject homework
-  def reject_to_work(*)
+  def reject_to_work!(_)
     notifications << Notification.new(title: 'Reject',
                                       description: "Mentor #{full_name} reject homework at #{Time.now}")
   end
 
   # mentor accept homework
-  def accept
+  def accept!(_)
     notifications << Notification.new(title: 'Accept homework',
                                       description: "Mentor #{full_name} accept homework at #{Time.now}")
   end
