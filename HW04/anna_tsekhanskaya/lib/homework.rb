@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class Homework
-  def initialize
+  attr_reader :student, :mentor, :title
+
+  def initialize(title:, description:, student:, mentor:)
     @title = title
     @description = description
     @student = student

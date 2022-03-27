@@ -3,10 +3,10 @@
 require 'time'
 
 class Mentor
-  attr_reader :name, :surname, :notifications, :homeworks
+  attr_reader :homeworks, :name, :surname, :list_students
   attr_accessor :student
 
-  def initialize
+  def initialize(name:, surname:)
     @name = name
     @surname = surname
     @notifications = []
@@ -19,41 +19,32 @@ class Mentor
   end
 
   # mentor add new homework
-  def add_homework(title, description, student)
+  def add_homework(title:, description:, student:)
+    homeworks << Homework.new(title: title, description: description, student: student.full_name,
+                              mentor: full_name)
     student.notifications << Notification.new(title: title,
-                                              description: "#{mentor.full_name} added homework at #{Time.now}",
-                                              student: student.full_name)
-    homeworks << Homework.new(title: title, description: description, student: Student.full_name,
-                              mentor: Mentor.full_name)
+                                              description: "#{full_name} added homework at #{Time.now}")
   end
 
   # mentor subscribe to student
   def subscribe_to
-    list_students << Student.full_name
+    list_students << student
   end
-
-  # mentor see notification about homework to work
-  # mentor see notification about homework to check
-  # def notifications
-  #  notifications.clear
-  #  Notification.mark_as_read = true
-  # end
 
   # mentor mark as read all notifications
   def mark_as_read
-    Notification.mark_as_read = true
-    student.notifications.clear
+    notifications.clear
   end
 
   # mentor reject homework
-  def reject_to_work(_homework)
-    student.notifications << Notification.new(title: 'Reject',
-                                              description: "Mentor #{Mentor.full_name} reject homework at #{Time.now}")
+  def reject_to_work(*)
+    notifications << Notification.new(title: 'Reject',
+                                      description: "Mentor #{full_name} reject homework at #{Time.now}")
   end
 
   # mentor accept homework
   def accept
-    student.notifications << Notification.new(title: 'Accept homework',
-                                              description: "Mentor #{Mentor.full_name} accept homework at #{Time.now}")
+    notifications << Notification.new(title: 'Accept homework',
+                                      description: "Mentor #{full_name} accept homework at #{Time.now}")
   end
 end
