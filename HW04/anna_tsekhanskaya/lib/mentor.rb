@@ -27,7 +27,7 @@ class Mentor
   end
 
   # mentor subscribe to student
-  def subscribe_to
+  def subscribe_to!(student)
     list_students << student
   end
 
