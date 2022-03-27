@@ -12,6 +12,8 @@ class Notification
     subscribe_to!: 'is subscribed to'
   }.freeze
 
+  def initialize; end
+
   def method_missing(name)
     MESSAGE[name]
   end
