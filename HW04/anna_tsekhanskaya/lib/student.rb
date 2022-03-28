@@ -3,7 +3,7 @@
 require 'time'
 
 class Student
-  attr_accessor :homeworks, :notifications
+  attr_accessor :homeworks, :notifications, :answers
   attr_reader :name, :surname, :mentor, :student
 
   def initialize(name:, surname:)
@@ -11,6 +11,7 @@ class Student
     @surname = surname
     @homeworks = []
     @notifications = []
+    @anwers = []
   end
 
   def full_name
@@ -31,10 +32,10 @@ class Student
 
   # student add answer to homework
   def add_answer!(homework, answer)
-    homework << answer
-    notifications << Notification.new(title: 'Added answer',
+    answers << answer
+    notifications << Notification.new(title: "Added answer #{homework.title}",
                                       description: "Student #{full_name} added answer at #{Time.now}")
-    homework
+    answers
   end
 
   # student sent to check homework
