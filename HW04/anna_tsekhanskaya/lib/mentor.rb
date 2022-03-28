@@ -20,8 +20,8 @@ class Mentor
 
   # mentor add new homework
   def add_homework(title:, description:, student:)
-    homeworks << Homework.new(title: title, description: description, student: student.full_name,
-                              mentor: full_name)
+    student.homeworks << Homework.new(title: title, description: description, student: student.full_name,
+                                      mentor: full_name)
     student.notifications << Notification.new(title: title,
                                               description: "#{full_name} added homework at #{Time.now}")
   end
