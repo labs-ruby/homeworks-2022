@@ -5,8 +5,8 @@ class Mentor
   attr_reader :name, :surname
 
   def initialize(name:, surname:)
-    @name = name.capitalize
-    @surname = surname.capitalize
+    @name = name
+    @surname = surname
     @students_list = []
     @notifications_list = []
   end

@@ -5,8 +5,8 @@ class Student
   attr_reader :name, :surname
 
   def initialize(name:, surname:)
-    @name = name.capitalize
-    @surname = surname.capitalize
+    @name = name
+    @surname = surname
     @storage_homework = []
     @notifications_list = []
   end
