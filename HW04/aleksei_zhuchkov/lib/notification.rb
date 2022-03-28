@@ -13,6 +13,6 @@ class Notification
 
     result = []
     notifications.each { |el| result << [el.title, el.description] }
-    puts result
+    result
   end
 end
