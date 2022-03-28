@@ -8,15 +8,11 @@ class Notification
     @description = description
   end
 
-  def print_notifications(notifications)
+  def get_notifications(notifications)
     return 'None notification' if notifications.empty?
 
-    notifications.each(&:print_note)
-    puts '====================='
-  end
-
-  def print_note
-    puts "Title: #{title}, discription: #{description}"
-    [title, description]
+    result = []
+    notifications.each { |el| result << [el.title, el.description] }
+    puts result
   end
 end

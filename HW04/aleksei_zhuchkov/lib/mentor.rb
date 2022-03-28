@@ -23,7 +23,7 @@ class Mentor
   end
 
   def notifications
-    Notification.new.print_notifications(notifications_list)
+    Notification.new.get_notifications(notifications_list)
   end
 
   def mark_as_read!
