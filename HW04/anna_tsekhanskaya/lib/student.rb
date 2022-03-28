@@ -30,10 +30,11 @@ class Student
   end
 
   # student add answer to homework
-  def add_answer!(homework, str)
-    homeworks << homework
-    notifications << Notification.new(title: str,
+  def add_answer!(homework, answer)
+    homework << answer
+    notifications << Notification.new(title: 'Added answer',
                                       description: "Student #{full_name} added answer at #{Time.now}")
+    homework
   end
 
   # student sent to check homework
