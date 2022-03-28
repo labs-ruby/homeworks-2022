@@ -37,14 +37,14 @@ class Mentor
   end
 
   # mentor reject homework
-  def reject_to_work!(_)
-    notifications << Notification.new(title: 'Reject',
+  def reject_to_work!(homework)
+    notifications << Notification.new(title: "Reject #{homework.title}",
                                       description: "Mentor #{full_name} reject homework at #{Time.now}")
   end
 
   # mentor accept homework
-  def accept!(_)
-    notifications << Notification.new(title: 'Accept homework',
+  def accept!(homework)
+    notifications << Notification.new(title: "Accept #{homework.title}",
                                       description: "Mentor #{full_name} accept homework at #{Time.now}")
   end
 end

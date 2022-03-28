@@ -3,15 +3,14 @@
 require 'time'
 
 class Student
-  attr_accessor :name, :surname, :notifications, :student, :list_homework, :answer
-  attr_reader :mentor
+  attr_accessor :homeworks, :notifications
+  attr_reader :name, :surname, :mentor, :student
 
   def initialize(name:, surname:)
     @name = name
     @surname = surname
-    @answer = []
+    @homeworks = []
     @notifications = []
-    @list_homework = []
   end
 
   def full_name
@@ -23,29 +22,24 @@ class Student
     notifications.clear
   end
 
-  # student can see homeworks
-  def homeworks
-    Homework.new(title: 'Continuation homework', description: answer, student: student,
-                 mentor: mentor)
-  end
-
   # student take to work homework
   def to_work!(homework)
-    answer << homework
+    homeworks << homework
     notifications << Notification.new(title: 'Working',
                                       description: "Student #{full_name} starts working at #{Time.now}")
   end
 
   # student add answer to homework
   def add_answer!(homework, str)
+    homeworks << homework
     notifications << Notification.new(title: str,
                                       description: "Student #{full_name} added answer at #{Time.now}")
-    answer << homework
   end
 
   # student sent to check homework
-  def to_check!(_)
-    notifications << Notification.new(title: 'Add answer',
-                                      description: "Student #{full_name} sent hw to check #{Time.now}")
+  def to_check!(homework)
+    homeworks << homework
+    notifications << Notification.new(title: "#{homework.title} ready for checking",
+                                      description: "Student #{full_name} sent homework to check #{Time.now}")
   end
 end
