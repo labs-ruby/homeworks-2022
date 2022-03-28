@@ -30,7 +30,7 @@ class Student
 
   def to_work!(homework)
     homeworks_in_progress.push(homework)
-    homework.mentor.notices.push("Student: #{name} #{surname} started homework #{homework.title}")
+    homework.mentor.notices.push("Student: #{presentation} started homework #{homework.title}")
   end
 
   def add_answer!(homework, answer)
@@ -42,6 +42,10 @@ class Student
   def to_check!(homework)
     homework.mentor.homeworks_for_check.push(homework)
     homeworks_todo.delete(homework)
-    homework.mentor.notices.push("Student: #{name} #{surname} finished homework #{homework.title}")
+    homework.mentor.notices.push("Student: #{presentation} finished homework #{homework.title}")
+  end
+
+  def presentation
+    "#{name} #{surname}"
   end
 end
