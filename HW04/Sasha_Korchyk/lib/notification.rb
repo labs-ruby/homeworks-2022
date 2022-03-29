@@ -1,18 +1,15 @@
 # frozen_string_literal: true
 
-module Notification
-  def notifications
-    values = []
-    @data[:notify].each do |i|
-      i.each do |k, v|
-        values << k
-        puts "> #{v}" if k == false
-      end
-    end
-    puts 'No new notifications' unless values.include? false
-  end
+class Notification
+  attr_accessor :seen
+  attr_reader :type, :person, :title, :description, :answer
 
-  def mark_as_read!
-    @data[:notify].each { |i| i[true] = i.delete false }
+  def initialize(title, description, type, person, answer = '')
+    @title = title
+    @description = description
+    @seen = false
+    @type = type
+    @person = person
+    @answer = answer
   end
 end

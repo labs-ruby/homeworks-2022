@@ -5,6 +5,7 @@
 # When you implement the classes structure, create an app.rb file
 # where you will show the interactions between objects like in the example.
 
+require_relative 'lib/print'
 require_relative 'lib/student'
 require_relative 'lib/mentor'
 require_relative 'lib/homework'

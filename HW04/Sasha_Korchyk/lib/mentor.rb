@@ -1,48 +1,44 @@
 # frozen_string_literal: true
 
 class Mentor
-  include Notification
+  include PrintNotify
 
-  attr_accessor :data
-  attr_reader :name, :surname
+  attr_reader :name, :surname, :subscribe, :all_notifications
 
   def initialize(hash)
     @name = hash[:name]
     @surname = hash[:surname]
-    @data = { notify: [], homeworks: [], subscriptions: [] }
+    @subscribe = []
+    @all_notifications = []
   end
 
   def add_homework(title:, description:, student:)
-    student.data[:homeworks] << { false => "Title: #{title}, description: #{description}" }
-    student.data[:notify] << { false => "Mentor added new homework: #{title}, description: #{description}" }
-    { title: title, description: description, mentor: self, student: student }
+    homework = Homework.new(title, description, student, self)
+    homework.notify_add_homework
+    homework
   end
 
   def subscribe_to!(student)
-    @data[:subscriptions] << "#{student.name} #{student.surname}"
-    @data[:notify] << { false => "You subscribed to: #{student.name} #{student.surname}" }
-    student.data[:notify] << { false => "#{@name} #{@surname} subscribed to you" }
+    subscribe << student
+  end
+
+  def notifications
+    all_notifications.each do |noti|
+      print_tw(noti) if noti.type == 'tw' && (noti.seen == false)
+      print_tc(noti) if noti.type == 'tc' && (noti.seen == false)
+    end
+  end
+
+  def mark_as_read!
+    all_notifications.each { |n| n.seen = true }
   end
 
   def reject_to_work!(homework)
-    @data[:homeworks].each do |i|
-      if i.value? "Title: #{homework[:title]}, description: #{homework[:description]}, answer: #{homework[:answer]}"
-        i.delete(false)
-      end
-    end
-    homework[:student].data[:notify] << { false => "Mentor reject homework: Title: #{homework[:title]}, " \
-                                                    "description: #{homework[:description]}, " \
-                                                    "your answer: #{homework[:answer]}" }
+    homework.notify_reject_to_work
   end
 
   def accept!(homework)
-    @data[:homeworks].each do |i|
-      if i.value? "Title: #{homework[:title]}, description: #{homework[:description]}, answer: #{homework[:answer]}"
-        i[true] = i.delete false
-      end
-    end
-    homework[:student].data[:notify] << { false => "Mentor accept homework: Title: #{homework[:title]}, " \
-                                                    "description: #{homework[:description]}, " \
-                                                    "your answer: #{homework[:answer]}" }
+    homework.student.all_homeworks.each { |h| h.accept = true if homework == h }
+    homework.notify_accept
   end
 end
