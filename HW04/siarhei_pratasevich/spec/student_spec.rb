@@ -221,4 +221,51 @@ end
       end
     end
   end
+
+  describe '#to_check!' do
+    let(:method_notification) {"#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} Sent to check HW03 \"5!(factorial). Using method reduce\" (Siarhei Pratasevich)\n".cyan}
+    after(:each) do
+      File.delete('Siarhei_Pratasevich_notifications.txt')
+    end
+    context 'when the notifications file do not exist' do
+      let!(:using_method_to_check) { subject.to_check!(homework) }
+
+      it '"to_check!" method should to creates notifications file' do
+        expect(notifications_file_exist).to be_truthy
+     end
+
+      it 'notifications file content to be equivalent "to_check!" method notification' do
+        expect(notifications_file_content).to eq(method_notification)
+      end
+    end
+    context 'when the notifications file exist' do
+    context 'when the notifications file is empty' do
+      let!(:add_empty_notifications_file) { File.open('Siarhei_Pratasevich_notifications.txt', 'w') { |f| f.close } }
+      let!(:using_method_to_work) { subject.to_check!(homework) }
+      
+
+      it 'append "to_check!" method notification to empty notifications file (notification file content to be equivalent method notification)' do
+        expect(notifications_file_content).to eq(method_notification)
+      end
+    end
+
+    context 'when the notifications file is not empty' do
+      let!(:add_not_empty_notification_file) do
+        File.open('Siarhei_Pratasevich_notifications.txt', 'w') do |f|
+          f.write("New homework\n")
+          f.close
+        end
+      end
+      let!(:using_to_check_method) { subject.to_check!(homework) }
+
+      it 'appends new notification to notifications file (last file line to be equivalent method "to_check!" notification)' do
+        expect(last_notifications_file_line).to eq(method_notification)
+      end
+
+      it 'Last notifications file line not to be equivalent all notifications file' do
+        expect(last_notifications_file_line).not_to eq(notifications_file_content)
+      end
+    end
+end
+  end
 end
