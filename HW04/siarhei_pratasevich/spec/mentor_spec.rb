@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'spec_helper'
 
 RSpec.describe Mentor do
@@ -6,7 +8,7 @@ RSpec.describe Mentor do
   let(:student) { Student.new(name: 'Siarhei', surname: 'Pratasevich') }
   let(:homework) { Homework.new(title: 'HW03', description: '5!(factorial). Using method reduce', student: student) }
   let(:notifications_file_exist) { File.file? 'Siarhei_Pratasevich_notifications.txt' }
-  let(:notifications_file_content) {File.read('Siarhei_Pratasevich_notifications.txt')}
+  let(:notifications_file_content) { File.read('Siarhei_Pratasevich_notifications.txt') }
   let(:last_notifications_file_line) { File.readlines('Siarhei_Pratasevich_notifications.txt').last(2).join }
 
   describe '#add_homework' do
@@ -14,12 +16,18 @@ RSpec.describe Mentor do
       described_class.new(name: 'Jack', surname: 'Gonsales').add_homework(title: 'HW03',
                                                                           description: '5!(factorial). Using method reduce', student: student)
     end
-    let(:homework_file_content) {File.read('Siarhei_Pratasevich_homework.txt')}
-    let(:notification_for_notifications_file) {"#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} New homework: HW03 \"5!(factorial). Using method reduce\" for Siarhei Pratasevich\n"}
-    let(:notification_for_homework_file) { "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} homework: HW03 \"5!(factorial). Using method reduce\" for Siarhei Pratasevich\n" }
+
+    let(:homework_file_content) { File.read('Siarhei_Pratasevich_homework.txt') }
+    let(:notification_for_notifications_file) do
+      "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} New homework: HW03 \"5!(factorial). Using method reduce\" for Siarhei Pratasevich\n"
+    end
+    let(:notification_for_homework_file) do
+      "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} homework: HW03 \"5!(factorial). Using method reduce\" for Siarhei Pratasevich\n"
+    end
 
     context 'when notifications and homework files do not exist' do
       let(:homework_file_exist) { File.file? 'Siarhei_Pratasevich_homework.txt' }
+
       after(:all) do
         File.delete('Siarhei_Pratasevich_notifications.txt')
         File.delete('Siarhei_Pratasevich_homework.txt')
@@ -28,10 +36,10 @@ RSpec.describe Mentor do
       it 'method should to returns object Homework class' do
         expect(subject).to be_kind_of(Homework)
       end
-      
+
       it 'method should to creates homework file' do
         expect(homework_file_exist).to be_truthy
-     end
+      end
 
       it 'homework file content should to be equivalent homework title and description' do
         expect(homework_file_content).to eq(notification_for_homework_file)
@@ -39,32 +47,31 @@ RSpec.describe Mentor do
 
       it 'method should to creates notifications file' do
         expect(notifications_file_exist).to be_truthy
-     end
+      end
 
       it 'notifications file content should to be equivalent new homework title and description' do
         expect(notifications_file_content).to eq(notification_for_notifications_file)
       end
     end
-    
+
     context 'when notifications and homework files exist' do
-      
-       let!(:add_notification_file) do
-         File.open('Siarhei_Pratasevich_notifications.txt', 'w') do |f|
-           f.write("New homework\n")
-           f.close
-         end
-       end
-      
-       let!(:add_homework_file) do
-         File.open('Siarhei_Pratasevich_homework.txt', 'w') do |f|
-           f.write("New homework\n")
-           f.close
-         end
-       end
+      let!(:add_notification_file) do
+        File.open('Siarhei_Pratasevich_notifications.txt', 'w') do |f|
+          f.write("New homework\n")
+          f.close
+        end
+      end
 
-       let!(:create_new_subject_for_each_example) { subject }
+      let!(:add_homework_file) do
+        File.open('Siarhei_Pratasevich_homework.txt', 'w') do |f|
+          f.write("New homework\n")
+          f.close
+        end
+      end
 
-       after(:each) do
+      let!(:create_new_subject_for_each_example) { subject }
+
+      after do
         File.delete('Siarhei_Pratasevich_notifications.txt')
         File.delete('Siarhei_Pratasevich_homework.txt')
       end
@@ -73,12 +80,11 @@ RSpec.describe Mentor do
         expect(subject).to be_kind_of(Homework)
       end
 
-      it 'should to overwrite old homework file content to new homework title and description' do
+      it 'toes overwrite old homework file content to new homework title and description' do
         expect(homework_file_content).to eq(notification_for_homework_file)
       end
 
-
-      it 'should to overwrite old notifications file content to new homework title and description' do
+      it 'toes overwrite old notifications file content to new homework title and description' do
         expect(notifications_file_content).to eq(notification_for_notifications_file)
       end
     end
@@ -88,15 +94,12 @@ RSpec.describe Mentor do
     subject { described_class.new(name: 'Jack', surname: 'Gonsales').notifications(student) }
 
     context 'when the notifications file do not exist' do
-
       it 'gets error "No such file or directory"' do
         expect { subject }.to raise_error(Errno::ENOENT)
       end
     end
 
     context 'when the notifications file exist' do
-      
-
       let!(:add_notification_file) do
         File.open('Siarhei_Pratasevich_notifications.txt', 'w') do |f|
           f.write("#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} New homework: HW03\n")
@@ -104,10 +107,12 @@ RSpec.describe Mentor do
           f.close
         end
       end
-      let(:right_output) { "#{Time.new
-        .strftime('%d-%m-%Y %H:%M:%S')} New homework: HW03\n#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} New homework: HW04\n" }
+      let(:right_output) do
+        "#{Time.new
+        .strftime('%d-%m-%Y %H:%M:%S')} New homework: HW03\n#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} New homework: HW04\n"
+      end
 
-      after(:each) do
+      after do
         File.delete('Siarhei_Pratasevich_notifications.txt')
       end
 
@@ -122,16 +127,20 @@ RSpec.describe Mentor do
   end
 
   describe '#mark_as_read!' do
-    let(:method_notification) { "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} Read all notifications (Jack Gonsales)\n".yellow }
-    after(:each) do
+    let(:method_notification) do
+      "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} Read all notifications (Jack Gonsales)\n".yellow
+    end
+
+    after do
       File.delete('Siarhei_Pratasevich_notifications.txt')
     end
+
     context 'when the file notification do not exist' do
       let!(:using_method_mark_as_read) { subject.mark_as_read!(student) }
 
       it '"mark_as_read!" method should to creates notifications file' do
         expect(notifications_file_exist).to be_truthy
-     end
+      end
 
       it 'notifications file content to be equivalent "mark_as_read!" method notification' do
         expect(notifications_file_content).to eq(method_notification)
@@ -140,14 +149,16 @@ RSpec.describe Mentor do
 
     context 'when the notifications file exist' do
       context 'when the notifications file is empty' do
-        let!(:add_empty_notifications_file) { File.open('Siarhei_Pratasevich_notifications.txt', 'w') { |f| f.close } }
+        let!(:add_empty_notifications_file) do
+          File.open('Siarhei_Pratasevich_notifications.txt', 'w', &:close)
+        end
         let!(:using_method_mark_as_read_for_student) { subject.mark_as_read!(student) }
-  
+
         it 'append "mark_as_read!" method notification to empty notifications file (notification file content to be equivalent method notification)' do
           expect(notifications_file_content).to eq(method_notification)
         end
       end
-  
+
       context 'when the notifications file is not empty' do
         let!(:add_not_empty_notification_file) do
           File.open('Siarhei_Pratasevich_notifications.txt', 'w') do |f|
@@ -156,30 +167,33 @@ RSpec.describe Mentor do
           end
         end
         let!(:using_method_mark_as_read) { subject.mark_as_read!(student) }
-      
-  
+
         it 'appends new notification to notifications file (last file line to be equivalent method "mark_as_read!" notification)' do
           expect(last_notifications_file_line).to eq(method_notification)
         end
-  
+
         it 'Last notifications file line not to be equivalent all notifications file' do
           expect(last_notifications_file_line).not_to eq(notifications_file_content)
         end
       end
-  end
     end
+  end
 
   describe '#subscribe_to!' do
-    let(:method_notification) { "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} Jack Gonsales subscribe to Siarhei_Pratasevich\n".yellow }
-    after(:each) do
+    let(:method_notification) do
+      "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} Jack Gonsales subscribe to Siarhei_Pratasevich\n".yellow
+    end
+
+    after do
       File.delete('Siarhei_Pratasevich_notifications.txt')
     end
+
     context 'when the file notification do not exist' do
       let!(:using_method_subscribe_to) { subject.subscribe_to!(student) }
 
       it '"subscribe_to!" method should to creates notifications file' do
         expect(notifications_file_exist).to be_truthy
-     end
+      end
 
       it 'notifications file content to be equivalent "subscribe_to!" method notification' do
         expect(notifications_file_content).to eq(method_notification)
@@ -188,14 +202,14 @@ RSpec.describe Mentor do
 
     context 'when the notifications file exist' do
       context 'when the notifications file is empty' do
-        let!(:add_empty_notifications_file) { File.open('Siarhei_Pratasevich_notifications.txt', 'w') { |f| f.close } }
+        let!(:add_empty_notifications_file) { File.open('Siarhei_Pratasevich_notifications.txt', 'w', &:close) }
         let!(:using_method_subscribe_to) { subject.subscribe_to!(student) }
-  
+
         it 'append "subscribe_to!" method notification to empty notifications file (notification file content to be equivalent method notification)' do
           expect(notifications_file_content).to eq(method_notification)
         end
       end
-  
+
       context 'when the notifications file is not empty' do
         let!(:add_not_empty_notification_file) do
           File.open('Siarhei_Pratasevich_notifications.txt', 'w') do |f|
@@ -204,22 +218,24 @@ RSpec.describe Mentor do
           end
         end
         let!(:using_method_subscribe_to) { subject.subscribe_to!(student) }
-      
-  
+
         it 'appends new notification to notifications file (last file line to be equivalent method "subscribe_to!" notification)' do
           expect(last_notifications_file_line).to eq(method_notification)
         end
-  
+
         it 'Last notifications file line not to be equivalent all notifications file' do
           expect(last_notifications_file_line).not_to eq(notifications_file_content)
         end
       end
-  end
+    end
   end
 
   describe '#reject_to_work!' do
-    let(:method_notification) { "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} Wrong answer for HW03 \"5!(factorial). Using method reduce\" (Jack Gonsales)\n".yellow }
-    after(:each) do
+    let(:method_notification) do
+      "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} Wrong answer for HW03 \"5!(factorial). Using method reduce\" (Jack Gonsales)\n".yellow
+    end
+
+    after do
       File.delete('Siarhei_Pratasevich_notifications.txt')
     end
 
@@ -228,7 +244,7 @@ RSpec.describe Mentor do
 
       it '"reject_to_work!" method should to creates notifications file' do
         expect(notifications_file_exist).to be_truthy
-     end
+      end
 
       it 'notifications file content to be equivalent "reject_to_work!" method notification' do
         expect(notifications_file_content).to eq(method_notification)
@@ -237,14 +253,14 @@ RSpec.describe Mentor do
 
     context 'when the notifications file exist' do
       context 'when the notifications file is empty' do
-        let!(:add_empty_notifications_file) { File.open('Siarhei_Pratasevich_notifications.txt', 'w') { |f| f.close } }
+        let!(:add_empty_notifications_file) { File.open('Siarhei_Pratasevich_notifications.txt', 'w', &:close) }
         let!(:using_method_reject_to_work) { subject.reject_to_work!(homework, student) }
-  
+
         it 'append "reject_to_work!" method notification to empty notifications file (notification file content to be equivalent method notification)' do
           expect(notifications_file_content).to eq(method_notification)
         end
       end
-  
+
       context 'when the notifications file is not empty' do
         let!(:add_not_empty_notification_file) do
           File.open('Siarhei_Pratasevich_notifications.txt', 'w') do |f|
@@ -253,22 +269,24 @@ RSpec.describe Mentor do
           end
         end
         let!(:using_method_reject_to_work) { subject.reject_to_work!(homework, student) }
-      
-  
+
         it 'appends new notification to notifications file (last file line to be equivalent method "reject_to_work!" notification)' do
           expect(last_notifications_file_line).to eq(method_notification)
         end
-  
+
         it 'Last notifications file line not to be equivalent all notifications file' do
           expect(last_notifications_file_line).not_to eq(notifications_file_content)
         end
       end
-  end
+    end
   end
 
   describe '#accept!' do
-    let(:method_notification) { "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} Good job! HW03 \"5!(factorial). Using method reduce\" - accepted! (Jack Gonsales)\n".yellow }
-    after(:each) do
+    let(:method_notification) do
+      "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} Good job! HW03 \"5!(factorial). Using method reduce\" - accepted! (Jack Gonsales)\n".yellow
+    end
+
+    after do
       File.delete('Siarhei_Pratasevich_notifications.txt')
     end
 
@@ -277,7 +295,7 @@ RSpec.describe Mentor do
 
       it '"accept!" method should to creates notifications file' do
         expect(notifications_file_exist).to be_truthy
-     end
+      end
 
       it 'notifications file content to be equivalent "accept!" method notification' do
         expect(notifications_file_content).to eq(method_notification)
@@ -286,14 +304,14 @@ RSpec.describe Mentor do
 
     context 'when the notifications file exist' do
       context 'when the notifications file is empty' do
-        let!(:add_empty_notifications_file) { File.open('Siarhei_Pratasevich_notifications.txt', 'w') { |f| f.close } }
+        let!(:add_empty_notifications_file) { File.open('Siarhei_Pratasevich_notifications.txt', 'w', &:close) }
         let!(:using_method_accept) { subject.accept!(homework, student) }
-  
+
         it 'append "accept!" method notification to empty notifications file (notification file content to be equivalent method notification)' do
           expect(notifications_file_content).to eq(method_notification)
         end
       end
-  
+
       context 'when the notifications file is not empty' do
         let!(:add_not_empty_notification_file) do
           File.open('Siarhei_Pratasevich_notifications.txt', 'w') do |f|
@@ -302,11 +320,11 @@ RSpec.describe Mentor do
           end
         end
         let!(:using_method_accept) { subject.accept!(homework, student) }
-      
+
         it 'appends new notification to notifications file (last file line to be equivalent method "accept!" notification)' do
           expect(last_notifications_file_line).to eq(method_notification)
         end
-  
+
         it 'Last notifications file line not to be equivalent all notifications file' do
           expect(last_notifications_file_line).not_to eq(notifications_file_content)
         end
