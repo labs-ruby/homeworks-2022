@@ -41,19 +41,19 @@ class Student
   private
 
   def read_file(filename)
-    f = File.open(filename, 'r')
-    f.each_line { |line| puts line }
-    f.close
+    task_file = File.open(filename, 'r')
+    task_file.each_line { |line| puts line }
+    task_file.close
   end
 
   def write_to_file(filename, message)
-    f = File.open(filename, 'w')
-    f.write(message)
-    f.close
+    task_file = File.open(filename, 'w')
+    task_file.write(message)
+    task_file.close
   end
 
   def notification_storage_empty(filename)
-    f = File.open(filename, 'w')
-    f.close
+    task_file = File.open(filename, 'w')
+    task_file.close
   end
 end
