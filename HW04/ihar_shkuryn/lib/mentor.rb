@@ -20,7 +20,8 @@ class Mentor
     all_homeworks.push(homework)
     student.homeworks_todo.push(homework)
     notice_handler(homework, student)
-    student.add_notification_to_file(student.student_filename, "Homework #{title} was assigned to #{student.presentation}")
+    student.add_notification_to_file(student.student_filename,
+                                     "Homework #{title} was assigned to #{student.presentation}")
     homework
   end
 
@@ -30,12 +31,12 @@ class Mentor
   end
 
   def subscribe_to!(student)
-    if not subscriptions.include?(student)
-      subscriptions.push(student)
-      message = "Mentor #{presentation} subscribed to #{student.presentation}"
-      notify_student(student, message)
-      student.add_notification_to_file(student.student_filename, message)
-    end
+    return if subscriptions.include?(student)
+
+    subscriptions.push(student)
+    message = "Mentor #{presentation} subscribed to #{student.presentation}"
+    notify_student(student, message)
+    student.add_notification_to_file(student.student_filename, message)
   end
 
   def notify_student(student, message)
@@ -45,7 +46,7 @@ class Mentor
 
   def notifications
     notices.each do |notice|
-      notice
+      p notice
     end
   end
 
@@ -66,7 +67,7 @@ class Mentor
     student = homework.student
     homeworks_for_check.delete(homework)
     student.homeworks_in_progress.delete(homework)
-    message = "Mentor #{presentation} eccepted homework #{homework.title}"
+    message = "Mentor #{presentation} accepted homework #{homework.title}"
     student.notices.push(message)
     student.add_notification_to_file(student.student_filename, message)
   end
@@ -74,5 +75,4 @@ class Mentor
   def presentation
     "#{name} #{surname}"
   end
-  
 end

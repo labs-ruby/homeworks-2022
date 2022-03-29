@@ -7,14 +7,7 @@ class Notification
     @message = message
   end
 
-  def add_notification_to_file(filename, notification)
-    File.open(filename, 'w') do |f|
-      f.write("#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} #{notification}\n")
-      f.close
-    end
-  end
-
-  def read_notification_from_file(filename)
-    puts File.read(filename)
+  def to_s
+    message
   end
 end
