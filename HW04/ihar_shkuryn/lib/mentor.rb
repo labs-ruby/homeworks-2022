@@ -13,9 +13,8 @@ class Mentor
     @homeworks_for_check = []
   end
 
-  def add_homework(data)
-    student = data[:student]
-    homework = Homework.new(data, self)
+  def add_homework(title:, description:, student:)
+    homework = Homework.new(title, description, student, self, 'new')
     homework.message = "Student #{student.presentation} got a new homework "\
     "from #{presentation} title: #{@title}"
     all_homeworks.push(homework)
@@ -36,7 +35,7 @@ class Mentor
 
   def notifications
     @notices.each do |notice|
-      puts notice
+      notice
     end
   end
 
