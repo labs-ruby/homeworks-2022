@@ -4,12 +4,12 @@ class Homework
   attr_reader :title, :description, :student, :mentor
   attr_accessor :notices, :answers, :message
 
-  def initialize(data, mentor)
-    @title = data[:title]
-    @description = data[:description]
-    @student = data[:student]
+  def initialize(title, description, student, mentor, status)
+    @title = title
+    @description = description
+    @student = student
     @mentor = mentor
-    @status = data[:status]
+    @status = status
     @answers = []
   end
 end

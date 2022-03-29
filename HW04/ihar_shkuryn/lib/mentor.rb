@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Mentor
-  attr_reader :name, :surname, :homework, :self
+  attr_reader :name, :surname, :homework, :subscriptions, :self
   attr_accessor :notices, :all_homeworks, :homeworks_for_check
 
   def initialize(data)
@@ -20,6 +20,7 @@ class Mentor
     all_homeworks.push(homework)
     student.homeworks_todo.push(homework)
     notice_handler(homework, student)
+    student.add_notification_to_file(student.student_filename, "Homework #{title} was assigned to #{student.presentation}")
     homework
   end
 
@@ -29,12 +30,21 @@ class Mentor
   end
 
   def subscribe_to!(student)
-    @subscriptions.push(student)
-    student.notices.push("Mentor #{presentation} subscribed to #{student.presentation}")
+    if not subscriptions.include?(student)
+      subscriptions.push(student)
+      message = "Mentor #{presentation} subscribed to #{student.presentation}"
+      notify_student(student, message)
+      student.add_notification_to_file(student.student_filename, message)
+    end
+  end
+
+  def notify_student(student, message)
+    notice = Notification.new(message)
+    student.notices.push(notice)
   end
 
   def notifications
-    @notices.each do |notice|
+    notices.each do |notice|
       notice
     end
   end
@@ -44,19 +54,21 @@ class Mentor
   end
 
   def reject_to_work!(homework)
-    homework.student.homeworks_todo.push(homework)
+    student = homework.student
+    student.homeworks_todo.push(homework)
     homeworks_for_check.delete(homework)
-    homework.student.notices.push("Mentor #{presentation} rejected homework #{homework.title}")
+    message = "Mentor #{presentation} rejected homework #{homework.title}"
+    student.notices.push(message)
+    student.add_notification_to_file(student.student_filename, message)
   end
 
   def accept!(homework)
+    student = homework.student
     homeworks_for_check.delete(homework)
-    homework.student.homeworks_in_progress.delete(homework)
-    homework.student.notices.push("Mentor #{presentation} accepted homework #{homework.title}")
-  end
-
-  def get_student_filename(student)
-    "#{student.presentation}_notifications.txt"
+    student.homeworks_in_progress.delete(homework)
+    message = "Mentor #{presentation} eccepted homework #{homework.title}"
+    student.notices.push(message)
+    student.add_notification_to_file(student.student_filename, message)
   end
 
   def presentation
