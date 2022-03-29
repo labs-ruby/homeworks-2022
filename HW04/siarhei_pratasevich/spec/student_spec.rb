@@ -5,10 +5,7 @@ require_relative 'spec_helper'
 RSpec.describe Student do
   subject { described_class.new(name: 'Siarhei', surname: 'Pratasevich') }
 
-  let(:homework) { Homework.new(title: 'HW03', description: '5!(factorial). Using method reduce', student: subject) }
-  let(:last_notifications_file_line) { File.readlines('Siarhei_Pratasevich_notifications.txt').last(2).join }
   let(:notifications_file_content) { File.read('Siarhei_Pratasevich_notifications.txt') }
-  let(:notifications_file_exist) { File.file? 'Siarhei_Pratasevich_notifications.txt' }
 
   describe '#notifications' do
     context 'when the notifications file do not exist' do
@@ -22,15 +19,15 @@ RSpec.describe Student do
     context 'when the notifications file exist' do
       subject { described_class.new(name: 'Siarhei', surname: 'Pratasevich').notifications }
 
+      let(:right_output) do
+        "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} New homework\n"
+      end
+
       before do
         File.open('Siarhei_Pratasevich_notifications.txt', 'a') do |f|
           f.write("#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} New homework\n")
           f.close
         end
-      end
-
-      let(:right_output) do
-        "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} New homework\n"
       end
 
       after do
@@ -57,6 +54,8 @@ RSpec.describe Student do
     end
 
     context 'when the notifications file do not exist' do
+      let(:notifications_file_exist) { File.file? 'Siarhei_Pratasevich_notifications.txt' }
+
       before { subject.mark_as_read! }
 
       it '"mark_as_read!" method should to creates notifications file' do
@@ -81,6 +80,8 @@ RSpec.describe Student do
       end
 
       context 'when the notifications file is not empty' do
+        let(:last_notifications_file_line) { File.readlines('Siarhei_Pratasevich_notifications.txt').last(2).join }
+
         before do
           File.open('Siarhei_Pratasevich_notifications.txt', 'w') do |f|
             f.write("New homework\n")
@@ -101,6 +102,8 @@ RSpec.describe Student do
   end
 
   describe '#to_work!' do
+    let(:homework) { Homework.new(title: 'HW03', description: '5!(factorial). Using method reduce', student: subject) }
+
     let(:method_notification) do
       "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} Taked to work HW03 \"5!(factorial). Using method reduce\" (Siarhei Pratasevich)\n".cyan
     end
@@ -110,6 +113,8 @@ RSpec.describe Student do
     end
 
     context 'when the notifications file do not exist' do
+      let(:notifications_file_exist) { File.file? 'Siarhei_Pratasevich_notifications.txt' }
+
       before { subject.to_work!(homework) }
 
       it '"to_work!" method should to creates notifications file' do
@@ -134,6 +139,8 @@ RSpec.describe Student do
       end
 
       context 'when the notifications file is not empty' do
+        let(:last_notifications_file_line) { File.readlines('Siarhei_Pratasevich_notifications.txt').last(2).join }
+
         before do
           File.open('Siarhei_Pratasevich_notifications.txt', 'w') do |f|
             f.write("New homework\n")
@@ -165,17 +172,17 @@ RSpec.describe Student do
     context 'when the homeworks file exist' do
       subject { described_class.new(name: 'Siarhei', surname: 'Pratasevich').homeworks }
 
+      let(:right_output) do
+        "#{Time.new
+        .strftime('%d-%m-%Y %H:%M:%S')} homework: HW03 \"5!(factorial). Using method reduce\" for Siarhei Pratasevich\n"
+      end
+
       before do
         File.open('Siarhei_Pratasevich_homework.txt', 'w') do |f|
           f.write("#{Time.new
             .strftime('%d-%m-%Y %H:%M:%S')} homework: HW03 \"5!(factorial). Using method reduce\" for Siarhei Pratasevich\n")
           f.close
         end
-      end
-
-      let(:right_output) do
-        "#{Time.new
-        .strftime('%d-%m-%Y %H:%M:%S')} homework: HW03 \"5!(factorial). Using method reduce\" for Siarhei Pratasevich\n"
       end
 
       after do
@@ -194,46 +201,45 @@ RSpec.describe Student do
 
   describe '#add_answer!' do
     let(:answer_file_content) { File.read('Siarhei_Pratasevich_answer.txt') }
+    let(:homework) { Homework.new(title: 'HW03', description: '5!(factorial). Using method reduce', student: subject) }
 
     after do
       File.delete('Siarhei_Pratasevich_answer.txt')
     end
 
     context 'when the answer file do not exist' do
-      let(:answer_01) { '(1..5).to_a.reduce(:+)' }
-      let(:full_homework_answer_01) do
+      let(:full_homework_answer) do
         "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} Answer HW03 \"5!(factorial). Using method reduce\" => (1..5).to_a.reduce(:+)\n"
       end
       let(:answer_file_exist) { File.file? 'Siarhei_Pratasevich_answer.txt' }
 
-      before { subject.add_answer!(homework, answer_01) }
+      before { subject.add_answer!(homework, '(1..5).to_a.reduce(:+)') }
 
       it '"add_answer!" method should creates answer file' do
         expect(answer_file_exist).to be_truthy
       end
 
       it 'answer file content to be equivalent homework answer' do
-        expect(answer_file_content).to eq(full_homework_answer_01)
+        expect(answer_file_content).to eq(full_homework_answer)
       end
     end
 
     context 'when the answer file exist' do
+      let(:full_homework_answer) do
+        "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} Answer HW03 \"5!(factorial). Using method reduce\" => (1..5).to_a.reduce(:*)\n"
+      end
+
       before do
         File.open('Siarhei_Pratasevich_answer.txt', 'w') do |f|
           f.write("#{Time.new
             .strftime('%d-%m-%Y %H:%M:%S')} Answer HW03 => (1..5).to_a.reduce(:+)\n)")
           f.close
         end
-        subject.add_answer!(homework, answer_02)
+        subject.add_answer!(homework, '(1..5).to_a.reduce(:*)')
       end
 
-      let(:answer_02) { '(1..5).to_a.reduce(:*)' }
-      let(:full_homework_answer_02) do
-        "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} Answer HW03 \"5!(factorial). Using method reduce\" => (1..5).to_a.reduce(:*)\n"
-      end
-
-      it 'toes overwrites previous answer file to file with new answer' do
-        expect(answer_file_content).to eq(full_homework_answer_02)
+      it 'overwrites previous answer file content to file content with new answer' do
+        expect(answer_file_content).to eq(full_homework_answer)
       end
     end
   end
@@ -242,12 +248,15 @@ RSpec.describe Student do
     let(:method_notification) do
       "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} Sent to check HW03 \"5!(factorial). Using method reduce\" (Siarhei Pratasevich)\n".cyan
     end
+    let(:homework) { Homework.new(title: 'HW03', description: '5!(factorial). Using method reduce', student: subject) }
 
     after do
       File.delete('Siarhei_Pratasevich_notifications.txt')
     end
 
     context 'when the notifications file do not exist' do
+      let(:notifications_file_exist) { File.file? 'Siarhei_Pratasevich_notifications.txt' }
+
       before { subject.to_check!(homework) }
 
       it '"to_check!" method should to creates notifications file' do
@@ -272,6 +281,8 @@ RSpec.describe Student do
       end
 
       context 'when the notifications file is not empty' do
+        let(:last_notifications_file_line) { File.readlines('Siarhei_Pratasevich_notifications.txt').last(2).join }
+
         before do
           File.open('Siarhei_Pratasevich_notifications.txt', 'w') do |f|
             f.write("New homework\n")
