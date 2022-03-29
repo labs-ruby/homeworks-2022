@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../lib/participant'
+
 class Mentor < Participant
   def notifications(student)
     read_notification_file(filename_for_add_notification(student))
