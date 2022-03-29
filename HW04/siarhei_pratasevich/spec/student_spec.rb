@@ -147,4 +147,40 @@ end
     end
 end
   end
+
+  describe '#homeworks' do
+    context 'when the homeworks file do not exist' do
+      subject { described_class.new(name: 'Siarhei', surname: 'Pratasevich').homeworks }
+
+      it 'gets error "No such file or directory"' do
+        expect { subject }.to raise_error(Errno::ENOENT)
+      end
+    end
+
+    context 'when the homeworks file exist' do
+      subject { described_class.new(name: 'Siarhei', surname: 'Pratasevich').homeworks }
+
+      let!(:add_notification_file) do
+        File.open('Siarhei_Pratasevich_homework.txt', 'w') do |f|
+          f.write("#{Time.new
+            .strftime('%d-%m-%Y %H:%M:%S')} homework: HW03 \"5!(factorial). Using method reduce\" for Siarhei Pratasevich\n")
+          f.close
+        end
+      end
+      let(:right_output) { "#{Time.new
+        .strftime('%d-%m-%Y %H:%M:%S')} homework: HW03 \"5!(factorial). Using method reduce\" for Siarhei Pratasevich\n" }
+
+      after(:each) do
+        File.delete('Siarhei_Pratasevich_homework.txt')
+      end
+
+      it 'homeworks method should to returns object of nil class' do
+        expect(subject).to be_kind_of(NilClass)
+      end
+
+      it 'output notification in console should to be equivalent homework title and description' do
+        expect{ subject }.to output(right_output).to_stdout
+      end
+    end
+  end
 end
