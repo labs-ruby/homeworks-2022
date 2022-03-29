@@ -120,4 +120,52 @@ RSpec.describe Mentor do
       end
     end
   end
+
+  describe '#mark_as_read!' do
+    let(:method_notification) { "#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} Read all notifications (Jack Gonsales)\n".yellow }
+    after(:each) do
+      File.delete('Siarhei_Pratasevich_notifications.txt')
+    end
+    context 'when the file notification do not exist' do
+      let!(:using_method_mark_as_read) { subject.mark_as_read!(student) }
+
+      it '"mark_as_read!" method should to creates notifications file' do
+        expect(notifications_file_exist).to be_truthy
+     end
+
+      it 'notifications file content to be equivalent "mark_as_read!" method notification' do
+        expect(notifications_file_content).to eq(method_notification)
+      end
+    end
+
+    context 'when the notifications file exist' do
+      context 'when the notifications file is empty' do
+        let!(:add_empty_notifications_file) { File.open('Siarhei_Pratasevich_notifications.txt', 'w') { |f| f.close } }
+        let!(:using_method_mark_as_read_for_student) { subject.mark_as_read!(student) }
+  
+        it 'append "mark_as_read!" method notification to empty notifications file (notification file content to be equivalent method notification)' do
+          expect(notifications_file_content).to eq(method_notification)
+        end
+      end
+  
+      context 'when the notifications file is not empty' do
+        let!(:add_not_empty_notification_file) do
+          File.open('Siarhei_Pratasevich_notifications.txt', 'w') do |f|
+            f.write("New homework\n")
+            f.close
+          end
+        end
+        let!(:using_method_mark_as_read) { subject.mark_as_read!(student) }
+      
+  
+        it 'appends new notification to notifications file (last file line to be equivalent method "mark_as_read!" notification)' do
+          expect(last_notifications_file_line).to eq(method_notification)
+        end
+  
+        it 'Last notifications file line not to be equivalent all notifications file' do
+          expect(last_notifications_file_line).not_to eq(notifications_file_content)
+        end
+      end
+  end
+    end
 end
