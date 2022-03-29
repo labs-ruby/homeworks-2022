@@ -56,9 +56,6 @@ RSpec.describe Student do
     context 'when the notifications file do not exist' do
       let!(:using_method_mark_as_read_for_student) { subject.mark_as_read! }
       
-
-      
-
        it '"mark_as_read!" method should to creates notifications file' do
          expect(notifications_file_exist).to be_truthy
        end
@@ -106,8 +103,6 @@ end
     end
     context 'when the notifications file do not exist' do
       let!(:using_method_to_work) { subject.to_work!(homework) }
-
-      
 
       it '"to_work!" method should to creates notifications file' do
          expect(notifications_file_exist).to be_truthy
@@ -243,7 +238,6 @@ end
       let!(:add_empty_notifications_file) { File.open('Siarhei_Pratasevich_notifications.txt', 'w') { |f| f.close } }
       let!(:using_method_to_work) { subject.to_check!(homework) }
       
-
       it 'append "to_check!" method notification to empty notifications file (notification file content to be equivalent method notification)' do
         expect(notifications_file_content).to eq(method_notification)
       end
