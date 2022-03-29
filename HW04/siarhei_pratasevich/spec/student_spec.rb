@@ -183,4 +183,42 @@ end
       end
     end
   end
+
+  describe '#add_answer!' do
+    let(:answer_file_content) {File.read('Siarhei_Pratasevich_answer.txt')}
+    after(:each) do
+      File.delete('Siarhei_Pratasevich_answer.txt')
+    end
+    context 'when the answer file do not exist' do
+      let(:answer_01) { '(1..5).to_a.reduce(:+)' }
+      let!(:using_method_add_answer) { subject.add_answer!(homework, answer_01) }
+      let(:full_homework_answer_01) {"#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} Answer HW03 \"5!(factorial). Using method reduce\" => (1..5).to_a.reduce(:+)\n"}
+      let(:answer_file_exist) { File.file? 'Siarhei_Pratasevich_answer.txt' }
+       
+      it '"add_answer!" method should creates answer file' do
+         expect(answer_file_exist).to be_truthy
+       end
+
+      it 'answer file content to be equivalent homework answer' do
+        expect(answer_file_content).to eq(full_homework_answer_01)
+      end
+    end
+
+    context 'when the answer file exist' do
+      let!(:create_answer_file) do
+        File.open('Siarhei_Pratasevich_answer.txt', 'w') do |f|
+          f.write("#{Time.new
+            .strftime('%d-%m-%Y %H:%M:%S')} Answer HW03 => (1..5).to_a.reduce(:+)\n)")
+          f.close
+        end
+      end
+      let(:answer_02) { '(1..5).to_a.reduce(:*)' }
+      let!(:using_method_add_answer) { subject.add_answer!(homework, answer_02) }
+      let(:full_homework_answer_02) {"#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} Answer HW03 \"5!(factorial). Using method reduce\" => (1..5).to_a.reduce(:*)\n"}
+
+      it 'should to overwrites previous answer file to file with new answer' do
+        expect(answer_file_content).to eq(full_homework_answer_02)
+      end
+    end
+  end
 end
