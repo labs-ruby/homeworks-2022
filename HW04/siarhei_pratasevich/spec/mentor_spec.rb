@@ -83,4 +83,41 @@ RSpec.describe Mentor do
       end
     end
   end
+
+  describe '#notifications' do
+    subject { described_class.new(name: 'Jack', surname: 'Gonsales').notifications(student) }
+
+    context 'when the notifications file do not exist' do
+
+      it 'gets error "No such file or directory"' do
+        expect { subject }.to raise_error(Errno::ENOENT)
+      end
+    end
+
+    context 'when the notifications file exist' do
+      
+
+      let!(:add_notification_file) do
+        File.open('Siarhei_Pratasevich_notifications.txt', 'w') do |f|
+          f.write("#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} New homework: HW03\n")
+          f.write("#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} New homework: HW04\n")
+          f.close
+        end
+      end
+      let(:right_output) { "#{Time.new
+        .strftime('%d-%m-%Y %H:%M:%S')} New homework: HW03\n#{Time.new.strftime('%d-%m-%Y %H:%M:%S')} New homework: HW04\n" }
+
+      after(:each) do
+        File.delete('Siarhei_Pratasevich_notifications.txt')
+      end
+
+      it 'notifications method should to returns object of nil class' do
+        expect(subject).to be_kind_of(NilClass)
+      end
+
+      it 'outputs notifications in console should to be equivalent all lines notifications file' do
+        expect { subject }.to output(right_output).to_stdout
+      end
+    end
+  end
 end
