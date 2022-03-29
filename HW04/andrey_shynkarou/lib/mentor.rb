@@ -3,11 +3,12 @@
 require_relative './notification'
 
 class Mentor
-  attr_reader :name, :surname
+  attr_reader :name, :surname, :notification
 
   def initialize(name:, surname:)
     @name = name
     @surname = surname
+    @notification = Notification.new
   end
 
   def notifications
@@ -15,7 +16,6 @@ class Mentor
   end
 
   def add_homework(title:, description:, student:)
-    @notification = Notification.new if @notification.nil?
     write_to_file('homework.txt',
                   "#{@notification.add_homework} #{title}, #{description} for #{student.name} #{student.surname}.\n")
     Homework.new(title: title, description: description, student: student)
@@ -26,19 +26,16 @@ class Mentor
   end
 
   def accept!(homework)
-    @notification = Notification.new if @notification.nil?
     write_to_file('notification.txt',
                   "Homework #{homework.title} #{homework.description} #{@notification.accept!}.\n")
   end
 
   def reject_to_work!(homework)
-    @notification = Notification.new if @notification.nil?
     write_to_file('notification.txt',
                   "Answer for #{homework.title} #{homework.description} #{@notification.reject_to_work!}.\n")
   end
 
   def subscribe_to!(student)
-    @notification = Notification.new if @notification.nil?
     write_to_file('notification.txt',
                   "Mentor #{name} #{surname} #{@notification.subscribe_to!} #{student.name} #{student.surname}.\n")
   end
