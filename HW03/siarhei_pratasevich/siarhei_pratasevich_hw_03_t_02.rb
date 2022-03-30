@@ -2,6 +2,8 @@
 
 class Homework3
   def task2(log)
+    return [] if log.nil?
+
     log.split("\n")
        .reduce([]) { |result, string| right_format?(string) ? result.push(output_string(string)) : result }
   end
