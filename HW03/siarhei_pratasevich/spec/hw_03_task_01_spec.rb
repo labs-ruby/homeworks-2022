@@ -1,0 +1,32 @@
+# frozen_string_literal: true
+
+require_relative 'spec_helper'
+require_relative '../siarhei_pratasevich_hw_03_t_01'
+
+RSpec.describe Homework3 do
+  let(:object) { described_class.new }
+
+  describe 'Log that has wrong output' do
+    subject { object.task1(log) }
+
+    context 'when log is nil' do
+      let(:log) { nil }
+
+      it 'returns an empty string' do
+        expect(subject).to eq('')
+      end
+    end
+
+    context 'when logs has wrong format' do
+      let(:log) do
+        <<~LOGS
+          errorrrrrrrerrorrrrr, errorrrerrorrrrerrrerer
+        LOGS
+      end
+
+      it 'returns full text of the first line with an error' do
+        expect(subject).to eq('')
+      end
+    end
+  end
+end
