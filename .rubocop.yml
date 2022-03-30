@@ -57,6 +57,7 @@ Layout/LineLength:
 RSpec/FilePath:
   Exclude:
     - 'spec/**/*'
+    - 'HW03/*/spec/*'
 
 Metrics/MethodLength:
   Exclude:
