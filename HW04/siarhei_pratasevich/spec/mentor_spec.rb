@@ -24,13 +24,13 @@ RSpec.describe Mentor do
       .strftime('%d-%m-%Y %H:%M:%S')} homework: HW03 \"5!(factorial). Using method reduce\" for Siarhei Pratasevich\n"
     end
 
+    after do
+      File.delete('Siarhei_Pratasevich_notifications.txt')
+      File.delete('Siarhei_Pratasevich_homework.txt')
+    end
+
     context 'when notifications and homework files do not exist' do
       before { subject }
-
-      after do
-        File.delete('Siarhei_Pratasevich_notifications.txt')
-        File.delete('Siarhei_Pratasevich_homework.txt')
-      end
 
       it 'method should to returns object Homework class' do
         expect(subject).to be_kind_of(Homework)
@@ -56,11 +56,6 @@ RSpec.describe Mentor do
           f.close
         end
         subject
-      end
-
-      after do
-        File.delete('Siarhei_Pratasevich_notifications.txt')
-        File.delete('Siarhei_Pratasevich_homework.txt')
       end
 
       it 'method should to returns object Homework class' do
