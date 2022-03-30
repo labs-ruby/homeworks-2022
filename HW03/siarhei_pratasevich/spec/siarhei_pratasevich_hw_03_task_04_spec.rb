@@ -1,18 +1,10 @@
 # frozen_string_literal: true
 
-require 'rspec'
 require_relative 'spec_helper'
-require_relative 'support/reload_file'
+require_relative '../siarhei_pratasevich_hw_03_t_04'
 
-Dir.chdir('../HW03')
-
-Dir.glob('*').select do |name|
-  next unless File.directory? name
-
-  RSpec.describe "Homework3 Task4: #{name}" do
-    let(:obj) { Object.const_get('Homework3').new }
-
-    before { reload_file(name, 4) }
+RSpec.describe Homework3 do
+  subject { described_class.new }
 
     describe 'counter of letters and digits in the string' do
       context 'when word consists letters and digits' do
@@ -40,4 +32,3 @@ Dir.glob('*').select do |name|
       end
     end
   end
-end
