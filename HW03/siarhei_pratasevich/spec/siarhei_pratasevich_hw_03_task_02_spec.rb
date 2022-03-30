@@ -4,12 +4,12 @@ require_relative 'spec_helper'
 require_relative '../siarhei_pratasevich_hw_03_t_02'
 
 RSpec.describe Homework3 do
-  subject { described_class.new }
+  let(:object) { described_class.new }
 
   describe 'Log that has wrong output' do
     context 'when text are not given' do
       it 'returns an empty array' do
-        expect(subject.task2('')).to eq([])
+        expect(object.task2('')).to eq([])
       end
     end
 
@@ -24,19 +24,19 @@ RSpec.describe Homework3 do
       end
 
       it 'returns an empty array' do
-        expect(subject.task2(log)).to eq([])
+        expect(object.task2(log)).to eq([])
       end
     end
 
     context 'when no arguments is given' do
       it 'returns ArgumentError' do
-        expect { obj.task2 }.to raise_error(ArgumentError)
+        expect { object.task2 }.to raise_error(ArgumentError)
       end
     end
   end
 
   describe 'Log that has right output' do
-    subject { obj.task2(log) }
+    subject { object.task2(log) }
 
     context 'when text given in right format' do
       let(:log) do

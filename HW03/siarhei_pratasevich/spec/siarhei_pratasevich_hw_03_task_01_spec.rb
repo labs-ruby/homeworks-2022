@@ -67,6 +67,24 @@ RSpec.describe Homework3 do
       end
     end
 
+    context 'when log is nil' do
+      it 'returns an empty string' do
+        expect(subject.task1(nil)).to eq('')
+      end
+    end
+
+    context 'when logs has wrong format' do
+      let(:log) do
+        <<~LOGS
+          errorrrrrrrerrorrrrr, errorrrerrorrrrerrrerer
+        LOGS
+      end
+
+      it 'returns full text of the first line with an error' do
+        expect(subject.task1(log)).to eq('')
+      end
+    end
+
     context 'when no arguments is given' do
       it 'returns ArgumentError' do
         expect { subject.task1 }.to raise_error(ArgumentError)
