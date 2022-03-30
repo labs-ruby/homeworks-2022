@@ -17,9 +17,7 @@ class Student
     all_notifications.each do |noti|
       next if noti.seen == true
 
-      print_hw(noti) if noti.type == 'hw'
-      print_rw(noti) if noti.type == 'rw'
-      print_aw(noti) if noti.type == 'aw'
+      print_notify_for_student(noti)
     end
   end
 
@@ -29,10 +27,10 @@ class Student
 
   def homeworks
     all_homeworks.each do |homew|
-      case homew.accept
+      case homew.accepted_by_mentor
       when false
-        print_not_start(homew) if homew.state == false
-        print_start(homew) if homew.state == true
+        print_not_start(homew) if homew.started_execution == false
+        print_start(homew) if homew.started_execution == true
       when true
         print_ready(homew)
       end
@@ -40,7 +38,7 @@ class Student
   end
 
   def to_work!(homework)
-    all_homeworks.each { |h| h.state = true if homework == h }
+    all_homeworks.each { |h| h.started_execution = true if homework == h }
     homework.notify_take_to_work
   end
 

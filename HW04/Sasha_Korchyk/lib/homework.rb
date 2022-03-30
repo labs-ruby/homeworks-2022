@@ -2,7 +2,7 @@
 
 class Homework
   attr_reader :title, :mentor, :student, :description
-  attr_accessor :accept, :state, :answer
+  attr_accessor :accepted_by_mentor, :started_execution, :answer
 
   def initialize(title, description, student, mentor)
     @title = title
@@ -11,9 +11,8 @@ class Homework
     @mentor = mentor
     @answer = ''
 
-    @accept = false
-    @state = false
-    # ...
+    @accepted_by_mentor = false
+    @started_execution = false
   end
 
   def notify_add_homework

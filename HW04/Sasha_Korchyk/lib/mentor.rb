@@ -24,8 +24,9 @@ class Mentor
 
   def notifications
     all_notifications.each do |noti|
-      print_tw(noti) if noti.type == 'tw' && (noti.seen == false)
-      print_tc(noti) if noti.type == 'tc' && (noti.seen == false)
+      next if noti.seen == true
+
+      print_notify_for_mentor(noti)
     end
   end
 
@@ -38,7 +39,7 @@ class Mentor
   end
 
   def accept!(homework)
-    homework.student.all_homeworks.each { |h| h.accept = true if homework == h }
+    homework.student.all_homeworks.each { |h| h.accepted_by_mentor = true if homework == h }
     homework.notify_accept
   end
 end

@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 module PrintNotify
+  def print_notify_for_student(noti)
+    print_hw(noti) if noti.type == 'hw'
+    print_rw(noti) if noti.type == 'rw'
+    print_aw(noti) if noti.type == 'aw'
+  end
+
   def print_hw(noti)
     puts "Mentor #{noti.person.name} #{noti.person.surname} added new homework: #{noti.title}, " \
           "description: #{noti.description}"
@@ -14,6 +20,11 @@ module PrintNotify
   def print_aw(noti)
     puts "Mentor #{noti.person.name} #{noti.person.surname} accept homework: #{noti.title}, " \
           "description: #{noti.description}, your answer: #{noti.answer}"
+  end
+
+  def print_notify_for_mentor(noti)
+    print_tw(noti) if noti.type == 'tw'
+    print_tc(noti) if noti.type == 'tc'
   end
 
   def print_tw(noti)
