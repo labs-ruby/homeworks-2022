@@ -28,7 +28,7 @@ RSpec.describe Homework3 do
       end
     end
 
-    context 'when text is nil' do
+    context 'when log is nil' do
       let(:log) { nil }
 
       it 'returns an empty array' do
