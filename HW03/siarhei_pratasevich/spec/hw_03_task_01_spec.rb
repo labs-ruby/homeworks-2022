@@ -4,11 +4,9 @@ require_relative 'spec_helper'
 require_relative '../siarhei_pratasevich_hw_03_t_01'
 
 RSpec.describe Homework3 do
-  let(:object) { described_class.new }
+  subject { object.task1(log) }
 
   describe 'Log that has wrong output' do
-    subject { object.task1(log) }
-
     context 'when log is nil' do
       let(:log) { nil }
 
