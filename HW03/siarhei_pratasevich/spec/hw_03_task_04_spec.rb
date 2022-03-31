@@ -4,30 +4,30 @@ require_relative 'spec_helper'
 require_relative '../siarhei_pratasevich_hw_03_t_04'
 
 RSpec.describe Homework3 do
-  subject { described_class.new }
+  subject { described_class.new.task4(log) }
 
   describe 'counter of letters and digits in the string' do
     context 'when word consists letters and digits' do
+      let(:log) { '12345qwert' }
+
+      it 'returns object of Hash class' do
+        expect(subject).to be_kind(Hash)
+      end
+    end
+
+    context 'when word consists letters,symbols and digits include 0' do
+      let(:log) { '000123_45q000-+=**,fghji' }
+
       it 'returns number of letters and digits' do
-        expect(obj.task4('12345qwert')).to eq({ digits: 5, letters: 5 })
+        expect(subject).to eq({ digits: 11, letters: 6 })
       end
     end
 
-    context 'when word consists letters,symbols and digits' do
-      it 'returns number of letters and digits' do
-        expect(obj.task4('123_45q-+./,wert')).to eq({ digits: 5, letters: 5 })
-      end
-    end
+    context 'when log object is not String class ' do
+      let(:log) { nil }
 
-    context 'when word is empty' do
-      it 'returns number of letters=0 and digits=0' do
-        expect(obj.task4('')).to eq({ digits: 0, letters: 0 })
-      end
-    end
-
-    context 'when no arguments is given' do
-      it 'returns ArgumentError' do
-        expect { obj.task4 }.to raise_error(ArgumentError)
+      it 'returns TypeError' do
+        expect { subject }.to raise_error(TypeError)
       end
     end
   end
