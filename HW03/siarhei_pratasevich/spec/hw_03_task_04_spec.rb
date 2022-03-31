@@ -23,7 +23,7 @@ RSpec.describe Homework3 do
       end
     end
 
-    context 'when log object is not String class ' do
+    context 'when log object is not String class' do
       let(:log) { nil }
 
       it 'returns TypeError' do

@@ -7,7 +7,7 @@ RSpec.describe Homework3 do
   subject { described_class.new.task3(log) }
 
   describe 'Log that has wrong output' do
-    context 'when log is nil' do
+    context 'when log object is not String class' do
       let(:log) { nil }
 
       it 'returns 0' do
