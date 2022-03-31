@@ -22,7 +22,7 @@ RSpec.describe Homework3 do
         LOGS
       end
 
-      it 'returns full text of the first line with an error' do
+      it 'returns an empty string' do
         expect(subject).to eq('')
       end
     end
