@@ -18,6 +18,3 @@ class Homework3
     "DATE: #{string.split(/[\[\]]/)[1]} FROM: #{string.split(' ')[0]} TO: #{string.split(' ')[6].upcase}"
   end
 end
-
-ddd = Homework3.new
-p ddd.task2(12_345)
