@@ -3,7 +3,7 @@
 require 'time'
 class Homework3
   def task3(log)
-    return '0' if log.nil? || total_lines(log).size <= 1
+    return '0' if !log.is_a?(String) || total_lines(log).size <= 1
 
     array = total_lines(log).map { |string| Time.parse(string) }
     result_array(array).size == 1 ? result_array(array).join : result_array(array)

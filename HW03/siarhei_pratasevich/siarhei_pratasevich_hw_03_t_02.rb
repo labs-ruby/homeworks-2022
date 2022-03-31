@@ -2,7 +2,7 @@
 
 class Homework3
   def task2(log)
-    return [] if log.nil?
+    return [] unless log.is_a?(String)
 
     log.split("\n")
        .reduce([]) { |result, string| right_format?(string) ? result.push(output_string(string)) : result }
@@ -18,3 +18,6 @@ class Homework3
     "DATE: #{string.split(/[\[\]]/)[1]} FROM: #{string.split(' ')[0]} TO: #{string.split(' ')[6].upcase}"
   end
 end
+
+ddd = Homework3.new
+p ddd.task2(12_345)
