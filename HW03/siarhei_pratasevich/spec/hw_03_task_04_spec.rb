@@ -7,11 +7,11 @@ RSpec.describe Homework3 do
   subject { described_class.new.task4(log) }
 
   describe 'counter of letters and digits in the string' do
-    context 'when word consists letters and digits' do
+    context 'when log is a String class' do
       let(:log) { '12345qwert' }
 
       it 'returns object of Hash class' do
-        expect(subject).to be_kind(Hash)
+        expect(subject).to be_kind_of(Hash)
       end
     end
 
