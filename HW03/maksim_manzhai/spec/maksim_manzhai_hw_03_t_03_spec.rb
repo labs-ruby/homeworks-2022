@@ -4,7 +4,7 @@ require_relative '../maksim_manzhai_hw_03_t_03'
 
 RSpec.describe Homework3 do
   describe '#task3' do
-    before { @homework = described_class.new }
+    let(:homework) { described_class.new }
 
     context 'when the log contains one value' do
       let(:log) do
@@ -22,11 +22,11 @@ RSpec.describe Homework3 do
       let(:output) { '49.1' }
 
       it 'returns a string containing the duration of the action in SECONDS between events that occurred at the time of Calling core with action' do
-        expect(@homework.task3(log)).to eql output
+        expect(homework.task3(log)).to eql output
       end
 
       it 'returns an object of class String' do
-        expect(@homework.task3(log)).to be_a(String)
+        expect(homework.task3(log)).to be_a(String)
       end
     end
 
@@ -49,11 +49,11 @@ RSpec.describe Homework3 do
       let(:output) { ['49.1', '82.5'] }
 
       it 'returns an array containing strings of the action in SECONDS between events that occurred at the time of Calling core with action' do
-        expect(@homework.task3(log)).to eql output
+        expect(homework.task3(log)).to eql output
       end
 
       it 'returns an object of class Array' do
-        expect(@homework.task3(log)).to be_a(Array)
+        expect(homework.task3(log)).to be_a(Array)
       end
     end
 
@@ -71,7 +71,7 @@ RSpec.describe Homework3 do
       let(:output) { '0' }
 
       it 'returns string with 0' do
-        expect(@homework.task3(log)).to eql output
+        expect(homework.task3(log)).to eql output
       end
     end
   end
