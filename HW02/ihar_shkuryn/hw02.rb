@@ -5,10 +5,10 @@ module MyArrayMethods
     def my_map
       if block_given?
         results = []
-        index = 0
-        while index < size
-          results.push(yield self[index])
-          index += 1
+        i = 0
+        while i < size
+          results.push(yield self[i])
+          i += 1
         end
         return results
       end
@@ -18,10 +18,10 @@ module MyArrayMethods
     def my_select
       if block_given?
         results = []
-        index = 0
-        while index < size
-          results.push(self[index]) if yield self[index]
-          index += 1
+        i = 0
+        while i < size
+          results.push(self[i]) if yield self[i]
+          i += 1
         end
         return results
       end
@@ -31,10 +31,10 @@ module MyArrayMethods
     def my_each
       return enum_for(:each) unless block_given?
 
-      index = 0
-      while index < size
-        yield(self[index])
-        index += 1
+      i = 0
+      while i < size
+        yield(self[i])
+        i += 1
       end
       self
     end
