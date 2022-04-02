@@ -17,7 +17,7 @@ RSpec.describe Homework3 do
 
       let(:output) { '' }
 
-      it 'return an empty string' do
+      it 'returns an empty string' do
         expect(@homework.task1(log)).to eql output
       end
     end
@@ -36,19 +36,19 @@ RSpec.describe Homework3 do
         '2018-04-23 20:30:42: SSL error, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSLError: System error: Undefined error: 0 - 0>'
       end
 
-      it 'return line with full text of the first line with an error' do
+      it 'returns line with full text of the first line with an error' do
         expect(@homework.task1(log)).to eql output
       end
 
       it 'returns an object of class String' do
-        expect(@homework.task1(log)).to be_an String
+        expect(@homework.task1(log)).to be_a(String)
       end
     end
 
     context 'when log is empty' do
       let(:output) { '' }
 
-      it 'return empty string' do
+      it 'returns empty string' do
         expect(@homework.task1('')).to eql output
       end
     end
