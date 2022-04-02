@@ -39,6 +39,10 @@ RSpec.describe Homework3 do
       it 'return line with full text of the first line with an error' do
         expect(@homework.task1(log)).to eql output
       end
+
+      it 'returns an object of class String' do
+        expect(@homework.task1(log)).to be_an String
+      end
     end
 
     context 'when log is empty' do
