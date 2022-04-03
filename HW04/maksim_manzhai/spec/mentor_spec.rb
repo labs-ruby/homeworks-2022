@@ -18,7 +18,7 @@ RSpec.describe Mentor do
 
   describe '#add_homework' do
     it 'returns an object of class Homework' do
-      student = double('student', name: 'Chris', surname: 'Rock', notifications: [])
+      student = instance_double('student', name: 'Chris', surname: 'Rock', notifications: [])
       homework = mentor.add_homework(title: 'HW03', description: 'OOP in Ruby', student: student)
 
       expect(homework).to be_a(Homework)
