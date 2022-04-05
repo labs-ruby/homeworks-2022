@@ -9,5 +9,9 @@ RSpec.describe 'Homework3' do
     it 'return value is string type' do
       expect(obj_hw3.task3('')).to be_an_instance_of(String)
     end
+
+    it 'return value "0" (string) when get empty string' do
+      expect(obj_hw3.task3('')).to eq('0')
+    end
   end
 end
