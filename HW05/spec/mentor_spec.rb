@@ -10,7 +10,7 @@ RSpec.describe Mentor do
 
   describe 'checking fields of instance' do
     context 'when fields is correct' do
-      it 'returns instance of Student' do
+      it 'returns instance of Mentor' do
         expect(obj).to be_an_instance_of(described_class)
       end
 

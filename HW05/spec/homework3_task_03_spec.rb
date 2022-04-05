@@ -26,16 +26,16 @@ RSpec.describe Homework3 do
       let(:log) { ['error']  }
 
       it 'output is a empty' do
-          expect { obj.task3(log) }.to raise_error(ArgumentError, 'Only string are allowed')
+        expect { obj.task3(log) }.to raise_error(ArgumentError, 'Only string are allowed')
       end
     end
 
     context 'when log is boolean' do
       let(:log) { true }
-      it 'log  is a boolean' do
+
+      it 'log is a boolean' do
         expect { obj.task3(log) }.to raise_error(ArgumentError, 'Only string are allowed')
       end
-
     end
 
     context 'when is it array in log' do
