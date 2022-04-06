@@ -29,6 +29,7 @@ RSpec.describe Homework3 do
   describe 'Log that has wrong output' do
     context 'when log is not String class' do
       let(:log) { 404 }
+      # at the input of method task1 (read "variable") is sent TEXT
 
       it 'returns ArgumentError' do
         expect { subject }.to raise_error(ArgumentError)
