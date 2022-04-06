@@ -45,9 +45,9 @@ RSpec.describe Student do
     end
   end
 
-  context '#to_work!' do
-    it 'student take to work homework' do
-      expect(student.to_work!(homework)).to eql []
+  describe '#to_work!' do
+    it 'student take to work a homework' do
+      expect(student.to_work!(homework)).to eql [homework]
     end
   end
 end
