@@ -30,16 +30,16 @@ RSpec.describe Mentor do
 
   describe 'mark_as_read!' do
     let(:notification) { Notification.new(title: homework.title, description: 'Homework started') }
-    
+
     it 'mentor see notification as unreaded' do
       mentor.notifications << notification
-      expect(mentor.notifications[0].readed).to eql false
+      expect(mentor.notifications[0].readed).to be false
     end
 
     it 'mentor mark as read all notifications' do
       mentor.notifications << notification
       mentor.mark_as_read!
-      expect(mentor.notifications[0].readed).to eql true
+      expect(mentor.notifications[0].readed).to be true
     end
   end
 end
