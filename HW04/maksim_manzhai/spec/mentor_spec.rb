@@ -8,6 +8,8 @@ require 'notification'
 RSpec.describe Mentor do
   let(:mentor) { described_class.new(name: 'Will', surname: 'Smith') }
   let(:student) { Student.new(name: 'Chris', surname: 'Rock') }
+  let(:notification) { Notification.new(title: 'HW03', description: 'OOP in Ruby') }
+  let(:homework) { Homework.new(title: 'HW03', description: 'OOP in Ruby', student: student, mentor: mentor) }
 
   context 'when mentor created' do
     it 'returns name' do
@@ -26,10 +28,18 @@ RSpec.describe Mentor do
     end
   end
 
-  describe '#subscribe_to!' do
-    it 'returns list of mentor subscriptions' do
-      mentor.subscribe_to!(student)
-      expect(mentor.subscriptions).to eql [student]
+  describe 'mark_as_read!' do
+    let(:notification) { Notification.new(title: homework.title, description: 'Homework started') }
+    
+    it 'mentor see notification as unreaded' do
+      mentor.notifications << notification
+      expect(mentor.notifications[0].readed).to eql false
+    end
+
+    it 'mentor mark as read all notifications' do
+      mentor.notifications << notification
+      mentor.mark_as_read!
+      expect(mentor.notifications[0].readed).to eql true
     end
   end
 end
