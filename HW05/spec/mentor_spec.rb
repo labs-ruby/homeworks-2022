@@ -37,14 +37,17 @@ RSpec.describe Mentor do
     end
   end
 
-  describe '#add_homework' do
+  describe '#add homework' do
     context 'when fields is correct' do
       let(:student) { Student.new(name: 'John', surname: 'Doe') }
+      let(:homework) { obj.add_homework(title: 'HW03', description: 'epam homework', student: student) }
 
       it 'returns an object of class Homework' do
-        homework = obj.add_homework(title: 'HW03', description: 'OOP in Ruby', student: student)
-
         expect(homework).to be_an_instance_of(Homework)
+      end
+
+      it 'homework added to all_homeworks' do
+        expect(student.homeworks_todo).to include(homework)
       end
     end
   end
