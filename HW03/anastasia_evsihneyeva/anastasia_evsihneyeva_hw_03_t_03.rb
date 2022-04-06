@@ -6,7 +6,7 @@ class Homework3
   NUMS = /(.*)(?=\ ub)/
   SPLIT = /[\ :-]/
   def task3(logs)
-    return '0' if ( logs == nil || finding_logs(logs).length < 2)
+    return '0' if logs.nil? || finding_logs(logs).length < 2
 
     logs = finding_dur(making_time(finding_logs(logs)))
 
