@@ -50,4 +50,15 @@ RSpec.describe Student do
       expect(student.to_work!(homework)).to eql [homework]
     end
   end
+
+  describe '#add_answer!' do
+    it 'array of answers for homework is empty' do
+      expect(homework.answers).to eql []
+    end
+
+    it 'student make answer for homework' do
+      student.add_answer!(homework, 'new students answer')
+      expect(homework.answers).to eql ['new students answer']
+    end
+  end
 end
