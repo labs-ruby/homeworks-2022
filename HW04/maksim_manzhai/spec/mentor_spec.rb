@@ -42,4 +42,10 @@ RSpec.describe Mentor do
       expect(mentor.notifications[0].readed).to be true
     end
   end
+
+  describe '#reject_to_work!' do
+    it 'mentor reject homework and student get notification' do
+      expect(mentor.reject_to_work!(homework).last).to be_a(Notification)
+    end
+  end
 end
