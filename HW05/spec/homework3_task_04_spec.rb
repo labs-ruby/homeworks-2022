@@ -25,14 +25,6 @@ RSpec.describe Homework3 do
     end
   end
 
-  context 'when got array in params' do
-    let(:log) { ['error'] }
-
-    it 'raised argument error' do
-      expect { obj.task4(log) }.to raise_error(ArgumentError, 'Only string are allowed')
-    end
-  end
-
   context 'when boolean in params' do
     let(:log) { true }
 

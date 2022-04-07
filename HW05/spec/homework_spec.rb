@@ -8,16 +8,8 @@ require_relative 'spec_helper'
 RSpec.describe Homework do
   let(:title) { 'HW03' }
   let(:description) { 'description homework' }
-  let(:student) do
-    instance_double(Student,
-                    name: 'John',
-                    surname: 'Doe')
-  end
-  let(:mentor) do
-    instance_double(Mentor,
-                    name: 'Jack',
-                    surname: 'Gonsales')
-  end
+  let(:student) { Student.new(name: 'John', surname: 'Doe') }
+  let(:mentor) { Mentor.new(name: 'Jack', surname: 'Gonsales') }
 
   let(:obj) { described_class.new(title, description, student, mentor, 'new') }
 

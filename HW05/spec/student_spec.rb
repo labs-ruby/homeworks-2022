@@ -22,10 +22,6 @@ RSpec.describe Student do
         expect(obj.name).to eq(name)
       end
 
-      it 'when surname is correct' do
-        expect(obj.surname).to eq(surname)
-      end
-
       it 'when returns correct presentation' do
         expect(obj.presentation).to eq("#{name} #{surname}")
       end
