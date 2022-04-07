@@ -20,6 +20,8 @@ class Homework3
 
     res = calc_time(core_lines)
 
+    return '0' if res.any? { |num| num.to_i.negative? }
+
     res.length == 1 ? res[0].to_s : res
   end
 end
