@@ -50,7 +50,6 @@ RSpec.describe Mentor do
   describe 'notification creation'
   context 'when notification created' do
     let(:notice) { Notification.new(title: 'HW03') }
-    let(:notifications_file_content) { File.read("#{presentation}.txt")}
 
     it 'returns an object of class Notification' do
       expect(notice).to be_an_instance_of(Notification)
