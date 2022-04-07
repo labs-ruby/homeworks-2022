@@ -61,4 +61,10 @@ RSpec.describe Student do
       expect(homework.answers).to eql ['new students answer']
     end
   end
+
+  describe '#to_check!' do
+    it 'student sent to check homework and mentor get notification' do
+      expect(student.to_check!(homework).last).to be_a(Notification)
+    end
+  end
 end
