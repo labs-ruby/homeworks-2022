@@ -48,4 +48,15 @@ RSpec.describe Mentor do
       expect(mentor.reject_to_work!(homework).last).to be_a(Notification)
     end
   end
+
+  describe '#accept!' do
+    it 'mentor accept homework' do
+      expect(mentor.accept!(homework).last).to be_a(Notification)
+    end
+
+    it 'homework status becomes acceptable' do
+      homework = instance_double('homework', acceptable: true)
+      expect(homework.acceptable).to be true
+    end
+  end
 end
