@@ -11,11 +11,7 @@ RSpec.describe Mentor do
   let(:name) { 'Jack' }
   let(:surname) { 'Gonsales' }
   let(:obj) { described_class.new(name: name, surname: surname) }
-  let(:student) do
-    instance_double(Student,
-                    name: 'John',
-                    surname: 'Doe')
-  end
+  let(:student) { Student.new(name: 'John', surname: 'Doe') }
 
   describe 'checking fields of instance' do
     context 'when fields is correct' do
@@ -39,7 +35,6 @@ RSpec.describe Mentor do
 
   describe '#add homework' do
     context 'when fields is correct' do
-      let(:student) { Student.new(name: 'John', surname: 'Doe') }
       let(:homework) { obj.add_homework(title: 'HW03', description: 'epam homework', student: student) }
 
       it 'returns an object of class Homework' do
@@ -49,6 +44,24 @@ RSpec.describe Mentor do
       it 'homework added to all_homeworks' do
         expect(student.homeworks_todo).to include(homework)
       end
+    end
+  end
+
+  describe 'notification creation'
+  context 'when notification created' do
+    let(:notice) { Notification.new(title: 'HW03') }
+
+    it 'returns an object of class Notification' do
+      expect(notice).to be_an_instance_of(Notification)
+    end
+
+    it 'returns right title' do
+      expect(notice.message[:title]).to eq('HW03')
+    end
+
+    it 'student notice added' do
+      student.notices.push(notice)
+      expect(student.notices).to include(notice)
     end
   end
 end
