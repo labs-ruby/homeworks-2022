@@ -33,7 +33,7 @@ RSpec.describe Homework3 do
       # at the input of method task3 (read "variable") is sent TEXT
 
       it 'returns ArgumentError' do
-        expect { subject }.to raise_error(ArgumentError)
+        expect { subject }.to raise_error(TypeError)
       end
     end
   end

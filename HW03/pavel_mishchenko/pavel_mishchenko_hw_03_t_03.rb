@@ -5,7 +5,7 @@ require 'time'
 REGEX_DATE = /(\d+-\d+\d-\d+ \d+:\d+:\d+.\d+)/
 class Homework3
   def task3(log)
-    raise ArgumentError unless log.is_a?(String)
+    raise TypeError unless log.is_a?(String)
 
     arr = convert_to_time(core_actions(log))
     duration_of_actions(arr)

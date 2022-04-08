@@ -11,7 +11,7 @@ RSpec.describe Homework3 do
       let(:log) { 404 }
 
       it 'returns ArgumentError' do
-        expect { subject }.to raise_error(ArgumentError)
+        expect { subject }.to raise_error(TypeError)
       end
     end
   end
