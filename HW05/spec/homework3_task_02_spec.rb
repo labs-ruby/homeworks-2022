@@ -14,13 +14,13 @@ RSpec.describe Homework3 do
     end
   end
 
-  # context 'when log is empty string' do
-  #   let(:log) { '' }
+  context 'when log is empty string' do
+    let(:log) { '' }
 
-  #   it 'output is a empty' do
-  #     expect(obj.task2(log)).to eq([])
-  #   end
-  # end
+    it 'output is a empty' do
+      expect(obj.task2(log)).to eq([])
+    end
+  end
 
   # context 'when got array in params' do
   #   let(:log) { ['error']  }
