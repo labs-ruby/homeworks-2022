@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../notification'
+require_relative '../lib/notification'
 
 RSpec.describe Notification do
   let(:notification) { described_class.new('test title', 'test description') }

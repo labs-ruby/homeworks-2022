@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-require_relative '../../homework'
-require_relative '../../mentor'
-require_relative '../../student'
+require_relative '../lib/mentor'
+require_relative '../lib/notification'
+require_relative '../lib/student'
+require_relative '../lib/homework'
 
 RSpec.describe Homework do
   let(:student) { Student.new(name: 'student_name', surname: 'student_surname') }

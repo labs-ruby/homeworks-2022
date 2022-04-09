@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../aleksei_zhuchkov_hw_03_t_02'
+require_relative '../aleksei_zhuchkov_hw_03_t_02'
 
 RSpec.describe 'Homework3' do
   let(:obj_hw3) { Homework3.new }
