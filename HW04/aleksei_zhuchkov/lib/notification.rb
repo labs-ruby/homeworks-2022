@@ -9,9 +9,9 @@ class Notification
   end
 
   def get_notifications(notifications)
-    return 'None notification' if notifications.empty?
-
     result = []
+    return result if notifications.empty?
+
     notifications.each { |el| result << [el.title, el.description] }
     result
   end
