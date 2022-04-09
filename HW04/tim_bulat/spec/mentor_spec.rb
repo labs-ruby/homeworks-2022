@@ -11,7 +11,7 @@ RSpec.describe Mentor do
   let(:hw) { Homework.new(title: 'title', description: 'description', student: student, mentor: mentor) }
 
   context 'when created' do
-    it 'returns correct name and surname' do
+    it 'returns correct name' do
       expect(mentor.name).to eq 'mentor_name'
     end
 
