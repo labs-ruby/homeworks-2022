@@ -27,12 +27,12 @@ RSpec.describe Homework do
     end
   end
 
-  describe 'when checked method print' do
+  describe 'checked method print' do
     it 'method return instance of Array' do
       expect(test_homework.print_homework).to be_an_instance_of(Array)
     end
 
-    it 'method return correct data' do
+    it 'return correct data' do
       expect(test_homework.print_homework).to eq(%w[hw_title hw_description])
     end
   end
