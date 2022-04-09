@@ -47,7 +47,6 @@ RSpec.describe Homework3 do
     end
   end
 
-  
   describe 'Log that has right output' do
     subject { obj.task3(log) }
 
