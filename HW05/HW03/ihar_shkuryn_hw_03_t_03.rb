@@ -6,7 +6,7 @@ require 'time'
 class Homework3
   PATTERN = /Calling core with action:/
   def task3(log)
-    raise ArgumentError, 'Only string are allowed' unless log.is_a?(String)
+    raise TypeError, 'Only string are allowed' unless log.is_a?(String)
 
     durations = log.split("\n").select { |line| line.match(PATTERN) }
                    .map { |line| Time.parse(line) }
