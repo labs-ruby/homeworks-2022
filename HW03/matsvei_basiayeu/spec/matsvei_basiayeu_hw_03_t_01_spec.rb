@@ -17,7 +17,7 @@ RSpec.describe Homework3 do
 10.6.246.101 - - [23/Apr/2018:20:29:39 +0300] "POST /grid/2/messages HTTP/1.1" 200 48 0.0290'
         end
 
-        it 'returns full line' do
+        it 'returns full needed line' do
           expect(obj.task1(logs)).to eq('2018-04-23 20:30:42: SSL error, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSLError: System error: Undefined error: 0 - 0>')
         end
       end
@@ -49,7 +49,7 @@ RSpec.describe Homework3 do
       end
     end
 
-    describe 'Log that has wrong output' do
+    describe 'Logs are not right' do
       context 'when text are not given' do
         it 'returns an empty string' do
           expect(obj.task1('')).to eq('')
