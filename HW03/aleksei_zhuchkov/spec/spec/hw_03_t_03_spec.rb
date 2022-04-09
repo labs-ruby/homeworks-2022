@@ -27,6 +27,7 @@ RSpec.describe 'Homework3' do
         2019-01-01 00:00:59.8 ubuntu-xenial[14319] Debug - inside docker_handle_event
       LOGS
     end
+
     it 'return type of strind' do
       expect(obj_hw3.task3(log)).to be_an_instance_of(String)
     end
