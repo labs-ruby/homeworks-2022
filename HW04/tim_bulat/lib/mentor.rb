@@ -8,6 +8,8 @@ class Mentor < Person
     @students = []
   end
 
+  attr_reader :students
+
   def add_homework(title:, description:, student:)
     student.notes << "You have new homework to do\n"
     Homework.new(title: title, description: description, student: student, mentor: self)
