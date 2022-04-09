@@ -5,7 +5,7 @@ require_relative 'spec_helper'
 require './matsvei_basiayeu_hw_03_t_03'
 
 RSpec.describe Homework3 do
-  describe 'task2' do
+  describe 'task3' do
     let(:obj) { described_class.new }
 
     describe 'Logs are right' do
