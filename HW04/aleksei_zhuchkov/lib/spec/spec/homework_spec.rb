@@ -7,9 +7,7 @@ require_relative '../../student'
 RSpec.describe Homework do
   let(:student) { Student.new(name: 'student_name', surname: 'student_surname') }
   let(:mentor) { Mentor.new(name: 'mentor_name', surname: 'mentor_surname') }
-  let(:test_homework) do
-    described_class.new('hw_title', 'hw_description', student, mentor)
-  end
+  let(:test_homework) { described_class.new('hw_title', 'hw_description', student, mentor) }
 
   describe 'check information about student and mentor' do
     it 'check right student name' do
