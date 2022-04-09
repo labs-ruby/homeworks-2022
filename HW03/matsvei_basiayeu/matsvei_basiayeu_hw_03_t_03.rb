@@ -5,6 +5,7 @@ require 'time'
 # this Homework3
 class Homework3
   def task3(log)
+    return '0' if log.instance_of?(NilClass)
     return '0' if check_required_lines(log).size < 2
 
     return_result(result_array(parsing_time(log)))
