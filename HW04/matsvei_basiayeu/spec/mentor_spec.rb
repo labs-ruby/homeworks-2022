@@ -18,11 +18,11 @@ RSpec.describe Mentor do
 
   describe '#initialize' do
     context 'when the object is created' do
-      it 'returns surname' do
+      it 'returns name' do
         expect(mentor.name).to eq('Boris')
       end
 
-      it 'returns name' do
+      it 'returns surname' do
         expect(mentor.surname).to eq('Tsarikov')
       end
 
@@ -38,7 +38,7 @@ RSpec.describe Mentor do
 
   describe '#add_homework' do
     context 'when the object is created' do
-      it 'returns right object class ' do
+      it 'returns right object class' do
         homework = mentor.add_homework(title: 'HW04', description: 'implementation classes structure', student: student)
         expect(homework.class).to eq(Homework)
       end
@@ -70,7 +70,7 @@ RSpec.describe Mentor do
 
   describe '#subscribe_to!' do
     context 'when mentor subscribe to student' do
-      it 'push student to subscripptions array' do
+      it 'push student to subscriptions array' do
         expect { mentor.subscribe_to!(student) }.to change { mentor.subscriptions.count }.to(1)
       end
     end

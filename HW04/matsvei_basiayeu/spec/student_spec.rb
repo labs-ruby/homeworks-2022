@@ -18,11 +18,11 @@ RSpec.describe Student do
 
   describe '#initialize' do
     context 'when the object is created' do
-      it 'returns surname' do
+      it 'returns name' do
         expect(student.name).to eq('Matsvei')
       end
 
-      it 'returns name' do
+      it 'returns surname' do
         expect(student.surname).to eq('Basiayeu')
       end
 
@@ -38,11 +38,11 @@ RSpec.describe Student do
 
   describe '#to_work' do
     context 'when student start homework' do
-      it 'push homework to homeworks array and s ' do
+      it 'push homework to homeworks array' do
         expect { student.to_work!(homework) }.to change { student.homeworks.count }.to(1)
       end
 
-      it 'send notification to the mentor ' do
+      it 'send notification to the mentor' do
         expect { student.to_work!(homework) }.to change { mentor.notifications.count }.to(1)
       end
     end
@@ -68,7 +68,7 @@ RSpec.describe Student do
 
   describe '#add_answer!' do
     context 'when student adds answer' do
-      it 'push sanswer to answers array' do
+      it 'push answer to answers array' do
         expect { student.add_answer!(homework, 'new answer') }.to change { homework.answers.count }.to(1)
       end
     end
@@ -82,7 +82,7 @@ RSpec.describe Student do
 
   describe '#send_to_check!' do
     context 'when student sends completed homework' do
-      it 'returns ' do
+      it 'send motification to the mentor ' do
         expect { student.send_to_check!(homework) }.to change { mentor.notifications.count }.to(1)
       end
     end
