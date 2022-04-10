@@ -24,12 +24,12 @@ RSpec.describe Student do
       allow(homework).to receive(:to_work!)
     end
 
-    it 'wait homework.add_student_observer call' do
+    it 'call homework.add_student_observer' do
       subject.to_work!(homework)
       expect(homework).to have_received(:add_student_observer)
     end
 
-    it 'wait homework.to_work! call' do
+    it 'call homework.to_work!' do
       subject.to_work!(homework)
       expect(homework).to have_received(:to_work!)
     end
@@ -41,7 +41,7 @@ RSpec.describe Student do
         allow(homework).to receive(:add_answer!).with('i dont know')
       end
 
-      it 'wait homework.reject! call with answer = i dont know' do
+      it 'call homework.add_answer! call' do
         subject.add_answer!(homework, 'i dont know')
         expect(homework).to have_received(:add_answer!).with('i dont know')
       end
@@ -52,7 +52,7 @@ RSpec.describe Student do
         allow(homework).to receive(:add_answer!)
       end
 
-      it 'wait homework.reject! call' do
+      it 'call homework.add_answer!' do
         subject.add_answer!(homework)
         expect(homework).to have_received(:add_answer!)
       end
@@ -65,7 +65,7 @@ RSpec.describe Student do
         allow(homework).to receive(:to_check!)
       end
 
-      it 'wait homework.reject! call with answer = i dont know' do
+      it 'call homework.to_check!' do
         subject.to_check!(homework)
         expect(homework).to have_received(:to_check!)
       end

@@ -19,7 +19,7 @@ RSpec.describe Mentor do
       expect(subject.add_homework(title: 'title', description: 'fake', student: student)).to eq('homework')
     end
 
-    it 'wait Homework.new call' do
+    it 'call Homework.new call' do
       subject.add_homework(title: 'title', description: 'fake', student: student)
       expect(Homework).to have_received(:new).with(title: 'title', description: 'fake', student: student)
     end
@@ -33,7 +33,7 @@ RSpec.describe Mentor do
       allow(mentor).to receive(:invite_student_to_work).with(homework).and_return(mentor.add_notification(homework.student))
     end
 
-    it 'wait #add_notification' do
+    it 'call #add_notification' do
       mentor.invite_student_to_work(homework)
       expect(mentor).to have_received(:add_notification).with(homework.student)
     end
@@ -44,7 +44,7 @@ RSpec.describe Mentor do
       allow(homework).to receive(:add_mentor_observer)
     end
 
-    it 'wait homework.add_mentor_observer call' do
+    it 'call homework.add_mentor_observer' do
       subject.subscribe_to!(homework)
       expect(homework).to have_received(:add_mentor_observer)
     end
@@ -56,7 +56,7 @@ RSpec.describe Mentor do
         allow(homework).to receive(:reject!).with(subject, 'bad')
       end
 
-      it 'wait homework.reject! call with remarks = bad' do
+      it 'call homework.reject!' do
         subject.reject_to_work!(homework, 'bad')
         expect(homework).to have_received(:reject!).with(subject, 'bad')
       end
@@ -67,7 +67,7 @@ RSpec.describe Mentor do
         allow(homework).to receive(:reject!).with(subject, '')
       end
 
-      it 'wait homework.reject! call' do
+      it 'call homework.reject!' do
         subject.reject_to_work!(homework)
         expect(homework).to have_received(:reject!).with(subject, '')
       end
@@ -80,7 +80,7 @@ RSpec.describe Mentor do
         allow(homework).to receive(:accept!).with(5)
       end
 
-      it 'wait homework.reject! call' do
+      it 'call homework.reject!' do
         subject.accept!(homework)
         expect(homework).to have_received(:accept!).with(5)
       end
@@ -91,7 +91,7 @@ RSpec.describe Mentor do
         allow(homework).to receive(:accept!).with(4)
       end
 
-      it 'wait homework.reject! call' do
+      it 'call homework.reject!' do
         subject.accept!(homework, 4)
         expect(homework).to have_received(:accept!).with(4)
       end
