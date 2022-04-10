@@ -17,10 +17,14 @@ Style/MissingRespondToMissing:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+    - 'HW04/*/spec/*'
+    - 'HW03/*/spec/*'
 
 NestedGroups:
   Exclude:
     - 'spec/**/*'
+    - 'HW04/*/spec/*'
+    - 'HW03/*/spec/*'
 
 Style/For:
   Exclude:
@@ -29,24 +33,32 @@ Style/For:
 RSpec/NamedSubject:
   Exclude:
     - 'spec/**/*'
+    - 'HW04/*/spec/*'
+    - 'HW03/*/spec/*'
 
 RSpec/DescribeClass:
   Exclude:
     - 'spec/**/*'
+    - 'HW04/*/spec/*'
+    - 'HW03/*/spec/*'
 
 RSpec/ExpectActual:
   Exclude:
     - 'spec/**/*'
+    - 'HW04/*/spec/*'
+    - 'HW03/*/spec/*'
 
 Layout/LineLength:
   Exclude:
     - 'spec/**/*'
+    - 'HW04/*/spec/*'
+    - 'HW03/*/spec/*'
 
 RSpec/FilePath:
   Exclude:
     - 'spec/**/*'
+    - 'HW03/*/spec/*'
 
 Metrics/MethodLength:
   Exclude:
     - 'HW03/NameSurname/lizaveta_muromskaya_hw_03_t_03.rb'
-    

@@ -16,7 +16,7 @@ class Mentor
   def add_homework(title:, description:, student:)
     homework = Homework.new(title, description, student, self, 'new')
     homework.message = "Student #{student.presentation} got a new homework "\
-                       "from #{presentation} title: #{@title}"
+    "from #{presentation} title: #{@title}"
     all_homeworks.push(homework)
     student.homeworks_todo.push(homework)
     notice_handler(homework, student)
