@@ -12,8 +12,6 @@ RSpec.describe Mentor do
 
   let(:student) { Student.new(name: 'Matsvei', surname: 'Basiayeu') }
 
-  let(:student2) { Student.new(name: 'BOSS', surname: 'MATV') }
-
   let(:homework) { Homework.new(title: 'HW04', description: 'implementation classes structure', mentor: mentor, student: student) }
 
   let(:notification) { Notification.new(title: 'HW04', description: 'implementation classes structure') }
@@ -44,15 +42,28 @@ RSpec.describe Mentor do
         homework = mentor.add_homework(title: 'HW04', description: 'implementation classes structure', student: student)
         expect(homework.class).to eq(Homework)
       end
+
+      it 'send notification to the student ' do
+        expect { mentor.add_homework(title: 'HW04', description: 'implementation classes structure', student: student) }
+          .to change { student.notifications.count }.to(1)
+      end
+    end
+
+    context 'when wrong parameter' do
+      it 'returns argument error' do
+        expect { mentor.add_homework }.to raise_error(ArgumentError)
+      end
     end
   end
 
   describe '#mark_as_read!' do
     context 'when clear notifications' do
-      it 'returns empty array ' do
+      before do
         student.to_work!(homework)
-        mentor.mark_as_read!
-        expect(mentor.notifications).to eq([])
+      end
+
+      it 'returns empty array ' do
+        expect { mentor.mark_as_read! }.to change { mentor.notifications.count }.to(0)
       end
     end
   end
@@ -60,27 +71,51 @@ RSpec.describe Mentor do
   describe '#subscribe_to!' do
     context 'when mentor subscribe to student' do
       it 'push student to subscripptions array' do
-        mentor.subscribe_to!(student)
-        mentor.subscribe_to!(student2)
-        expect(mentor.subscriptions.count).to eq(2)
+        expect { mentor.subscribe_to!(student) }.to change { mentor.subscriptions.count }.to(1)
+      end
+    end
+
+    context 'when wrong parameter' do
+      it 'returns argument error' do
+        expect { mentor.subscribe_to! }.to raise_error(ArgumentError)
       end
     end
   end
 
   describe '#reject_to_work!' do
     context 'when mentor rejects student`s homework' do
-      it 'returns rejected status' do
+      it 'send notification to the student' do
+        expect { mentor.reject_to_work!(homework) }.to change { student.notifications.count }.to(1)
+      end
+
+      it 'returns new status' do
         mentor.reject_to_work!(homework)
         expect(homework.status).to eq('rejected')
+      end
+    end
+
+    context 'when wrong parameter' do
+      it 'returns argument error' do
+        expect { mentor.reject_to_work! }.to raise_error(ArgumentError)
       end
     end
   end
 
   describe '#accept' do
     context 'when mentor accept student`s homework' do
-      it 'returns accepted status' do
+      it 'send notification to the student' do
+        expect { mentor.accept!(homework) }.to change { student.notifications.count }.to(1)
+      end
+
+      it 'returns new status' do
         mentor.accept!(homework)
         expect(homework.status).to eq('accepted')
+      end
+    end
+
+    context 'when wrong parameter' do
+      it 'returns argument error' do
+        expect { mentor.accept! }.to raise_error(ArgumentError)
       end
     end
   end
