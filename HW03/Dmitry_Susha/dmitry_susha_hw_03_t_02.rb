@@ -3,9 +3,10 @@
 class Homework3
   FORMAT_STRING = %r{^(?:[0-9]{1,3}\.){3}[0-9]{1,3} - - \[\d*/\w*/\d*:\d*:\d*:\d* \+\d*\] "\w* /\w*/\d/\w*}
   def task2(logs)
+    return [] unless logs.is_a?(String)
+
     lines = logs.split("\n")
-    lines.select { |string| check_format?(string) }
-         .map { |string| make_output(string) }
+    lines.select { |string| check_format?(string) }.map { |string| make_output(string) }
   end
 
   private

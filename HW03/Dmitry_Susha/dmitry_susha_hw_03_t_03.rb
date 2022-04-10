@@ -4,6 +4,8 @@ require 'time'
 class Homework3
   START_EVENT_LINE = /Calling core with action:/
   def task3(logs)
+    return '0' unless logs.is_a?(String)
+
     lines = logs.split("\n")
     start_event_lines = lines.select { |string| string.match?(START_EVENT_LINE) }
     return '0' if start_event_lines.size < 2
