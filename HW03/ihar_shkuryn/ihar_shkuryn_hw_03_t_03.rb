@@ -2,9 +2,12 @@
 
 require 'time'
 
+# frozen
 class Homework3
   PATTERN = /Calling core with action:/
   def task3(log)
+    raise TypeError, 'Only string are allowed' unless log.is_a?(String)
+
     durations = log.split("\n").select { |line| line.match(PATTERN) }
                    .map { |line| Time.parse(line) }
                    .each_cons(2).map { |a, b| (b - a).to_s }
