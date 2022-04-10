@@ -32,6 +32,10 @@ RSpec.describe Homework3 do
       it 'output is a empty' do
         expect(obj.task1(log)).to eq('')
       end
+
+      it 'returns a string type' do
+        expect(obj.task1(log)).to be_an_instance_of(String)
+      end
     end
   end
 end

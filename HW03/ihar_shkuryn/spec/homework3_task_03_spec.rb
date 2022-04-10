@@ -20,6 +20,10 @@ RSpec.describe Homework3 do
       it 'output is a empty' do
         expect(obj.task3(log)).to eq('0')
       end
+
+      it 'returns a string type' do
+        expect(obj.task3(log)).to be_an_instance_of(String)
+      end
     end
 
     context 'when array in params' do

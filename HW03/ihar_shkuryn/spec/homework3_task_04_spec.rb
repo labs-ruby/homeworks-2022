@@ -20,8 +20,14 @@ RSpec.describe Homework3 do
   end
 
   context 'when word is special symbols' do
+    let(:log) { '!_+-)(' }
+
     it 'returns number of letters=0 and digits=0' do
-      expect(obj.task4('!_+-)(')).to eq({ digits: 0, letters: 0 })
+      expect(obj.task4(log)).to eq({ digits: 0, letters: 0 })
+    end
+
+    it 'returns an instance of hash' do
+      expect(obj.task4(log)).to be_an_instance_of(Hash)
     end
   end
 
