@@ -1,21 +1,22 @@
+# frozen_string_literal: true
+
 require_relative '../lib/mentor'
 
 RSpec.describe Mentor do
+  subject(:mentor) { described_class.new(name: name, surname: surname) }
+
+  let(:name) { 'Andrey' }
+  let(:surname) { 'Abc' }
+
   describe '#notifications' do
-    subject { described_class.new(name, surname) }
     context 'when filename exist' do
-      let(:name) { 'Andrey' }
-      let(:surname) { 'Abc' }
-      let(:filename) { 'notification_test.txt' }
-      let(:file) { File.new("#{_FILE_}/notification_test.txt") }
+      let(:filename) { 'notification.txt' }
+      let(:file) { File.new("#{File.dirname(__FILE__)}/notification.txt") }
 
-      it 'should read filename and put text' do
-        
-
-        allow(File).to receive(:open).with("filename", "r").and_return(file)
-
+      it 'read filename and put text' do
+        allow(File).to receive(:open).with(filename, 'r').and_return(file)
+        expect { mentor.notifications }.to output.to_stdout
       end
     end
-
   end
 end
