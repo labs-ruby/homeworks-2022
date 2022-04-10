@@ -3,7 +3,7 @@
 require_relative '../ihar_shkuryn_hw_03_t_01'
 
 RSpec.describe Homework3 do
-  describe Homework3 'Unnormal log' do
+  describe 'Unnormal log' do
     let(:obj) { described_class.new }
 
     context 'when log is a nil' do
@@ -23,7 +23,7 @@ RSpec.describe Homework3 do
     end
   end
 
-  describe Homework3 'Normal log' do
+  describe 'Normal log' do
     let(:obj) { described_class.new }
 
     context 'when log has keyword in upper case' do
