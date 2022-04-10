@@ -21,7 +21,7 @@ class Mentor
   end
 
   def reject_to_work!(homework)
-    homework.status = 'reject'
+    homework.status = 'rejected'
     homework.student.notifications << Notification.new(title: homework.title, description: 'Your homework reject')
   end
 
@@ -30,7 +30,7 @@ class Mentor
   end
 
   def accept!(homework)
-    homework.status = 'accept'
+    homework.status = 'accepted'
     homework.student.notifications << Notification.new(title: homework.title, description: 'Your homework accept')
   end
 end
