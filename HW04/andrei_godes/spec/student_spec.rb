@@ -5,9 +5,9 @@ require_relative '../lib/mentor'
 require_relative '../lib/notification'
 require_relative '../lib/student'
 
-RSpec.describe Mentor do
+RSpec.describe Student do
   let(:mentor) { described_class.new(name: 'MentorName', surname: 'MentorSurname') }
-  let(:student) { Student.new(name: 'StudentName', surname: 'StudentSurname') }
+  let(:student) { described_class.new(name: 'StudentName', surname: 'StudentSurname') }
 
   describe 'mark_as_read!' do
     let(:notification) { Notification.new }
@@ -27,9 +27,9 @@ RSpec.describe Mentor do
 
   describe '#add_answer!' do
     let(:homework) { Homework.new(title: 'title', description: 'description', student: student, mentor: mentor) }
-    let(:answer) {'answer'}
-    it 'returns array of student answers' do
+    let(:answer) { 'answer' }
 
+    it 'returns array of student answers' do
       student.add_answer!(homework, answer)
       expect(homework.answers).to eql [answer]
     end
