@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Homework3 Task1:' do
-  let(:obj) { Object.const_get(:Homework3).new }
+RSpec.describe 'Homework3' do
+  let(:hw03_task1) { Homework3.new }
 
   describe '::log that has valid output' do
-    subject { obj.task1(logs) }
-
     context 'when the log file contains only one error line' do
       let(:logs) do
         <<~LOGS
@@ -20,7 +18,7 @@ RSpec.describe 'Homework3 Task1:' do
       end
 
       it 'returns error line' do
-        expect(subject).to eq(valid_error_line)
+        expect(hw03_task1.task1(logs)).to eq(valid_error_line)
       end
     end
 
@@ -38,7 +36,7 @@ RSpec.describe 'Homework3 Task1:' do
       end
 
       it 'returns the first error line' do
-        expect(subject).to eq(valid_error_line)
+        expect(hw03_task1.task1(logs)).to eq(valid_error_line)
       end
     end
 
@@ -52,13 +50,13 @@ RSpec.describe 'Homework3 Task1:' do
       end
 
       it 'returns an empty string' do
-        expect(subject).to eq('')
+        expect(hw03_task1.task1(logs)).to eq('')
       end
     end
 
     context 'when the log file contains no error lines' do
       it 'returns an empty string' do
-        expect(obj.task1('My invalid logfile')).to eq('')
+        expect(hw03_task1.task1('My invalid logfile')).to eq('')
       end
     end
   end
@@ -66,19 +64,19 @@ RSpec.describe 'Homework3 Task1:' do
   describe '::log that has wrong output' do
     context 'when empty string is given' do
       it 'returns an empty string' do
-        expect(obj.task1('')).to eq('')
+        expect(hw03_task1.task1('')).to eq('')
       end
     end
 
     context 'when nil is given' do
       it 'returns an empty string' do
-        expect(obj.task1(nil)).to eq('')
+        expect(hw03_task1.task1(nil)).to eq('')
       end
     end
 
     context 'when no arguments are given' do
       it 'returns ArgumentError' do
-        expect { obj.task1 }.to raise_error(ArgumentError)
+        expect { hw03_task1.task1 }.to raise_error(ArgumentError)
       end
     end
   end

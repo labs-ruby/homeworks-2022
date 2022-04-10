@@ -1,8 +1,10 @@
-RSpec.describe "Homework3 Task3: " do
+# frozen_string_literal: true
+
+RSpec.describe 'Homework3' do
   let(:obj) { Object.const_get(:Homework3).new }
 
   describe '::log that has right output' do
-    subject { obj.task3(logs) }
+    subject(:create) { obj.task3(logs) }
 
     context 'when there is more than 2 valid event' do
       let(:logs) do
@@ -19,7 +21,7 @@ RSpec.describe "Homework3 Task3: " do
       end
 
       it 'returns duration of the action in seconds between events' do
-        expect(subject).to eq(['49.1', '60.0'])
+        expect(create).to eq(['49.1', '60.0'])
       end
     end
 
@@ -35,7 +37,7 @@ RSpec.describe "Homework3 Task3: " do
       end
 
       it 'returns 0' do
-        expect(subject).to eq('0')
+        expect(create).to eq('0')
       end
     end
 
@@ -52,7 +54,7 @@ RSpec.describe "Homework3 Task3: " do
       end
 
       it 'returns 0' do
-        expect(subject).to eq('0')
+        expect(create).to eq('0')
       end
     end
 
@@ -70,7 +72,7 @@ RSpec.describe "Homework3 Task3: " do
       end
 
       it 'returns duration of the action in seconds between events' do
-        expect(subject).to eq('49.1')
+        expect(create).to eq('49.1')
       end
     end
   end

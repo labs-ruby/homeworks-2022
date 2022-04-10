@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Homework3 Task2:' do
+RSpec.describe 'Homework3' do
   let(:obj) { Object.const_get(:Homework3).new }
 
   describe '::log that has valid output' do
-    subject { obj.task2(logs) }
+    subject(:create) { obj.task2(logs) }
 
     context 'when the log file is given contains an error line' do
       let(:logs) do
@@ -24,7 +24,7 @@ RSpec.describe 'Homework3 Task2:' do
       end
 
       it 'returns an array' do
-        expect(subject).to eq(right_logs)
+        expect(create).to eq(right_logs)
       end
     end
 
@@ -48,7 +48,7 @@ RSpec.describe 'Homework3 Task2:' do
       end
 
       it 'returns an array' do
-        expect(subject).to eq(right_logs)
+        expect(create).to eq(right_logs)
       end
     end
 
@@ -69,7 +69,7 @@ RSpec.describe 'Homework3 Task2:' do
       end
 
       it 'returns an array' do
-        expect(subject).to eq(right_logs)
+        expect(create).to eq(right_logs)
       end
     end
 
@@ -83,7 +83,7 @@ RSpec.describe 'Homework3 Task2:' do
       end
 
       it 'returns an empty array' do
-        expect(subject).to eq([])
+        expect(create).to eq([])
       end
     end
 
@@ -98,7 +98,7 @@ RSpec.describe 'Homework3 Task2:' do
       end
 
       it 'returns an empty array' do
-        expect(subject).to eq([])
+        expect(create).to eq([])
       end
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Homework3 Task4:' do
+RSpec.describe 'Homework3' do
   let(:obj) { Object.const_get(:Homework3).new }
 
   describe '::right format argument is given' do
