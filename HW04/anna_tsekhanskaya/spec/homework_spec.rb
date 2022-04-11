@@ -4,8 +4,9 @@ require_relative '/home/hanna/training/homeworks-2022/HW04/anna_tsekhanskaya/lib
 require_relative '/home/hanna/training/homeworks-2022/HW04/anna_tsekhanskaya/lib/student'
 
 RSpec.describe Homework do
-  let(:student) { Student.new(name: 'Hanna', surname: 'Zhurauskaya') }
   homework { described_class.new(title: 'HW05', description: 'Description homework', student: student) }
+
+  let(:student) { Student.new(name: 'Hanna', surname: 'Zhurauskaya') }
 
   describe '#title' do
     it 'Homework has title' do
