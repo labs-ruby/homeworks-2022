@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative '../lib/mentor'
 require_relative '../lib/student'
 require_relative '../lib/file_support'
 require_relative '../lib/homework'
 
-RSpec.describe Mentor do
-  subject(:mentor) { described_class.new(name: name, surname: surname) }
+RSpec.describe Student do
+  subject(:student) { described_class.new(name: name, surname: surname) }
 
-  let(:name) { 'And' }
-  let(:surname) { 'Abc' }
+  let(:name) { 'John' }
+  let(:surname) { 'Doe' }
+  let(:homework) { Homework.new(title: 'HW03', description: 'description homework', student: student) }
 
   describe '#notifications' do
     context 'when file exist' do
@@ -18,29 +18,7 @@ RSpec.describe Mentor do
 
       it 'read filename and put text' do
         allow(File).to receive(:open).with(filename, 'r').and_return(file)
-        expect { mentor.notifications }.to output.to_stdout
-      end
-    end
-  end
-
-  describe '#add_homework' do
-    let(:student) { Student.new(name: 'John', surname: 'Doe') }
-
-    context 'when filename exist' do
-      let(:message) { "add_homeworkHW03, descriptionfor #{student.name} #{student.surname}.\n" }
-      let(:file) { File.new("#{File.dirname(__FILE__)}/homework.txt") }
-
-      it 'add homework to homework_file' do
-        allow(File).to receive(:open).with('homework.txt', 'w').and_return(file)
-        allow(file).to receive(:write).with(message)
-        expect(File.read("#{File.dirname(__FILE__)}/homework.txt")).to eq(message)
-        # expect(mentor.add_homework(title: 'HW03', description: 'description', student: student)).to eq(message)
-      end
-
-      it 'add homework contain a homework.object' do
-        allow(File).to receive(:open).with('homework.txt', 'w').and_return(file)
-        allow(file).to receive(:write).with(message)
-        expect(mentor.add_homework(title: 'HW03', description: 'description', student: student)).to be_a Homework
+        expect { student.notifications }.to output.to_stdout
       end
     end
   end
@@ -58,10 +36,22 @@ RSpec.describe Mentor do
     end
   end
 
-  describe '#accept!' do
+  describe '#homeworks' do
+    context 'when filename exist' do
+      let(:filename) { 'homework.txt' }
+      let(:file) { File.new("#{File.dirname(__FILE__)}/homework.txt") }
+
+      it 'read filename and put text' do
+        allow(File).to receive(:open).with(filename, 'r').and_return(file)
+        expect { student.homeworks }.to output.to_stdout
+      end
+    end
+  end
+
+  describe '#to_work!' do
     context 'when filename exist' do
       let(:file) { File.new("#{File.dirname(__FILE__)}/notification.txt") }
-      let(:message) { "Homework HW03 description homework is accepted.\n" }
+      let(:message) { "#{name} #{surname} left message #{homework.title} is doing.\n" }
 
       it 'make notification accept' do
         allow(File).to receive(:open).with('notification.txt', 'w').and_return(file)
@@ -71,10 +61,10 @@ RSpec.describe Mentor do
     end
   end
 
-  describe '#reject_to_work!' do
+  describe '#add_answer!' do
     context 'when filename exist' do
       let(:file) { File.new("#{File.dirname(__FILE__)}/notification.txt") }
-      let(:message) { "Answer for  HW03 description homework is rejected.\n" }
+      let(:message) { "#{name} #{surname} was solved for #{homework.title}. Answer is new students answer.\n" }
 
       it 'make notification accept' do
         allow(File).to receive(:open).with('notification.txt', 'w').and_return(file)
@@ -84,11 +74,10 @@ RSpec.describe Mentor do
     end
   end
 
-  describe '#subscribe_to!' do
+  describe '#to_check!' do
     context 'when filename exist' do
-      let(:student) { Student.new(name: 'John', surname: 'Doe') }
       let(:file) { File.new("#{File.dirname(__FILE__)}/notification.txt") }
-      let(:message) { "Mentor #{name} #{surname} is subscribed to #{student.name} #{student.surname}.\n" }
+      let(:message) { "#{name} #{surname} left message #{homework.title} needs to check.\n" }
 
       it 'make notification accept' do
         allow(File).to receive(:open).with('notification.txt', 'w').and_return(file)
