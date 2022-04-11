@@ -9,13 +9,14 @@ RSpec.describe Mentor do
   let(:student) { Student.new(name: 'Alexey', surname: 'Shparun') }
   let(:mentor) { described_class.new(name: 'Vasya', surname: 'Klapan') }
   let(:hw) { mentor.add_homework(title: 'HW04', description: 'description', student: student) }
-  
+
   describe 'add_homework' do
     context 'when arguments is correct' do
       it 'return object of class' do
         expect(hw).to be_a(Homework)
       end
     end
+
     context 'when no arguments given' do
       it 'returns ArgumentError' do
         expect { mentor.add_homework }.to raise_error(ArgumentError)
@@ -26,7 +27,7 @@ RSpec.describe Mentor do
   describe 'subscribe_to' do
     context 'when mentor subscribe' do
       it 'return student list' do
-        expect { mentor.subscribe_to!(student) }.to change { mentor.student_list }.to eq [student]
+        expect { mentor.subscribe_to!(student) }.to change(mentor, :student_list).to eq [student]
       end
     end
   end
@@ -36,8 +37,9 @@ RSpec.describe Mentor do
       before do
         student.to_work!(hw)
       end
+
       it 'return empty array' do
-        expect { mentor.mark_as_read! }.to change { mentor.notifications_list }.to eq []
+        expect { mentor.mark_as_read! }.to change(mentor, :notifications_list).to eq []
       end
     end
   end
