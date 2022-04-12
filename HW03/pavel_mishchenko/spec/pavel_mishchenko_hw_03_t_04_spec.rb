@@ -4,38 +4,44 @@ require_relative 'spec_helper'
 require_relative '../pavel_mishchenko_hw_03_t_04'
 
 RSpec.describe Homework3 do
-  subject { described_class.new.task4(str) }
+  describe '#task4' do
+    subject { described_class.new.task4(str) }
 
-  describe 'counter of letters and digits in the string' do
-    context 'when word consists letters and digits' do
-      let(:str) { '012345asdfg' }
+    context 'when argument is valid' do
+      context 'when string is empty' do
+        let(:str) { '' }
 
-      it 'returns number of letters and digits' do
-        expect(subject).to eq({ digits: 6, letters: 5 })
+        it('returns hash with 0 values') { is_expected.to eq({ digits: 0, letters: 0 }) }
+      end
+
+      context 'when sring consists of letters and digits' do
+        let(:str) { '012345asdfg' }
+
+        it('returns number of letters and digits') { is_expected.to eq({ digits: 6, letters: 5 }) }
+      end
+
+      context 'when string consists letters,symbols and digits' do
+        let(:str) { '01122333qwe_-+=}{()?<>' }
+
+        it('returns number of letters and digits') { is_expected.to eq({ digits: 8, letters: 3 }) }
       end
     end
 
-    context 'when string is empty' do
-      let(:str) { '' }
+    context 'when argument is invalid' do
+      context 'when no arguments is given' do
+        subject { described_class.new.task4 }
 
-      it 'returns hash with 0 values' do
-        expect(subject).to eq({ digits: 0, letters: 0 })
+        it 'returns ArgumentError' do
+          expect { subject }.to raise_error(ArgumentError)
+        end
       end
-    end
 
-    context 'when string contains not only numbers and letters' do
-      let(:str) { '01122333qwe_-+=}{()?<>' }
+      context 'when argument is not a String' do
+        let(:str) { 404 }
 
-      it 'returns number of letters and digits' do
-        expect(subject).to eq({ digits: 8, letters: 3 })
-      end
-    end
-
-    context 'when argument is not a String' do
-      let(:str) { 404 }
-
-      it 'returns NoMethodError' do
-        expect { subject }.to raise_error(NoMethodError)
+        it 'returns NoMethodError' do
+          expect { subject }.to raise_error(NoMethodError)
+        end
       end
     end
   end
