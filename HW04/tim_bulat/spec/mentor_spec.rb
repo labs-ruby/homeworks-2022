@@ -19,7 +19,7 @@ RSpec.describe Mentor do
 
   describe '#add_homework!' do
     it 'returs Homework object' do
-      expect( mentor.add_homework(title: 'title', description: 'description', student: student)).to be_a Homework
+      expect(mentor.add_homework(title: 'title', description: 'description', student: student)).to be_a Homework
     end
   end
 
