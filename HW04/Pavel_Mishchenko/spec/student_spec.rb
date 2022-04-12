@@ -9,18 +9,16 @@ RSpec.describe Student do
   let(:notification2) { Notification.new(title: 'TestTitle2', description: 'TestDescription2') }
 
   describe '#notify_mentor' do
-    context 'when student notifies mentor' do
+    context 'when arguments are valid' do
       subject do
         student.notify_mentor(mentor, 'TestDescription')
         mentor.notifications_list
       end
 
-      it 'changes notification list of mentor' do
-        expect(subject).to include(an_object_having_attributes(description: 'TestDescription'))
-      end
+      it('changes notification list of mentor') { is_expected.to include(an_object_having_attributes(description: 'TestDescription')) }
     end
 
-    context "when method hasn't arguments" do
+    context 'when no arguments given' do
       subject { student.notify_mentor }
 
       it 'raises ArgumentError' do
@@ -30,13 +28,13 @@ RSpec.describe Student do
   end
 
   describe '#mark_as_read!' do
-    context 'when notifiications is unreaded' do
+    context 'when notifiications is unread' do
       before do
         student.notifications_list.push(notification1)
         student.notifications_list.push(notification2)
       end
 
-      it 'makes all notifictions as readed' do
+      it 'makes all notifictions as read' do
         student.mark_as_read!
         expect(student.notifications_list).to all(have_attributes(status: 'read'))
       end
@@ -75,7 +73,7 @@ RSpec.describe Student do
       end
     end
 
-    context "when method hasn't arguments" do
+    context 'when no argument given' do
       subject { student.to_work! }
 
       it 'raises ArgumentError' do
@@ -83,9 +81,9 @@ RSpec.describe Student do
       end
     end
 
-    context 'when student takes to work his homework' do
+    context 'when argument is valid' do
       it 'changes notification list of mentor' do
-        expect { subject }.to change(mentor, :notifications_list).from([])
+        expect { subject }.to change(mentor, :notifications_list)
       end
     end
   end
@@ -111,7 +109,7 @@ RSpec.describe Student do
       end
     end
 
-    context "when method hasn't arguments" do
+    context 'when no argument given' do
       subject { student.add_answer! }
 
       it 'raises ArgumentError' do
@@ -119,17 +117,9 @@ RSpec.describe Student do
       end
     end
 
-    context "when method hasn't answer" do
-      subject { student.add_answer!(homework) }
-
-      it 'raises ArgumentError' do
-        expect { subject }.to raise_error(ArgumentError)
-      end
-    end
-
-    context 'when student adds answer to homework' do
+    context 'when argument is valid' do
       it 'changes homework answer' do
-        expect { subject }.to change(homework, :answer).to('TestAnswer')
+        expect { subject }.to change(homework, :answer).from(nil).to('TestAnswer')
       end
 
       it 'changes notification list of mentor' do
@@ -156,7 +146,7 @@ RSpec.describe Student do
       end
     end
 
-    context "when method hasn't arguments" do
+    context 'when no argument given' do
       subject { student.to_check! }
 
       it 'raises ArgumentError' do
@@ -164,7 +154,7 @@ RSpec.describe Student do
       end
     end
 
-    context 'when student sends to check homework' do
+    context 'when argument is valid' do
       it 'changes notification list of mentor' do
         expect { subject }.to change(mentor, :notifications_list)
       end
@@ -182,9 +172,7 @@ RSpec.describe Student do
     end
 
     context 'when student has homeworks' do
-      before do
-        student.homeworks_list.push(homework)
-      end
+      before { student.homeworks_list.push(homework) }
 
       it 'prints current homeworks' do
         expect { subject }.to output("Homework #{homework.title}: #{homework.description}\n").to_stdout

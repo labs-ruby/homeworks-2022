@@ -9,7 +9,7 @@ RSpec.describe Mentor do
   let(:notification2) { Notification.new(title: 'TestTitle2', description: 'TestDescription2') }
 
   describe '#notify_student' do
-    context "when method hasn't arguments" do
+    context 'when no arguments given' do
       subject { mentor.notify_student }
 
       it 'raises ArgumentError' do
@@ -17,32 +17,28 @@ RSpec.describe Mentor do
       end
     end
 
-    context 'when mentor notifies student' do
+    context 'when arguments are valid' do
       subject do
         mentor.notify_student(student, 'TestDescription')
         student.notifications_list
       end
 
-      it 'changes notification list of student' do
-        expect(subject).to include(an_object_having_attributes(description: 'TestDescription'))
-      end
+      it('changes notification list of student') { is_expected.to include(an_object_having_attributes(description: 'TestDescription')) }
     end
   end
 
   describe '#add_homework' do
     subject { mentor.add_homework(title: 'HW04', description: 'Task#1', student: student) }
 
-    context 'when mentor adds homework' do
-      it 'returns a new homework' do
-        expect(subject).to be_kind_of(Homework)
-      end
+    context 'when arguments are valid' do
+      it('returns a new homework') { is_expected.to be_kind_of(Homework) }
 
-      it 'creates new notification to student' do
+      it 'creates a new notification to student' do
         expect { subject }.to change(student, :notifications_list)
       end
     end
 
-    context "when method hasn't arguments" do
+    context 'when no arguments given' do
       subject { mentor.add_homework }
 
       it 'raises ArgumentError' do
@@ -60,13 +56,13 @@ RSpec.describe Mentor do
   end
 
   describe '#mark_as_read!' do
-    context 'when notifiications is unreaded' do
+    context 'when notifiications is unread' do
       before do
         mentor.notifications_list.push(notification1)
         mentor.notifications_list.push(notification2)
       end
 
-      it 'makes all notifictions as readed' do
+      it 'makes all notifictions as read' do
         mentor.mark_as_read!
         expect(mentor.notifications_list).to all(have_attributes(status: 'read'))
       end
@@ -81,7 +77,7 @@ RSpec.describe Mentor do
         mentor.notifications_list.push(notification2)
       end
 
-      it "doesn't make changes" do
+      it "doesn't make any changes" do
         expect { subject }.not_to change(mentor, :notifications_list)
       end
     end
@@ -97,7 +93,7 @@ RSpec.describe Mentor do
                    mentor: mentor)
     end
 
-    context "when method hasn't arguments" do
+    context 'when no argument given' do
       subject { mentor.reject_to_work! }
 
       it 'raises ArgumentError' do
@@ -113,7 +109,7 @@ RSpec.describe Mentor do
       end
     end
 
-    context 'when mentor reject homework' do
+    context 'when argument is valid' do
       it 'changes notification list of student' do
         expect { subject }.to change(student, :notifications_list)
       end
@@ -130,7 +126,7 @@ RSpec.describe Mentor do
                    mentor: mentor)
     end
 
-    context "when method hasn't arguments" do
+    context 'when no argument given' do
       subject { mentor.accept! }
 
       it 'raises ArgumentError' do
@@ -146,13 +142,13 @@ RSpec.describe Mentor do
       end
     end
 
-    context 'when mentor accept homework' do
+    context 'when argument is valid' do
       it 'notifies student' do
         expect { subject }.to change(student, :notifications_list)
       end
 
       it 'changes homework accepted status' do
-        expect { subject }.to change(homework, :accepted).to(true)
+        expect { subject }.to change(homework, :accepted).from(false).to(true)
       end
     end
   end
@@ -199,7 +195,7 @@ RSpec.describe Mentor do
       end
     end
 
-    context 'when mentor has 0 notification' do
+    context 'when mentor has 0 notifications' do
       let(:expectation) { "0 notification to read\n" }
 
       it 'prints info message' do
