@@ -14,30 +14,47 @@ RSpec.describe Mentor do
     it 'return Homework class object' do
       expect(homework).to be_a(Homework)
     end
+
+    it 'add new_homework_message to student notifications array' do
+      expect(student.notifications[0]).to eq "New homework '#{homework.title}' was added"
+    end
+
+    it 'add new homework to student homeworks array' do
+      expect(student.homeworks[0]).to eq homework
+    end
   end
 
   context 'when subscribe_to! method used' do
-    it 'return subscriptions list' do
-      mentor.subscribe_to!(student)
-      expect(mentor.subscriptions).to eq [student]
+    it 'add student to subscriptions array' do
+      described_class.subscribe_to!(student)
+      expect(described_class.subscriptions).to eq [student]
     end
   end
 
   context 'when mark_as_read! method used' do
     it 'return empty notifications array' do
-      expect(mentor.notifications).to eq []
+      expect(described_class.notifications).to eq []
     end
   end
 
   context 'when reject_to_work! method used' do
-    it 'add rejection in notification array' do
-      expect { mentor.reject_to_work!(homework) }.to change { student.notifications.size }.to(1)
+    it 'add reject_work_message to student notification array' do
+      expect { described_class.reject_to_work!(homework) }.to change { student.notifications.size }.to(1)
+    end
+
+    it 'homework status switch to rejected' do
+      described_class.reject_to_work!(homework)
+      expect(homework.status).to eq 'Rejected'
     end
   end
 
   context 'when accept! method used' do
+    it 'add accept_message to student notifications array' do
+      expect(student.notifications[0]).to eq "Homework '#{homework.title}' was accepted"
+    end
+
     it 'homework status switch to accepted!' do
-      mentor.accept!(homework)
+      described_class.accept!(homework)
       expect(homework.status).to eq 'Accepted'
     end
   end
