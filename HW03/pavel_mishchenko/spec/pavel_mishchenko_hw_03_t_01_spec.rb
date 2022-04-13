@@ -21,7 +21,7 @@ RSpec.describe Homework3 do
           '2018-04-23 20:30:42: SSL error, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSLError: System error: Undefined error: 0 - 0>'
         end
 
-        it('returns full text of the first line with an error') { is_expected.to eq(right_output) }
+        it { is_expected.to eq(right_output) }
       end
 
       context 'when logs have more than one error' do
@@ -39,7 +39,7 @@ RSpec.describe Homework3 do
           '2018-04-23 20:30:42: SSL error, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSLError: System error: Undefined error: 0 - 0>'
         end
 
-        it('returns full text of the first line with an error') { is_expected.to eq(right_output) }
+        it { is_expected.to eq(right_output) }
       end
 
       context 'when logs have only errors' do
@@ -55,7 +55,7 @@ RSpec.describe Homework3 do
           '2018-04-23 20:30:42: SSL error, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSLError: System error: Undefined error: 0 - 0>'
         end
 
-        it('returns full text of the first line with an error') { is_expected.to eq(right_output) }
+        it { is_expected.to eq(right_output) }
       end
 
       context 'when logs have no lines with error' do
@@ -67,7 +67,7 @@ RSpec.describe Homework3 do
           LOGS
         end
 
-        it('returns an empty string') { is_expected.to eq('') }
+        it { is_expected.to eq('') }
       end
     end
 
@@ -75,7 +75,7 @@ RSpec.describe Homework3 do
       context 'when text are not given' do
         let(:log) { '' }
 
-        it('returns an empty string') { is_expected.to eq('') }
+        it { is_expected.to eq('') }
       end
 
       context 'when log is not String class' do

@@ -11,19 +11,19 @@ RSpec.describe Homework3 do
       context 'when string is empty' do
         let(:str) { '' }
 
-        it('returns hash with 0 values') { is_expected.to eq({ digits: 0, letters: 0 }) }
+        it { is_expected.to eq({ digits: 0, letters: 0 }) }
       end
 
-      context 'when sring consists of letters and digits' do
+      context 'when string consists of letters and digits' do
         let(:str) { '012345asdfg' }
 
-        it('returns number of letters and digits') { is_expected.to eq({ digits: 6, letters: 5 }) }
+        it { is_expected.to eq({ digits: 6, letters: 5 }) }
       end
 
       context 'when string consists letters,symbols and digits' do
         let(:str) { '01122333qwe_-+=}{()?<>' }
 
-        it('returns number of letters and digits') { is_expected.to eq({ digits: 8, letters: 3 }) }
+        it { is_expected.to eq({ digits: 8, letters: 3 }) }
       end
     end
 

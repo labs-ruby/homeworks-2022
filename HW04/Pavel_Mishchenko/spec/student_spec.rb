@@ -10,12 +10,11 @@ RSpec.describe Student do
 
   describe '#notify_mentor' do
     context 'when arguments are valid' do
-      subject do
-        student.notify_mentor(mentor, 'TestDescription')
-        mentor.notifications_list
-      end
+      before { student.notify_mentor(mentor, 'TestDescription') }
 
-      it('changes notification list of mentor') { is_expected.to include(an_object_having_attributes(description: 'TestDescription')) }
+      it 'changes notification list of mentor' do
+        expect(mentor.notifications_list).to include(an_object_having_attributes(description: 'TestDescription'))
+      end
     end
 
     context 'when no arguments given' do
@@ -29,10 +28,7 @@ RSpec.describe Student do
 
   describe '#mark_as_read!' do
     context 'when notifiications is unread' do
-      before do
-        student.notifications_list.push(notification1)
-        student.notifications_list.push(notification2)
-      end
+      before { student.notifications_list.push(notification1, notification2) }
 
       it 'makes all notifictions as read' do
         student.mark_as_read!
@@ -45,8 +41,7 @@ RSpec.describe Student do
 
       before do
         notification1.status, notification2.status = 'read'
-        student.notifications_list.push(notification1)
-        student.notifications_list.push(notification2)
+        student.notifications_list.push(notification1, notification2)
       end
 
       it "doesn't make changes" do
@@ -190,10 +185,7 @@ RSpec.describe Student do
     subject { student.notifications }
 
     context 'when student has only unread notifications' do
-      before do
-        student.notifications_list.push(notification1)
-        student.notifications_list.push(notification2)
-      end
+      before { student.notifications_list.push(notification1, notification2) }
 
       let(:expectation) do
         <<~OUT
@@ -212,8 +204,7 @@ RSpec.describe Student do
     context 'when student has read and unread notifications' do
       before do
         notification2.status = 'read'
-        student.notifications_list.push(notification1)
-        student.notifications_list.push(notification2)
+        student.notifications_list.push(notification1, notification2)
       end
 
       let(:expectation) do

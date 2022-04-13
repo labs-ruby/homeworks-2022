@@ -11,7 +11,7 @@ RSpec.describe Homework3 do
       context 'when text are not given' do
         let(:log) { '' }
 
-        it('returns an empty array') { is_expected.to eq([]) }
+        it { is_expected.to eq([]) }
       end
 
       context 'when log given in wrong format' do
@@ -24,7 +24,7 @@ RSpec.describe Homework3 do
           LOGS
         end
 
-        it('returns an empty array') { is_expected.to eq([]) }
+        it { is_expected.to eq([]) }
       end
 
       context 'when log is not String class' do
@@ -62,7 +62,7 @@ RSpec.describe Homework3 do
           ]
         end
 
-        it('returns an array of formatted strings') { is_expected.to eq(right_output) }
+        it { is_expected.to eq(right_output) }
       end
 
       context 'when logs have more than one error' do
@@ -84,7 +84,7 @@ RSpec.describe Homework3 do
           ]
         end
 
-        it('returns an array of formatted strings') { is_expected.to eq(right_output) }
+        it { is_expected.to eq(right_output) }
       end
 
       context 'when logs have no lines with error' do
@@ -103,7 +103,7 @@ RSpec.describe Homework3 do
           ]
         end
 
-        it('returns an array of formatted strings') { is_expected.to eq(right_output) }
+        it { is_expected.to eq(right_output) }
       end
     end
   end

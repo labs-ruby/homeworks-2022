@@ -22,7 +22,7 @@ RSpec.describe Homework3 do
           LOGS
         end
 
-        it('returns duration of the action in seconds between events') { is_expected.to eq(['49.1', '60.0']) }
+        it { is_expected.to eq(['49.1', '60.0']) }
       end
 
       context 'when there are no valid events' do
@@ -36,7 +36,7 @@ RSpec.describe Homework3 do
           LOGS
         end
 
-        it('returns 0') { is_expected.to eq('0') }
+        it { is_expected.to eq('0') }
       end
 
       context 'when there is one valid event' do
@@ -51,7 +51,7 @@ RSpec.describe Homework3 do
           LOGS
         end
 
-        it('returns 0') { is_expected.to eq('0') }
+        it { is_expected.to eq('0') }
       end
 
       context 'when there is two valid event' do
@@ -67,7 +67,7 @@ RSpec.describe Homework3 do
           LOGS
         end
 
-        it('returns duration of the action in seconds between events') { is_expected.to eq('49.1') }
+        it { is_expected.to eq('49.1') }
       end
 
       context 'when log has wrong format' do
@@ -84,7 +84,7 @@ RSpec.describe Homework3 do
           LOGS
         end
 
-        it('returns 0') { is_expected.to eq('0') }
+        it { is_expected.to eq('0') }
       end
     end
 
