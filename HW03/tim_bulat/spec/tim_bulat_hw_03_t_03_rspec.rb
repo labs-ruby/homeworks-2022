@@ -68,7 +68,7 @@ RSpec.describe Homework3 do
         expect(subject).to be_a String
       end
 
-      it 'returns stirng with calculated time ' do
+      it 'returns string with calculated time ' do
         expect(subject).to eq output
       end
     end

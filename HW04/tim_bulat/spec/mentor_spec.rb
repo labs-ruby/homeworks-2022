@@ -10,10 +10,12 @@ RSpec.describe Mentor do
   let(:mentor) { described_class.new(name: 'mentor_name', surname: 'mentor_surname') }
   let(:homework) { Homework.new(title: 'title', description: 'description', student: student, mentor: mentor) }
 
-  context 'when subscribed to student' do
-    it 'add student to mentors list' do
-      mentor.subscribe_to!(student)
-      expect(mentor.students).not_to be_empty
+  describe '#subscribe_to!' do
+    context 'when subscribed to student' do
+      it 'add student to mentors list' do
+        mentor.subscribe_to!(student)
+        expect(mentor.students).not_to be_empty
+      end
     end
   end
 

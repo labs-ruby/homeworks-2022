@@ -13,7 +13,7 @@ RSpec.describe Student do
   describe '#to_work!' do
     it 'notifies mentor' do
       student.to_work!(homework)
-      expect(mentor.notes.empty?).to eq false
+      expect(mentor.notes).not_to be_empty
     end
   end
 
@@ -25,7 +25,7 @@ RSpec.describe Student do
 
     it 'notifies mentor' do
       student.to_check!(homework)
-      expect(mentor.notes.empty?).to eq false
+      expect(mentor.notes).not_to be_empty
     end
   end
 
