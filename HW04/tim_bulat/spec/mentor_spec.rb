@@ -12,16 +12,21 @@ RSpec.describe Mentor do
 
   describe '#subscribe_to!' do
     context 'when subscribed to student' do
-      it 'add student to mentors list' do
+      it 'adds needed student to list' do
         mentor.subscribe_to!(student)
-        expect(mentor.students).not_to be_empty
+        expect(mentor.students).to include student
       end
     end
   end
 
   describe '#add_homework!' do
-    it 'returs Homework object' do
+    it 'returns Homework object' do
       expect(mentor.add_homework(title: 'title', description: 'description', student: student)).to be_a Homework
+    end
+
+    it 'notifies student' do
+      mentor.add_homework(title: 'title', description: 'description', student: student)
+      expect(student.notes).not_to be_empty
     end
   end
 
@@ -31,7 +36,7 @@ RSpec.describe Mentor do
       expect(homework.status).to eq 'rejected'
     end
 
-    it 'notify student' do
+    it 'notifies student' do
       mentor.reject_to_work!(homework)
       expect(student.notes).not_to be_empty
     end
@@ -43,7 +48,7 @@ RSpec.describe Mentor do
       expect(homework.status).to eq 'accepted'
     end
 
-    it 'notify student' do
+    it 'notifies student' do
       mentor.accept!(homework)
       expect(student.notes).not_to be_empty
     end
