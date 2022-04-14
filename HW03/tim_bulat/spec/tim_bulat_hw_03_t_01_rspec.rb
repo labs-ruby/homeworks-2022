@@ -4,6 +4,8 @@ require_relative '../tim_bulat_hw_03_t_01'
 
 RSpec.describe Homework3 do
   describe '#task1' do
+    subject { described_class.new.task1(log) }
+
     let(:log_with_errors) do
       '10.6.246.103 - - [23/Apr/2018:20:30:39 +0300] "POST /grid/2/messages HTTP/1.1" 200 48 0.0498
       10.6.246.101 - - [23/Apr/2018:20:30:42 +0300] "POST /grid/2/event HTTP/1.1" 200 - 0.2277
@@ -12,7 +14,7 @@ RSpec.describe Homework3 do
       10.6.246.101 - - [23/Apr/2018:20:29:39 +0300] "POST /grid/2/messages HTTP/1.1" 200 48 0.0290'
     end
 
-    let(:log_no_errors) do
+    let(:log_without_errors) do
       '10.6.246.103 - - [23/Apr/2018:20:30:39 +0300] "POST /grid/2/messages HTTP/1.1" 200 48 0.0498
         10.6.246.101 - - [23/Apr/2018:20:30:42 +0300] "POST /grid/2/event HTTP/1.1" 200 - 0.2277
         10.6.246.101 - - [23/Apr/2018:20:29:39 +0300] "POST /grid/2/messages HTTP/1.1" 200 48 0.0290'
@@ -21,7 +23,7 @@ RSpec.describe Homework3 do
     let(:error) { '2018-04-23 20:30:42: SSL error, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSLError: System error: Undefined error: 0 - 0>' }
 
     context 'when empty string' do
-      subject { described_class.new.task1('') }
+      let(:log) { '' }
 
       it 'returns empty string' do
         expect(subject).to eq ''
@@ -29,15 +31,15 @@ RSpec.describe Homework3 do
     end
 
     context 'when log has NO errors' do
-      subject { described_class.new.task1(log_no_errors) }
+      let(:log) { log_without_errors }
 
       it 'returns empty string' do
         expect(subject).to eq ''
       end
     end
 
-    context 'when log has erorr lines' do
-      subject { described_class.new.task1(log_with_errors) }
+    context 'when log has error lines' do
+      let(:log) { log_with_errors }
 
       it 'returns 1st string with error' do
         expect(subject).to eq(error)
