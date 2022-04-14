@@ -21,7 +21,6 @@ RSpec.describe Mentor do
     end
 
     context 'when arguments are valid' do
-
       it 'changes notification list of student' do
         mentor.notify_student(student, 'TestDescription')
         expect(student.notifications_list).to include(an_object_having_attributes(description: 'TestDescription'))
@@ -56,7 +55,6 @@ RSpec.describe Mentor do
   end
 
   describe '#mark_as_read!' do
-
     context 'when notifiications is unread' do
       before { mentor.notifications_list.push(notification) }
 
