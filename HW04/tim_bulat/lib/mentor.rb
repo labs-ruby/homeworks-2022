@@ -3,7 +3,6 @@
 require_relative 'person'
 
 class Mentor < Person
-
   attr_reader :students
 
   def initialize(name:, surname:)
