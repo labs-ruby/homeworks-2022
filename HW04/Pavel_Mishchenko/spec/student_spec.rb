@@ -5,30 +5,34 @@ require_relative 'spec_helper'
 RSpec.describe Student do
   let(:student) { described_class.new(name: 'TestName', surname: 'TestSurname') }
   let(:mentor) { Mentor.new(name: 'Test', surname: 'Testov') }
-  let(:notification1) { Notification.new(title: 'TestTitle1', description: 'TestDescription1') }
-  let(:notification2) { Notification.new(title: 'TestTitle2', description: 'TestDescription2') }
+  let(:notification) { Notification.new(title: 'TestTitle', description: 'TestDescription') }
+  let(:homework) do
+    Homework.new(title: 'TestTitle',
+                 description: 'TestDescription',
+                 student: student,
+                 mentor: mentor)
+  end
 
   describe '#notify_mentor' do
     context 'when arguments are valid' do
-      before { student.notify_mentor(mentor, 'TestDescription') }
 
       it 'changes notification list of mentor' do
+        student.notify_mentor(mentor, 'TestDescription')
         expect(mentor.notifications_list).to include(an_object_having_attributes(description: 'TestDescription'))
       end
     end
 
     context 'when no arguments given' do
-      subject { student.notify_mentor }
-
       it 'raises ArgumentError' do
-        expect { subject }.to raise_error(ArgumentError)
+        expect { student.notify_mentor }.to raise_error(ArgumentError)
       end
     end
   end
 
   describe '#mark_as_read!' do
+
     context 'when notifiications is unread' do
-      before { student.notifications_list.push(notification1, notification2) }
+      before { student.notifications_list.push(notification) }
 
       it 'makes all notifictions as read' do
         student.mark_as_read!
@@ -37,28 +41,19 @@ RSpec.describe Student do
     end
 
     context 'when notifications is read' do
-      subject { student.mark_as_read! }
-
       before do
-        notification1.status, notification2.status = 'read'
-        student.notifications_list.push(notification1, notification2)
+        notification.status = 'read'
+        student.notifications_list.push(notification)
       end
 
       it "doesn't make changes" do
-        expect { subject }.not_to change(student, :notifications_list)
+        expect { student.mark_as_read! }.not_to change(student, :notifications_list)
       end
     end
   end
 
   describe '#to_work!' do
     subject { student.to_work!(homework) }
-
-    let(:homework) do
-      Homework.new(title: 'TestTitle',
-                   description: 'TestDescription',
-                   student: student,
-                   mentor: mentor)
-    end
 
     context 'when homework is not Homework.class instance' do
       let(:homework) { 404 }
@@ -69,10 +64,8 @@ RSpec.describe Student do
     end
 
     context 'when no argument given' do
-      subject { student.to_work! }
-
       it 'raises ArgumentError' do
-        expect { subject }.to raise_error(ArgumentError)
+        expect { student.to_work! }.to raise_error(ArgumentError)
       end
     end
 
@@ -89,13 +82,6 @@ RSpec.describe Student do
       homework
     end
 
-    let(:homework) do
-      Homework.new(title: 'TestTitle',
-                   description: 'TestDescription',
-                   student: student,
-                   mentor: mentor)
-    end
-
     context 'when homework is not Homework.class instance' do
       let(:homework) { 404 }
 
@@ -105,10 +91,8 @@ RSpec.describe Student do
     end
 
     context 'when no argument given' do
-      subject { student.add_answer! }
-
       it 'raises ArgumentError' do
-        expect { subject }.to raise_error(ArgumentError)
+        expect { student.add_answer! }.to raise_error(ArgumentError)
       end
     end
 
@@ -124,14 +108,7 @@ RSpec.describe Student do
   end
 
   describe '#to_check!' do
-    subject { student.to_work!(homework) }
-
-    let(:homework) do
-      Homework.new(title: 'TestTitle',
-                   description: 'TestDescription',
-                   student: student,
-                   mentor: mentor)
-    end
+    subject { student.to_check!(homework) }
 
     context 'when homework is not Homework.class instance' do
       let(:homework) { 404 }
@@ -142,10 +119,8 @@ RSpec.describe Student do
     end
 
     context 'when no argument given' do
-      subject { student.to_check! }
-
       it 'raises ArgumentError' do
-        expect { subject }.to raise_error(ArgumentError)
+        expect { student.to_check! }.to raise_error(ArgumentError)
       end
     end
 
@@ -158,13 +133,6 @@ RSpec.describe Student do
 
   describe '#homeworks' do
     subject { student.homeworks }
-
-    let(:homework) do
-      Homework.new(title: 'TestTitle',
-                   description: 'TestDescription',
-                   student: student,
-                   mentor: mentor)
-    end
 
     context 'when student has homeworks' do
       before { student.homeworks_list.push(homework) }
@@ -185,14 +153,12 @@ RSpec.describe Student do
     subject { student.notifications }
 
     context 'when student has only unread notifications' do
-      before { student.notifications_list.push(notification1, notification2) }
+      before { student.notifications_list.push(notification) }
 
       let(:expectation) do
         <<~OUT
           New notification:
-           #{notification1.title}, #{notification1.description}
-          New notification:
-           #{notification2.title}, #{notification2.description}
+           #{notification.title}, #{notification.description}
         OUT
       end
 
@@ -201,20 +167,15 @@ RSpec.describe Student do
       end
     end
 
-    context 'when student has read and unread notifications' do
+    context 'when student has only read notification' do
       before do
-        notification2.status = 'read'
-        student.notifications_list.push(notification1, notification2)
+        notification.status = 'read'
+        student.notifications_list.push(notification)
       end
 
-      let(:expectation) do
-        <<~OUT
-          New notification:
-           #{notification1.title}, #{notification1.description}
-        OUT
-      end
+      let(:expectation) { "0 notification to read\n" }
 
-      it 'prints unread notifications' do
+      it 'prints info message' do
         expect { subject }.to output(expectation).to_stdout
       end
     end

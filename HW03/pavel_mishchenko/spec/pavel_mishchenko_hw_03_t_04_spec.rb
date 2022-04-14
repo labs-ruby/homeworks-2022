@@ -20,7 +20,7 @@ RSpec.describe Homework3 do
         it { is_expected.to eq({ digits: 6, letters: 5 }) }
       end
 
-      context 'when string consists letters,symbols and digits' do
+      context 'when string consists of letters,symbols and digits' do
         let(:str) { '01122333qwe_-+=}{()?<>' }
 
         it { is_expected.to eq({ digits: 8, letters: 3 }) }

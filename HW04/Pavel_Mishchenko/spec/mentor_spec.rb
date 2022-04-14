@@ -5,8 +5,13 @@ require_relative 'spec_helper'
 RSpec.describe Mentor do
   let(:student) { Student.new(name: 'TestName', surname: 'TestSurname') }
   let(:mentor) { described_class.new(name: 'Test', surname: 'Testov') }
-  let(:notification1) { Notification.new(title: 'TestTitle1', description: 'TestDescription1') }
-  let(:notification2) { Notification.new(title: 'TestTitle2', description: 'TestDescription2') }
+  let(:notification) { Notification.new(title: 'TestTitle', description: 'TestDescription') }
+  let(:homework) do
+    Homework.new(title: 'TestTitle',
+                 description: 'TestDescription',
+                 student: student,
+                 mentor: mentor)
+  end
 
   describe '#notify_student' do
     context 'when no arguments given' do
@@ -16,9 +21,9 @@ RSpec.describe Mentor do
     end
 
     context 'when arguments are valid' do
-      before { mentor.notify_student(student, 'TestDescription') }
 
       it 'changes notification list of student' do
+        mentor.notify_student(student, 'TestDescription')
         expect(student.notifications_list).to include(an_object_having_attributes(description: 'TestDescription'))
       end
     end
@@ -36,10 +41,8 @@ RSpec.describe Mentor do
     end
 
     context 'when no arguments given' do
-      subject { mentor.add_homework }
-
       it 'raises ArgumentError' do
-        expect { subject }.to raise_error(ArgumentError)
+        expect { mentor.add_homework }.to raise_error(ArgumentError)
       end
     end
 
@@ -53,8 +56,9 @@ RSpec.describe Mentor do
   end
 
   describe '#mark_as_read!' do
+
     context 'when notifiications is unread' do
-      before { mentor.notifications_list.push(notification1, notification2) }
+      before { mentor.notifications_list.push(notification) }
 
       it 'makes all notifictions as read' do
         mentor.mark_as_read!
@@ -63,15 +67,13 @@ RSpec.describe Mentor do
     end
 
     context 'when notifiications is read' do
-      subject { mentor.mark_as_read! }
-
       before do
-        notification1.status, notification2.status = 'read'
-        mentor.notifications_list.push(notification1, notification2)
+        notification.status = 'read'
+        mentor.notifications_list.push(notification)
       end
 
       it "doesn't make any changes" do
-        expect { subject }.not_to change(mentor, :notifications_list)
+        expect { mentor.mark_as_read! }.not_to change(mentor, :notifications_list)
       end
     end
   end
@@ -79,18 +81,9 @@ RSpec.describe Mentor do
   describe '#reject_to_work!' do
     subject { mentor.reject_to_work!(homework) }
 
-    let(:homework) do
-      Homework.new(title: 'TestTitle',
-                   description: 'TestDescription',
-                   student: student,
-                   mentor: mentor)
-    end
-
     context 'when no argument given' do
-      subject { mentor.reject_to_work! }
-
       it 'raises ArgumentError' do
-        expect { subject }.to raise_error(ArgumentError)
+        expect { mentor.reject_to_work! }.to raise_error(ArgumentError)
       end
     end
 
@@ -112,18 +105,9 @@ RSpec.describe Mentor do
   describe '#accept!' do
     subject { mentor.accept!(homework) }
 
-    let(:homework) do
-      Homework.new(title: 'TestTitle',
-                   description: 'TestDescription',
-                   student: student,
-                   mentor: mentor)
-    end
-
     context 'when no argument given' do
-      subject { mentor.accept! }
-
       it 'raises ArgumentError' do
-        expect { subject }.to raise_error(ArgumentError)
+        expect { mentor.accept! }.to raise_error(ArgumentError)
       end
     end
 
@@ -150,14 +134,12 @@ RSpec.describe Mentor do
     subject { mentor.notifications }
 
     context 'when mentor has only unread notifications' do
-      before { mentor.notifications_list.push(notification1, notification2) }
+      before { mentor.notifications_list.push(notification) }
 
       let(:expectation) do
         <<~OUT
           New notification:
-           #{notification1.title}, #{notification1.description}
-          New notification:
-           #{notification2.title}, #{notification2.description}
+           #{notification.title}, #{notification.description}
         OUT
       end
 
@@ -166,20 +148,15 @@ RSpec.describe Mentor do
       end
     end
 
-    context 'when mentor has read and unread notification' do
+    context 'when mentor has only read notification' do
       before do
-        notification2.status = 'read'
-        mentor.notifications_list.push(notification1, notification2)
+        notification.status = 'read'
+        mentor.notifications_list.push(notification)
       end
 
-      let(:expectation) do
-        <<~OUT
-          New notification:
-           #{notification1.title}, #{notification1.description}
-        OUT
-      end
+      let(:expectation) { "0 notification to read\n" }
 
-      it 'prints unread notifications' do
+      it 'prints info message' do
         expect { subject }.to output(expectation).to_stdout
       end
     end
