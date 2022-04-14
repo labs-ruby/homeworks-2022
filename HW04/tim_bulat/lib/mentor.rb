@@ -3,12 +3,13 @@
 require_relative 'person'
 
 class Mentor < Person
+
+  attr_reader :students
+
   def initialize(name:, surname:)
     super(name: name, surname: surname)
     @students = []
   end
-
-  attr_reader :students
 
   def add_homework(title:, description:, student:)
     student.notes << "You have new homework to do\n"

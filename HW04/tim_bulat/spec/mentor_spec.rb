@@ -20,13 +20,14 @@ RSpec.describe Mentor do
   end
 
   describe '#add_homework!' do
+    subject { mentor.add_homework(title: 'title', description: 'description', student: student) }
+
     it 'returns Homework object' do
-      expect(mentor.add_homework(title: 'title', description: 'description', student: student)).to be_a Homework
+      expect(subject).to be_a Homework
     end
 
     it 'notifies student' do
-      mentor.add_homework(title: 'title', description: 'description', student: student)
-      expect(student.notes).not_to be_empty
+      expect { subject }.to change { student.notes.size }.from(0).to(1)
     end
   end
 
@@ -37,8 +38,7 @@ RSpec.describe Mentor do
     end
 
     it 'notifies student' do
-      mentor.reject_to_work!(homework)
-      expect(student.notes).not_to be_empty
+      expect { mentor.reject_to_work!(homework) }.to change { student.notes.size }.from(0).to(1)
     end
   end
 
@@ -49,8 +49,7 @@ RSpec.describe Mentor do
     end
 
     it 'notifies student' do
-      mentor.accept!(homework)
-      expect(student.notes).not_to be_empty
+      expect { mentor.accept!(homework) }.to change { student.notes.size }.from(0).to(1)
     end
   end
 end
