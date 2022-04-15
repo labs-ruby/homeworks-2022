@@ -40,8 +40,12 @@ RSpec.describe Homework3 do
       LOGS
     end
 
+    let(:correct_answer) do
+      '2021-04-23 20:30:42: SSL error, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSLError: System error: Undefined error: 0 - 0>'
+    end
+
     it 'returns one error' do
-      expect(subject.task1(logs)).to eq('2021-04-23 20:30:42: SSL error, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSLError: System error: Undefined error: 0 - 0>')
+      expect(subject.task1(logs)).to eq(correct_answer)
     end
   end
 
@@ -56,8 +60,12 @@ RSpec.describe Homework3 do
       LOGS
     end
 
+    let(:correct_answer) do
+      '2018-04-23 20:30:42: SSL error, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSLError: System error: Undefined error: 0 - 0>'
+    end
+
     it 'returns first error' do
-      expect(subject.task1(logs)).to eq('2018-04-23 20:30:42: SSL error, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSLError: System error: Undefined error: 0 - 0>')
+      expect(subject.task1(logs)).to eq(correct_answer)
     end
   end
 end
