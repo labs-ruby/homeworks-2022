@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative '/home/anastasia/Документы/ruby/homeworks-2022/spec/spec_helper'
-require_relative '/home/anastasia/Документы/ruby/homeworks-2022/HW04/anastasia_evsihneyeva/lib/mentor'
-require_relative '/home/anastasia/Документы/ruby/homeworks-2022/HW04/anastasia_evsihneyeva/lib/student'
-require_relative '/home/anastasia/Документы/ruby/homeworks-2022/HW04/anastasia_evsihneyeva/lib/homework'
-require_relative '/home/anastasia/Документы/ruby/homeworks-2022/HW04/anastasia_evsihneyeva/lib/notification'
+require_relative "#{File.dirname(__FILE__)}/../lib/homework"
+require_relative "#{File.dirname(__FILE__)}/../lib/mentor"
+require_relative "#{File.dirname(__FILE__)}/../lib/student"
+require_relative "#{File.dirname(__FILE__)}/../lib/notification"
+require_relative "#{File.dirname(__FILE__)}/../../../spec/spec_helper.rb"
 
 RSpec.describe Student do
-  student = described_class.new(name: 'student_name', surname: 'student_surname')
+  subject { described_class.new(name: 'student_name', surname: 'student_surname') }
 
-  let(:homework) { Homework.new('title', 'description', student, mentor) }
+  let(:homework) { Homework.new('title', 'description', subject, mentor) }
   let(:mentor) { Mentor.new(name: 'mentor_name', surname: 'mentor_surname') }
   let(:notification) { Notification.new('notification1') }
 
@@ -25,23 +25,23 @@ RSpec.describe Student do
 
   context 'when student adds homework' do
     it 'returns notification about it' do
-      expect(student.to_work!(homework)).to eq homework.mentor.notification_list
+      expect(subject.to_work!(homework)).to eq homework.mentor.notification_list
     end
 
     it 'returns all students homeworks' do
-      expect(student.homeworks).to eq student.all_hw
+      expect(subject.homeworks).to eq subject.all_hw
     end
   end
 
   context 'when student adds answer of homework' do
     it 'adds answer to homework answers list' do
-      expect(student.add_answer!(homework, 'answer')).to eq homework.answers
+      expect(subject.add_answer!(homework, 'answer')).to eq homework.answers
     end
   end
 
   context 'when student sends his homework to check' do
     it 'returns to_check notification' do
-      expect(student.to_check!(homework)).to eq homework.mentor.notification_list
+      expect(subject.to_check!(homework)).to eq homework.mentor.notification_list
     end
   end
 end

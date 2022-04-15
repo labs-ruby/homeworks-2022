@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
-require_relative '/home/anastasia/Документы/ruby/homeworks-2022/spec/spec_helper'
-require_relative '/home/anastasia/Документы/ruby/homeworks-2022/HW04/anastasia_evsihneyeva/lib/homework'
+require_relative "#{File.dirname(__FILE__)}/../lib/homework"
+require_relative "#{File.dirname(__FILE__)}/../../../spec/spec_helper.rb"
 
 RSpec.describe Homework do
+  subject { described_class.new('title', 'description', 'student', 'mentor') }
+
   context 'when creating an object of Homework class' do
     it 'returns right title' do
-      homework_variable = described_class.new('title', 'description', 'student', 'mentor')
-      expect(homework_variable.title).to eq 'title'
+      expect(subject.title).to eq 'title'
     end
   end
 

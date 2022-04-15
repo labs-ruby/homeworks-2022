@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative '/home/anastasia/Документы/ruby/homeworks-2022/spec/spec_helper'
-require_relative '/home/anastasia/Документы/ruby/homeworks-2022/HW04/anastasia_evsihneyeva/lib/mentor'
-require_relative '/home/anastasia/Документы/ruby/homeworks-2022/HW04/anastasia_evsihneyeva/lib/student'
-require_relative '/home/anastasia/Документы/ruby/homeworks-2022/HW04/anastasia_evsihneyeva/lib/homework'
-require_relative '/home/anastasia/Документы/ruby/homeworks-2022/HW04/anastasia_evsihneyeva/lib/notification'
+require_relative "#{File.dirname(__FILE__)}/../lib/homework"
+require_relative "#{File.dirname(__FILE__)}/../lib/mentor"
+require_relative "#{File.dirname(__FILE__)}/../lib/student"
+require_relative "#{File.dirname(__FILE__)}/../lib/notification"
+require_relative "#{File.dirname(__FILE__)}/../../../spec/spec_helper.rb"
 
 RSpec.describe Notification do
-  notification = described_class.new('notification1')
+  subject { described_class.new('notification1') }
 
   let(:student) { Student.new(name: 'student_name', surname: 'student_surname') }
   let(:homework) { Homework.new('title', 'description', student, mentor) }
@@ -25,7 +25,12 @@ RSpec.describe Notification do
 
   context 'when called \'output\' function' do
     it 'returns nil' do
-      expect(notification.output).to eq(nil)
+      expect(subject.output).to eq(nil)
+    end
+
+    it 'returns some logs' do
+      student.notify(subject, mentor)
+      expect(mentor.notifications).to eq(mentor.notification_list)
     end
   end
 end

@@ -6,9 +6,7 @@ require_relative "#{File.dirname(__FILE__)}/../../../spec/spec_helper.rb"
 RSpec.describe Homework3 do
   context 'when there is no error strings in logs' do
     it 'returns empty string' do
-      expect(subject { described_class.configuration }.task1(
-               'blablabla'
-             )).to eq ''
+      expect(subject { described_class.configuration }.task1('blablabla')).to eq ''
     end
   end
 

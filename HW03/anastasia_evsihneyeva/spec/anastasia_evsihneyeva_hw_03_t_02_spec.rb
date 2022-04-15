@@ -6,9 +6,7 @@ require_relative "#{File.dirname(__FILE__)}/../anastasia_evsihneyeva_hw_03_t_02"
 RSpec.describe Homework3 do
   context 'when passed string is empty' do
     it 'returns an empty array' do
-      expect(subject { described_class.configuration }.task2(
-               ''
-             )).to eq []
+      expect(subject { described_class.configuration }.task2('')).to eq []
     end
   end
 
