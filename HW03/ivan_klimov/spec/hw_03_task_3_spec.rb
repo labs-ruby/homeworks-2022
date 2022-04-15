@@ -3,14 +3,14 @@
 require_relative '../ivan_klimov_hw_03_t_03'
 
 RSpec.describe Homework3 do
-  subject { described_class.new }
+  subject { described_class.new.task3(logs) }
 
   describe '#task3' do
     context 'when logs are empty' do
       let(:logs) { '' }
 
       it 'returns 0' do
-        expect(subject.task3(logs)).to eq('0')
+        expect(subject).to eq('0')
       end
     end
 
@@ -29,7 +29,7 @@ RSpec.describe Homework3 do
       end
 
       it 'returns 0' do
-        expect(subject.task3(logs)).to eq('0')
+        expect(subject).to eq('0')
       end
     end
 
@@ -46,7 +46,7 @@ RSpec.describe Homework3 do
       end
 
       it 'returns 0' do
-        expect(subject.task3(logs)).to eq('0')
+        expect(subject).to eq('0')
       end
     end
 
@@ -64,7 +64,7 @@ RSpec.describe Homework3 do
       end
 
       it 'returns one num' do
-        expect(subject.task3(logs)).to eq('289.1')
+        expect(subject).to eq('289.1')
       end
     end
 
@@ -83,7 +83,7 @@ RSpec.describe Homework3 do
       end
 
       it 'returns difference between all elements' do
-        expect(subject.task3(logs)).to eq(['169.1', '1.0'])
+        expect(subject).to eq(['169.1', '1.0'])
       end
     end
   end
