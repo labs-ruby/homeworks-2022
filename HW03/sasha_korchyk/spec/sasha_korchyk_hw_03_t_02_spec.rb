@@ -6,7 +6,7 @@ describe Homework3 do
   describe '#task2' do
     let(:obj) { described_class.new }
 
-    context 'with calls methods and return corrent formated array' do
+    context 'with suitable string at the input' do
       let(:logs) do
         '10.6.246.103 - - [23/Apr/2018:20:30:39 +0300] "POST /test/2/messages HTTP/1.1" 200 48 0.0498
           10.6.246.101 - - [23/Apr/2018:20:30:42 +0300] "POST /test/2/run HTTP/1.1" 200 - 0.2277
@@ -20,23 +20,6 @@ describe Homework3 do
           'DATE: 23/Apr/2018:20:30:42 +0300 FROM: 10.6.246.101 TO: /TEST/2/RUN',
           'DATE: 23/Apr/2018:20:31:39 +0300 FROM: 10.6.246.101 TO: /TEST/2/MESSAGES'
         ]
-      end
-
-      it 'calls #true_strs' do
-        allow(obj).to receive(:true_strs)
-        allow(obj).to receive(:result)
-
-        obj.task2(logs)
-
-        expect(obj).to have_received(:true_strs)
-      end
-
-      it 'calls #result' do
-        allow(obj).to receive(:result)
-
-        obj.task2(logs)
-
-        expect(obj).to have_received(:result)
       end
 
       it 'returns an array of formatted strings' do
