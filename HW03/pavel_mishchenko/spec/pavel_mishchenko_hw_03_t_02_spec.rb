@@ -7,14 +7,14 @@ RSpec.describe Homework3 do
   describe '#task2' do
     subject { described_class.new.task2(log) }
 
-    context 'when log that has wrong output' do
-      context 'when text are not given' do
+    context 'when log is invalid' do
+      context 'when log is empty' do
         let(:log) { '' }
 
         it { is_expected.to eq([]) }
       end
 
-      context 'when log given in wrong format' do
+      context 'when log is in the wrong format' do
         let(:log) do
           <<~LOGS
              10.6.246.103 - - "POST /test/2/messages HTTP/1.1" 200 48 0.0498
@@ -27,15 +27,7 @@ RSpec.describe Homework3 do
         it { is_expected.to eq([]) }
       end
 
-      context 'when log is not String class' do
-        let(:log) { 404 }
-
-        it 'returns TypeError' do
-          expect { subject }.to raise_error(TypeError)
-        end
-      end
-
-      context 'when no arguments is given' do
+      context 'when no argument is given' do
         subject { described_class.new.task2 }
 
         it 'returns ArgumentError' do
@@ -44,8 +36,8 @@ RSpec.describe Homework3 do
       end
     end
 
-    context 'when log that has right output' do
-      context 'when log given in right format' do
+    context 'when log is valid' do
+      context 'when log contains 1 error' do
         let(:log) do
           <<~LOGS
             10.6.246.103 - - [23/Apr/2018:20:30:39 +0300] "POST /test/2/messages HTTP/1.1" 200 48 0.0498
@@ -65,7 +57,7 @@ RSpec.describe Homework3 do
         it { is_expected.to eq(right_output) }
       end
 
-      context 'when logs have more than one error' do
+      context 'when log contains more than 1 error' do
         let(:log) do
           <<~LOGS
             10.6.246.103 - - [23/Apr/2018:20:30:39 +0300] "POST /test/2/messages HTTP/1.1" 200 48 0.0498
@@ -87,7 +79,7 @@ RSpec.describe Homework3 do
         it { is_expected.to eq(right_output) }
       end
 
-      context 'when logs have no lines with error' do
+      context 'when log contains 0 errors' do
         let(:log) do
           <<~LOGS
             10.6.246.103 - - [23/Apr/2018:20:30:39 +0300] "POST /test/2/messages HTTP/1.1" 200 48 0.0498

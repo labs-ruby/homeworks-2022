@@ -14,7 +14,7 @@ RSpec.describe Mentor do
   end
 
   describe '#notify_student' do
-    context 'when no arguments given' do
+    context 'when no arguments are given' do
       it 'raises ArgumentError' do
         expect { mentor.notify_student }.to raise_error(ArgumentError)
       end
@@ -39,38 +39,30 @@ RSpec.describe Mentor do
       it('returns a new homework') { is_expected.to be_kind_of(Homework) }
     end
 
-    context 'when no arguments given' do
+    context 'when no arguments are given' do
       it 'raises ArgumentError' do
         expect { mentor.add_homework }.to raise_error(ArgumentError)
-      end
-    end
-
-    context 'when student is not Student.class instance' do
-      let(:student) { 404 }
-
-      it 'raises NoMethodError' do
-        expect { subject }.to raise_error(NoMethodError)
       end
     end
   end
 
   describe '#mark_as_read!' do
-    context 'when notifiications is unread' do
+    context 'when notification is unread' do
       before { mentor.notifications_list.push(notification) }
 
-      it 'makes all notifictions as read' do
+      it 'makes notification as read' do
         mentor.mark_as_read!
         expect(mentor.notifications_list).to all(have_attributes(status: 'read'))
       end
     end
 
-    context 'when notifiications is read' do
+    context 'when notification is read' do
       before do
         notification.status = 'read'
         mentor.notifications_list.push(notification)
       end
 
-      it "doesn't make any changes" do
+      it 'does not change notification list of mentor' do
         expect { mentor.mark_as_read! }.not_to change(mentor, :notifications_list)
       end
     end
@@ -79,17 +71,9 @@ RSpec.describe Mentor do
   describe '#reject_to_work!' do
     subject { mentor.reject_to_work!(homework) }
 
-    context 'when no argument given' do
+    context 'when no argument is given' do
       it 'raises ArgumentError' do
         expect { mentor.reject_to_work! }.to raise_error(ArgumentError)
-      end
-    end
-
-    context 'when homework is not Homework.class instance' do
-      let(:homework) { 404 }
-
-      it 'raises NoMethodError' do
-        expect { subject }.to raise_error(NoMethodError)
       end
     end
 
@@ -103,26 +87,18 @@ RSpec.describe Mentor do
   describe '#accept!' do
     subject { mentor.accept!(homework) }
 
-    context 'when no argument given' do
+    context 'when no argument is given' do
       it 'raises ArgumentError' do
         expect { mentor.accept! }.to raise_error(ArgumentError)
       end
     end
 
-    context 'when homework is not Homework.class instance' do
-      let(:homework) { 404 }
-
-      it 'raises ArgumentError' do
-        expect { subject }.to raise_error(NoMethodError)
-      end
-    end
-
     context 'when argument is valid' do
-      it 'notifies student' do
+      it 'changes notification list of student' do
         expect { subject }.to change(student, :notifications_list).from([]).to([Notification])
       end
 
-      it 'changes homework accepted status' do
+      it 'changes the status of homework' do
         expect { subject }.to change(homework, :accepted).from(false).to(true)
       end
     end
@@ -131,7 +107,15 @@ RSpec.describe Mentor do
   describe '#notifications' do
     subject { mentor.notifications }
 
-    context 'when mentor has only unread notifications' do
+    let(:expectation) { "0 notification to read\n" }
+
+    context 'when notification list of mentor is empty' do
+      it 'prints a message about no notifications' do
+        expect { subject }.to output(expectation).to_stdout
+      end
+    end
+
+    context 'when mentor has an unread notification' do
       before { mentor.notifications_list.push(notification) }
 
       let(:expectation) do
@@ -141,28 +125,18 @@ RSpec.describe Mentor do
         OUT
       end
 
-      it 'prints unread notifications' do
+      it 'prints unread notification' do
         expect { subject }.to output(expectation).to_stdout
       end
     end
 
-    context 'when mentor has only read notification' do
+    context 'when mentor has a read notification' do
       before do
         notification.status = 'read'
         mentor.notifications_list.push(notification)
       end
 
-      let(:expectation) { "0 notification to read\n" }
-
-      it 'prints info message' do
-        expect { subject }.to output(expectation).to_stdout
-      end
-    end
-
-    context 'when mentor has 0 notifications' do
-      let(:expectation) { "0 notification to read\n" }
-
-      it 'prints info message' do
+      it 'prints a message about no notifications' do
         expect { subject }.to output(expectation).to_stdout
       end
     end

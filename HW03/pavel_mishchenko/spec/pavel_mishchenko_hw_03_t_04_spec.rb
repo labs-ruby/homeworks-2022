@@ -28,7 +28,7 @@ RSpec.describe Homework3 do
     end
 
     context 'when argument is invalid' do
-      context 'when no arguments is given' do
+      context 'when no argument is given' do
         subject { described_class.new.task4 }
 
         it 'returns ArgumentError' do

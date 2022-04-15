@@ -21,7 +21,7 @@ RSpec.describe Student do
       end
     end
 
-    context 'when no arguments given' do
+    context 'when no arguments are given' do
       it 'raises ArgumentError' do
         expect { student.notify_mentor }.to raise_error(ArgumentError)
       end
@@ -29,22 +29,22 @@ RSpec.describe Student do
   end
 
   describe '#mark_as_read!' do
-    context 'when notifiications is unread' do
+    context 'when notification is unread' do
       before { student.notifications_list.push(notification) }
 
-      it 'makes all notifictions as read' do
+      it 'makes notification as read' do
         student.mark_as_read!
         expect(student.notifications_list).to all(have_attributes(status: 'read'))
       end
     end
 
-    context 'when notifications is read' do
+    context 'when notification is read' do
       before do
         notification.status = 'read'
         student.notifications_list.push(notification)
       end
 
-      it "doesn't make changes" do
+      it 'does not change notification list of student' do
         expect { student.mark_as_read! }.not_to change(student, :notifications_list)
       end
     end
@@ -53,15 +53,7 @@ RSpec.describe Student do
   describe '#to_work!' do
     subject { student.to_work!(homework) }
 
-    context 'when homework is not Homework.class instance' do
-      let(:homework) { 404 }
-
-      it 'raises NoMethodError' do
-        expect { subject }.to raise_error(NoMethodError)
-      end
-    end
-
-    context 'when no argument given' do
+    context 'when no argument is given' do
       it 'raises ArgumentError' do
         expect { student.to_work! }.to raise_error(ArgumentError)
       end
@@ -69,7 +61,7 @@ RSpec.describe Student do
 
     context 'when argument is valid' do
       it 'changes notification list of mentor' do
-        expect { subject }.to change(mentor, :notifications_list)
+        expect { subject }.to change(mentor, :notifications_list).from([]).to([Notification])
       end
     end
   end
@@ -80,15 +72,7 @@ RSpec.describe Student do
       homework
     end
 
-    context 'when homework is not Homework.class instance' do
-      let(:homework) { 404 }
-
-      it 'raises NoMethodError' do
-        expect { subject }.to raise_error(NoMethodError)
-      end
-    end
-
-    context 'when no argument given' do
+    context 'when no argument is given' do
       it 'raises ArgumentError' do
         expect { student.add_answer! }.to raise_error(ArgumentError)
       end
@@ -108,15 +92,7 @@ RSpec.describe Student do
   describe '#to_check!' do
     subject { student.to_check!(homework) }
 
-    context 'when homework is not Homework.class instance' do
-      let(:homework) { 404 }
-
-      it 'raises NoMethodError' do
-        expect { subject }.to raise_error(NoMethodError)
-      end
-    end
-
-    context 'when no argument given' do
+    context 'when no argument is given' do
       it 'raises ArgumentError' do
         expect { student.to_check! }.to raise_error(ArgumentError)
       end
@@ -124,7 +100,7 @@ RSpec.describe Student do
 
     context 'when argument is valid' do
       it 'changes notification list of mentor' do
-        expect { subject }.to change(mentor, :notifications_list)
+        expect { subject }.to change(mentor, :notifications_list).from([]).to([Notification])
       end
     end
   end
@@ -132,15 +108,15 @@ RSpec.describe Student do
   describe '#homeworks' do
     subject { student.homeworks }
 
-    context 'when student has homeworks' do
+    context 'when student has homework' do
       before { student.homeworks_list.push(homework) }
 
-      it 'prints current homeworks' do
+      it 'prints current homework' do
         expect { subject }.to output("Homework #{homework.title}: #{homework.description}\n").to_stdout
       end
     end
 
-    context 'when student has 0 homeworks' do
+    context 'when a homework list of student is empty' do
       it 'prints nothing' do
         expect { subject }.to output('').to_stdout
       end
@@ -150,7 +126,26 @@ RSpec.describe Student do
   describe '#notifications' do
     subject { student.notifications }
 
-    context 'when student has only unread notifications' do
+    let(:expectation) { "0 notification to read\n" }
+
+    context 'when student has 0 notification' do
+      it 'prints info message' do
+        expect { subject }.to output(expectation).to_stdout
+      end
+    end
+
+    context 'when student has a read notification' do
+      before do
+        notification.status = 'read'
+        student.notifications_list.push(notification)
+      end
+
+      it 'prints info message' do
+        expect { subject }.to output(expectation).to_stdout
+      end
+    end
+
+    context 'when student has an unread notification' do
       before { student.notifications_list.push(notification) }
 
       let(:expectation) do
@@ -160,28 +155,7 @@ RSpec.describe Student do
         OUT
       end
 
-      it 'prints unread notifications' do
-        expect { subject }.to output(expectation).to_stdout
-      end
-    end
-
-    context 'when student has only read notification' do
-      before do
-        notification.status = 'read'
-        student.notifications_list.push(notification)
-      end
-
-      let(:expectation) { "0 notification to read\n" }
-
-      it 'prints info message' do
-        expect { subject }.to output(expectation).to_stdout
-      end
-    end
-
-    context 'when student has 0 notification' do
-      let(:expectation) { "0 notification to read\n" }
-
-      it 'prints info message' do
+      it 'prints unread notification' do
         expect { subject }.to output(expectation).to_stdout
       end
     end
