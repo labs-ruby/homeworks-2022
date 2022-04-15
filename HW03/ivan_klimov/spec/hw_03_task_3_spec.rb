@@ -63,7 +63,7 @@ RSpec.describe Homework3 do
         LOGS
       end
 
-      it 'returns one num' do
+      it 'returns the difference in seconds between two events' do
         expect(subject).to eq('289.1')
       end
     end
@@ -82,7 +82,7 @@ RSpec.describe Homework3 do
         LOGS
       end
 
-      it 'returns difference between all elements' do
+      it 'returns the difference between all events' do
         expect(subject).to eq(['169.1', '1.0'])
       end
     end
