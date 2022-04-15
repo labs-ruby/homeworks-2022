@@ -4,14 +4,14 @@ require_relative 'spec_helper'
 require_relative '../ivan_klimov_hw_03_t_01'
 
 RSpec.describe Homework3 do
-  subject { described_class.new }
+  subject { described_class.new.task1(logs) }
 
   describe '#task1' do
     context 'when logs are empty' do
       let(:logs) { '' }
 
       it 'returns an empty string' do
-        expect(subject.task1(logs)).to eq('')
+        expect(subject).to eq('')
       end
     end
 
@@ -25,7 +25,7 @@ RSpec.describe Homework3 do
       end
 
       it 'returns an empty string' do
-        expect(subject.task1(logs)).to eq('')
+        expect(subject).to eq('')
       end
     end
   end
@@ -45,7 +45,7 @@ RSpec.describe Homework3 do
     end
 
     it 'returns one error' do
-      expect(subject.task1(logs)).to eq(correct_answer)
+      expect(subject).to eq(correct_answer)
     end
   end
 
@@ -65,7 +65,7 @@ RSpec.describe Homework3 do
     end
 
     it 'returns first error' do
-      expect(subject.task1(logs)).to eq(correct_answer)
+      expect(subject).to eq(correct_answer)
     end
   end
 end
