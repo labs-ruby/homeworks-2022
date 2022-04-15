@@ -48,8 +48,7 @@ describe 'All classes' do
     describe '#mark_as_read!' do
       it "changes the key \'seen\' to true" do
         student.all_notifications << Notification.new('HW03', 'description homework', 'hw', mentor)
-        student.mark_as_read!
-        expect(student.all_notifications[0].seen).to be true
+        expect { student.mark_as_read! }.to change { student.all_notifications[0].seen }.from(false).to(true)
       end
     end
 
@@ -164,8 +163,7 @@ describe 'All classes' do
     describe '#mark_as_read!' do
       it "changes the key \'seen\' to true" do
         mentor.all_notifications << Notification.new('HW03', 'description homework', 'hw', mentor)
-        mentor.mark_as_read!
-        expect(mentor.all_notifications[0].seen).to be true
+        expect { mentor.mark_as_read! }.to change { mentor.all_notifications[0].seen }.from(false).to(true)
       end
     end
 
