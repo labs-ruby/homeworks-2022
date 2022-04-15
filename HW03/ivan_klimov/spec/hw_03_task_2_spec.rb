@@ -3,14 +3,14 @@
 require_relative '../ivan_klimov_hw_03_t_02'
 
 RSpec.describe Homework3 do
-  subject { described_class.new }
+  subject { described_class.new.task2(logs) }
 
-  describe '#task1' do
+  describe '#task2' do
     context 'when logs are empty' do
       let(:logs) { '' }
 
       it 'returns an empty array' do
-        expect(subject.task2(logs)).to eq([])
+        expect(subject).to eq([])
       end
     end
 
@@ -24,7 +24,7 @@ RSpec.describe Homework3 do
       end
 
       it 'returns an empty array' do
-        expect(subject.task2(logs)).to eq([])
+        expect(subject).to eq([])
       end
     end
 
@@ -40,10 +40,14 @@ RSpec.describe Homework3 do
         LOGS
       end
 
+      let(:correct_answer) do
+        ['DATE: 23/Apr/2018:20:30:39 +0300 FROM: 10.6.246.103 TO: /TEST/2/MESSAGES',
+         'DATE: 23/Apr/2018:20:30:42 +0300 FROM: 10.6.246.101 TO: /TEST/2/RUN',
+         'DATE: 23/Apr/2018:20:31:39 +0300 FROM: 10.6.246.101 TO: /TEST/2/MESSAGES']
+      end
+
       it 'returns array with all errors' do
-        expect(subject.task2(logs)).to eq(['DATE: 23/Apr/2018:20:30:39 +0300 FROM: 10.6.246.103 TO: /TEST/2/MESSAGES',
-                                           'DATE: 23/Apr/2018:20:30:42 +0300 FROM: 10.6.246.101 TO: /TEST/2/RUN',
-                                           'DATE: 23/Apr/2018:20:31:39 +0300 FROM: 10.6.246.101 TO: /TEST/2/MESSAGES'])
+        expect(subject).to eq(correct_answer)
       end
     end
   end
