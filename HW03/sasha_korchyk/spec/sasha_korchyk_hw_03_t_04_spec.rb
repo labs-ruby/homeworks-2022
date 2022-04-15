@@ -8,7 +8,7 @@ describe Homework3 do
       let(:string) { 'asdfs5645adfad456' }
 
       it 'returns hash with amount of letters and digits from string' do
-        expect(subject.task4(string)).to include(digits: 7, letters: 10)
+        expect(subject.task4(string)).to eq(digits: 7, letters: 10)
       end
     end
 
