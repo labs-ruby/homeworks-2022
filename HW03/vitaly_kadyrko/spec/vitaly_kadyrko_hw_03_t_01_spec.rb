@@ -3,7 +3,7 @@
 require_relative '../vitaly_kadyrko_hw_03_t_01'
 
 RSpec.describe Homework3 do
-  let(:t1_obj) { described_class.new }
+  subject { described_class.new }
 
   context 'when given string with double error' do
     let(:log) do

@@ -3,7 +3,7 @@
 require_relative '../vitaly_kadyrko_hw_03_t_04'
 
 RSpec.describe Homework3 do
-  let(:t4_obj) { described_class.new }
+  subject { described_class.new }
 
   context 'when string contains russian letter z' do
     it 'return number of digits and letters' do

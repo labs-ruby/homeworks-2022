@@ -3,7 +3,7 @@
 require_relative '../vitaly_kadyrko_hw_03_t_03'
 
 RSpec.describe Homework3 do
-  let(:t3_obj) { described_class.new }
+  subject { described_class.new }
 
   context 'when one of events time is negative' do
     let(:log) do

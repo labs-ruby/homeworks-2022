@@ -3,7 +3,7 @@
 require_relative '../vitaly_kadyrko_hw_03_t_02'
 
 RSpec.describe Homework3 do
-  let(:t2_obj) { described_class.new }
+  subject { described_class.new }
 
   context 'when length of corect line is greater' do
     let(:log) do
