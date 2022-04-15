@@ -20,7 +20,7 @@ RSpec.describe Homework3 do
       LOGS
     end
 
-    it 'return the firs two durations of the action' do
+    it 'returns the firs two durations of the action' do
       expect(t3_obj.task3(log)).to eq(['49.1', '60.0'])
     end
   end

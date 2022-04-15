@@ -18,7 +18,7 @@ RSpec.describe Homework3 do
       '2018-04-23 20:30:42: SSL errorerror, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSLError: System error: Undefined error: 0 - 0>'
     end
 
-    it 'return full line with double error' do
+    it 'returns full line with double error' do
       expect(t1_obj.task1(log)).to eq(double_error_line)
     end
   end
@@ -33,7 +33,7 @@ RSpec.describe Homework3 do
       LOG
     end
 
-    it 'return empty string' do
+    it 'returns empty string' do
       expect(t1_obj.task1(log)).to eq('')
     end
   end

@@ -10,19 +10,19 @@ RSpec.describe Homework do
   let(:homework) { described_class.new(title: 'Test title', description: 'Test description', student: student, mentor: mentor) }
 
   context 'when all parameters given' do
-    it 'title transferred correct' do
+    it 'title transfers correct' do
       expect(homework.title).to eq 'Test title'
     end
 
-    it 'description transferred correct' do
+    it 'description transfers correct' do
       expect(homework.description).to eq 'Test description'
     end
 
-    it 'Student name and surname transferred correct' do
+    it 'Student name and surname transfers correct' do
       expect(homework.student).to eq student
     end
 
-    it 'Mentor name and surname transferred correct' do
+    it 'Mentor name and surname transfers correct' do
       expect(homework.mentor).to eq mentor
     end
 

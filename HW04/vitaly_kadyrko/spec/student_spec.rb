@@ -11,7 +11,7 @@ RSpec.describe Student do
   let(:homework) { mentor.add_homework(title: 'Test title', description: 'Test description', student: student) }
 
   context 'when mark_as_read! method used' do
-    it 'return empty notifications array' do
+    it 'returns empty notifications array' do
       described_class.to_work!(homework)
       described_class.mark_as_read!
       expect(described_class.notifications).to eq []
@@ -19,30 +19,30 @@ RSpec.describe Student do
   end
 
   context 'when to_work! method used' do
-    it 'add new to_work message to mentor notifications array' do
+    it 'adds new to_work message to mentor notifications array' do
       described_class.to_work!(homework)
       expect(mentor.notifications[0]).to eq "Homework '#{homework.title}' was started"
     end
 
-    it 'switch homework status to in progress' do
+    it 'switches homework status to in progress' do
       described_class.to_work!(homework)
       expect(homework.status).to eq 'In progress'
     end
   end
 
   context 'when add_answer! method used' do
-    it 'return object of homework class' do
+    it 'returns object of homework class' do
       expect(described_class.add_answer!(homework, 'Test answer')).to eq homework.answers
     end
   end
 
   context 'when to_check! method used' do
-    it 'add new to_check message to mentor notifications array' do
+    it 'adds new to_check message to mentor notifications array' do
       described_class.to_check!(homework)
       expect(mentor.notifications[0]).to eq "New answers to homework '#{homework.title}' was added"
     end
 
-    it 'switch homework status to awaiting to check ' do
+    it 'switches homework status to awaiting to check ' do
       described_class.to_check!(homework)
       expect(homework.status).to eq 'Awaiting to check'
     end
