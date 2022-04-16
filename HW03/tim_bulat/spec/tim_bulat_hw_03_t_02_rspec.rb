@@ -37,7 +37,7 @@ RSpec.describe Homework3 do
     context 'when there are not post methods in the log' do
       let(:log) { log_without_post }
 
-      it 'return empty array' do
+      it 'returns empty array' do
         expect(subject).to eq []
       end
     end
