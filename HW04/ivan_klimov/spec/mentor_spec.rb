@@ -31,7 +31,7 @@ RSpec.describe Mentor do
   end
 
   describe '#mark_as_read' do
-    let(:notification) { "#{mentor.name}, you have read all notifications." }
+    let(:notification) { mentor.read_all_notifications(mentor) }
 
     it 'cleans mentor notifications' do
       mentor.mark_as_read!
@@ -40,20 +40,20 @@ RSpec.describe Mentor do
   end
 
   describe '#reject_to_work!' do
-    let(:notification) { "Answer for #{test_homework.title}, was rejected." }
+    let(:notification) { student.homework_reject(test_homework) }
 
     it 'adds notification to the student about reject homework' do
       mentor.reject_to_work!(student, test_homework)
-      expect(student.notifications[1]).to include(notification)
+      expect(student.notifications.last).to include(notification)
     end
   end
 
   describe '#accept!' do
-    let(:notification) { "Answer for #{test_homework.title}, was accepted." }
+    let(:notification) { student.homework_accept(test_homework) }
 
     it 'adds notification to the student about accepted homework' do
       mentor.accept!(student, test_homework)
-      expect(student.notifications[1]).to include(notification)
+      expect(student.notifications.last).to include(notification)
     end
   end
 end
