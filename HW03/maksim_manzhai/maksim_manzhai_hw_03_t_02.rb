@@ -8,16 +8,14 @@ class Homework3
   def task2(logs)
     lines = logs.split(/\n/)
 
-    return [] if lines.find { |line| wrong_format?(line) }
-
-    lines.find_all { |line| line.include?('POST') }.collect do |line|
+    lines.find_all { |line| line.include?('POST') && right_format?(line) }.collect do |line|
       "DATE: #{line.scan(DATETIME).join} FROM: #{line.scan(IP).join} TO: #{line.scan(ADDRESS).join.upcase}"
     end
   end
 
   private
 
-  def wrong_format?(line)
-    line.match(/^\W/)
+  def right_format?(line)
+    line.match(/\[.*\]/)
   end
 end
