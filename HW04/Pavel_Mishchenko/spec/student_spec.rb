@@ -67,10 +67,7 @@ RSpec.describe Student do
   end
 
   describe '#add_answer!' do
-    subject do
-      student.add_answer!(homework, 'TestAnswer')
-      homework
-    end
+    subject { student.add_answer!(homework, 'TestAnswer') }
 
     context 'when no argument is given' do
       it 'raises ArgumentError' do
