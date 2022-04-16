@@ -12,20 +12,20 @@ RSpec.describe Student do
   let(:homework) { Homework.new(title: 'task1', description: 'Solve 5/6', student: student) }
 
   describe '#mark_as_read' do
-    let(:notification) { "#{student.name}, you have read all notifications." }
+    let(:notification) { student.read_all_notifications(student) }
 
     it 'cleans student notifications' do
       student.mark_as_read!
-      expect(student.notifications.first).to include(notification)
+      expect(student.notifications.last).to include(notification)
     end
   end
 
   describe '#to_work!' do
-    let(:notification) { "#{student.name} #{student.surname} took to work #{homework.title}." }
+    let(:notification) { student.status_to_work(student, homework) }
 
     it 'sends notification about homework status to mentor' do
       student.to_work!(mentor, homework)
-      expect(mentor.notifications.first).to include(notification)
+      expect(mentor.notifications.last).to include(notification)
     end
   end
 
@@ -34,7 +34,7 @@ RSpec.describe Student do
 
     it 'adds answer to answers array' do
       student.add_answer!(homework, answer)
-      expect(homework.answers.first).to eq answer
+      expect(homework.answers.last).to eq answer
     end
   end
 

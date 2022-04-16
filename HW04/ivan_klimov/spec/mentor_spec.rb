@@ -20,7 +20,7 @@ RSpec.describe Mentor do
     end
 
     it 'makes notification to the student' do
-      expect(student.notifications.first).to include(test_homework.title)
+      expect(student.notifications.last).to include(test_homework.title)
     end
   end
 
@@ -35,7 +35,7 @@ RSpec.describe Mentor do
 
     it 'cleans mentor notifications' do
       mentor.mark_as_read!
-      expect(mentor.notifications.first).to include(notification)
+      expect(mentor.notifications.last).to include(notification)
     end
   end
 
