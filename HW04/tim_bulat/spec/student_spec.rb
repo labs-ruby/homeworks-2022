@@ -18,8 +18,7 @@ RSpec.describe Student do
 
   describe '#to_check!' do
     it 'changes status of homework' do
-      student.to_check!(homework)
-      expect(homework.status).to eq 'to check'
+      expect { student.to_check!(homework) }.to change(homework, :status).to 'to check'
     end
 
     it 'notifies mentor' do
@@ -29,8 +28,7 @@ RSpec.describe Student do
 
   describe '#add_answer!' do
     it 'changes answer of homework' do
-      student.add_answer!(homework, 'answer')
-      expect(homework.answer).to eq 'answer'
+      expect { student.add_answer!(homework, 'answer') }.to change(homework, :answer).to 'answer'
     end
   end
 end

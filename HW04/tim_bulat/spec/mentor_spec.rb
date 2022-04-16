@@ -32,24 +32,26 @@ RSpec.describe Mentor do
   end
 
   describe '#reject_to_work!' do
+    subject { mentor.reject_to_work!(homework) }
+
     it 'changes status of homework to rejected' do
-      mentor.reject_to_work!(homework)
-      expect(homework.status).to eq 'rejected'
+      expect { subject }.to change(homework, :status).to 'rejected'
     end
 
     it 'notifies student' do
-      expect { mentor.reject_to_work!(homework) }.to change { student.notes.size }.from(0).to(1)
+      expect { subject }.to change { student.notes.size }.from(0).to(1)
     end
   end
 
   describe '#accept!' do
+    subject { mentor.accept!(homework) }
+
     it 'changes status of homework to accepted' do
-      mentor.accept!(homework)
-      expect(homework.status).to eq 'accepted'
+      expect { subject }.to change(homework, :status).to 'accepted'
     end
 
     it 'notifies student' do
-      expect { mentor.accept!(homework) }.to change { student.notes.size }.from(0).to(1)
+      expect { subject }.to change { student.notes.size }.from(0).to(1)
     end
   end
 end
