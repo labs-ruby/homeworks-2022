@@ -4,53 +4,41 @@ require_relative '../maksim_manzhai_hw_03_t_04'
 
 RSpec.describe Homework3 do
   describe '#task4' do
-    let(:homework) { described_class.new }
+    subject { described_class.new.task4(input) }
 
     context 'when the string contains only letters' do
-      let(:input) do
-        'qwerty'
-      end
-
-      let(:output) { { digits: 0, letters: 6 } }
+      let(:input) { 'qwerty' }
 
       it 'returns the count of letters and digits in that string' do
-        expect(homework.task4(input)).to eql output
+        expect(subject).to eql({ digits: 0, letters: 6 })
       end
 
       it 'returns an object of class Hash' do
-        expect(homework.task4(input)).to be_a(Hash)
+        expect(subject).to be_a(Hash)
       end
     end
 
     context 'when the string contains only digits' do
-      let(:input) do
-        '123456'
-      end
-
-      let(:output) { { digits: 6, letters: 0 } }
+      let(:input) { '123456' }
 
       it 'returns the count of letters and digits in that string' do
-        expect(homework.task4(input)).to eql output
+        expect(subject).to eql({ digits: 6, letters: 0 })
       end
 
       it 'returns an object of class Hash' do
-        expect(homework.task4(input)).to be_a(Hash)
+        expect(subject).to be_a(Hash)
       end
     end
 
     context 'when the string contains digits and letters' do
-      let(:input) do
-        'qwerty123456'
-      end
-
-      let(:output) { { digits: 6, letters: 6 } }
+      let(:input) { 'qwerty123456' }
 
       it 'returns the count of letters and digits in that string' do
-        expect(homework.task4(input)).to eql output
+        expect(subject).to eql({ digits: 6, letters: 6 })
       end
 
       it 'returns an object of class Hash' do
-        expect(homework.task4(input)).to be_a(Hash)
+        expect(subject).to be_a(Hash)
       end
     end
   end

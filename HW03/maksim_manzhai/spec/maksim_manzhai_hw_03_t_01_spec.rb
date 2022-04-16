@@ -4,7 +4,7 @@ require_relative '../maksim_manzhai_hw_03_t_01'
 
 RSpec.describe Homework3 do
   describe '#task1' do
-    let(:homework) { described_class.new }
+    subject { described_class.new.task1(log) }
 
     context 'when log is text that does not contain the word error' do
       let(:log) do
@@ -15,10 +15,8 @@ RSpec.describe Homework3 do
         LOG
       end
 
-      let(:output) { '' }
-
       it 'returns an empty string' do
-        expect(homework.task1(log)).to eql output
+        expect(subject).to eql('')
       end
     end
 
@@ -37,19 +35,19 @@ RSpec.describe Homework3 do
       end
 
       it 'returns line with full text of the first line with an error' do
-        expect(homework.task1(log)).to eql output
+        expect(subject).to eql output
       end
 
       it 'returns an object of class String' do
-        expect(homework.task1(log)).to be_a(String)
+        expect(subject).to be_a(String)
       end
     end
 
     context 'when log is empty' do
-      let(:output) { '' }
+      let(:log) { '' }
 
       it 'returns empty string' do
-        expect(homework.task1('')).to eql output
+        expect(subject).to eql('')
       end
     end
   end

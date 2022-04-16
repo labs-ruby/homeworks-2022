@@ -4,7 +4,7 @@ require_relative '../maksim_manzhai_hw_03_t_03'
 
 RSpec.describe Homework3 do
   describe '#task3' do
-    let(:homework) { described_class.new }
+    subject { described_class.new.task3(log) }
 
     context 'when the log contains one value' do
       let(:log) do
@@ -19,14 +19,12 @@ RSpec.describe Homework3 do
         LOG
       end
 
-      let(:output) { '49.1' }
-
-      it 'returns a string containing the duration of the action in SECONDS between events that occurred at the time of Calling core with action' do
-        expect(homework.task3(log)).to eql output
+      it 'returns a string with the duration between events' do
+        expect(subject).to eql('49.1')
       end
 
       it 'returns an object of class String' do
-        expect(homework.task3(log)).to be_a(String)
+        expect(subject).to be_a(String)
       end
     end
 
@@ -46,14 +44,12 @@ RSpec.describe Homework3 do
         LOG
       end
 
-      let(:output) { ['49.1', '82.5'] }
-
-      it 'returns an array containing strings of the action in SECONDS between events that occurred at the time of Calling core with action' do
-        expect(homework.task3(log)).to eql output
+      it 'returns an array of strings with the duration between events' do
+        expect(subject).to eql(['49.1', '82.5'])
       end
 
       it 'returns an object of class Array' do
-        expect(homework.task3(log)).to be_a(Array)
+        expect(subject).to be_a(Array)
       end
     end
 
@@ -68,10 +64,8 @@ RSpec.describe Homework3 do
         LOG
       end
 
-      let(:output) { '0' }
-
       it 'returns string with 0' do
-        expect(homework.task3(log)).to eql output
+        expect(subject).to eql('0')
       end
     end
   end

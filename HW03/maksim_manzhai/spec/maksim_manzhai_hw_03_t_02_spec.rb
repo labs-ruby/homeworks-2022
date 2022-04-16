@@ -4,7 +4,7 @@ require_relative '../maksim_manzhai_hw_03_t_02'
 
 RSpec.describe Homework3 do
   describe '#task2' do
-    let(:homework) { described_class.new }
+    subject { described_class.new.task2(log) }
 
     context 'when log is right' do
       let(:log) do
@@ -24,12 +24,12 @@ RSpec.describe Homework3 do
         ]
       end
 
-      it 'return an array of formatted strings containing information about post requests' do
-        expect(homework.task2(log)).to eql output
+      it 'returns an array of formatted strings containing information about post requests' do
+        expect(subject).to eql output
       end
 
       it 'returns an object of class Array' do
-        expect(homework.task2(log)).to be_a(Array)
+        expect(subject).to be_a(Array)
       end
     end
 
@@ -43,10 +43,8 @@ RSpec.describe Homework3 do
         LOG
       end
 
-      let(:output) { [] }
-
-      it 'return empty array' do
-        expect(homework.task2(log)).to eql output
+      it 'returns empty array' do
+        expect(subject).to eql([])
       end
     end
   end
