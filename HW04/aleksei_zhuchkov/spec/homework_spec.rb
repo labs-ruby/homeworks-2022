@@ -11,11 +11,11 @@ RSpec.describe Homework do
   let(:test_homework) { described_class.new('hw_title', 'hw_description', student, mentor) }
 
   describe '#print_homework' do
-    it 'method return instance of Array' do
+    it 'returns instance of Array' do
       expect(test_homework.print_homework).to be_an_instance_of(Array)
     end
 
-    it 'return correct data' do
+    it 'returns correct data' do
       expect(test_homework.print_homework).to eq(%w[hw_title hw_description])
     end
   end

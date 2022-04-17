@@ -16,17 +16,17 @@ RSpec.describe Student do
 
   describe '#storage_homework' do
     context 'when homework does not add to student' do
-      it 'return array is empty' do
+      it 'returns array is empty' do
         expect(student.storage_homework).to be_empty
       end
 
-      it 'return value is instance of class Array' do
+      it 'returns instance of class Array' do
         expect(student.storage_homework).to be_an_instance_of(Array)
       end
     end
 
     context 'when homework add to student' do
-      it 'return array is not empty' do
+      it 'returns array is not empty' do
         expect(student.add_homework_to_student_storage(homework)).not_to be_empty
       end
     end
@@ -34,7 +34,7 @@ RSpec.describe Student do
 
   describe '#notifications' do
     context 'when check method notifications' do
-      it 'return value is instanse of class Array' do
+      it 'returns instanse of class Array' do
         expect(student.notifications).to be_an_instance_of(Array)
       end
 
@@ -42,7 +42,7 @@ RSpec.describe Student do
         expect(student.notifications).to be_empty
       end
 
-      it 'return value doesn\'t empty if mentor have notification' do
+      it 'returns value doesn\'t empty if mentor have notification' do
         student.to_work!(homework)
         expect(student.notifications).not_to be_empty
       end
@@ -51,7 +51,7 @@ RSpec.describe Student do
 
   describe '#mark_as_read!' do
     context 'when check method mark_as_read' do
-      it 'return clear Array' do
+      it 'returns clear Array' do
         expect(student.mark_as_read!).to be_empty
       end
     end
@@ -60,12 +60,13 @@ RSpec.describe Student do
   describe '#homeworks' do
     context 'when check method homeworks' do
       context 'when we create student' do
-        student = described_class.new(name: 'student_name', surname: 'student_surname')
-        it 'this method return array' do
+        let(:student) { described_class.new(name: 'student_name', surname: 'student_surname') }
+
+        it 'returns instance of class Array' do
           expect(student.homeworks).to be_an_instance_of(Array)
         end
 
-        it 'this method return empty array' do
+        it 'returns empty array' do
           expect(student.homeworks).to be_empty
         end
       end

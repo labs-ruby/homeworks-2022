@@ -13,7 +13,7 @@ RSpec.describe Homework3 do
         expect(obj_hw3.task1(input_data)).to be_empty
       end
 
-      it 'return value is a string type' do
+      it 'returns instance of string class' do
         expect(obj_hw3.task1(input_data)).to be_an_instance_of(String)
       end
     end
@@ -29,11 +29,11 @@ RSpec.describe Homework3 do
         LOG
       end
 
-      it 'return empty string' do
+      it 'returns empty string' do
         expect(obj_hw3.task1(input_data)).to be_empty
       end
 
-      it 'return instance of string' do
+      it 'returns instance of string class' do
         expect(obj_hw3.task1(input_data)).to be_an_instance_of(String)
       end
     end
@@ -52,7 +52,7 @@ RSpec.describe Homework3 do
         '[23/Apr/2018:20:30:42 +0300] "POST /grid/2/erroRnt HTTP/1.1" 200 - 0.2277'
       end
 
-      it 'return string with error' do
+      it 'returns string with error' do
         expect(obj_hw3.task1(input_data)).to eq(right_data)
       end
     end
@@ -71,7 +71,7 @@ RSpec.describe Homework3 do
         '[23/Apr/2018:20:30:39 +0300] "POST /geRRorsird/2/messages HTTP/1.1" 200 48 0.0498'
       end
 
-      it 'return first string with error' do
+      it 'returns first string with error' do
         expect(obj_hw3.task1(input_data)).to eq(right_data)
       end
     end

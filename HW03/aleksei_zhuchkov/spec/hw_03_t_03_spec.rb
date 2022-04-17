@@ -7,11 +7,11 @@ RSpec.describe Homework3 do
 
   describe '#task3' do
     context 'when testing basic things' do
-      it 'return value is string type' do
+      it 'returns value is string type' do
         expect(obj_hw3.task3('')).to be_an_instance_of(String)
       end
 
-      it 'return value "0" (string) when get empty string' do
+      it 'returns value "0" (string) when get empty string' do
         expect(obj_hw3.task3('')).to eq('0')
       end
     end
@@ -29,7 +29,7 @@ RSpec.describe Homework3 do
         LOGS
       end
 
-      it 'return strind' do
+      it 'returns instance of String class' do
         expect(obj_hw3.task3(log)).to be_an_instance_of(String)
       end
     end
@@ -48,7 +48,7 @@ RSpec.describe Homework3 do
         LOGS
       end
 
-      it 'returns value type Array' do
+      it 'returns instance of Array class' do
         expect(obj_hw3.task3(log)).to be_an_instance_of(Array)
       end
     end

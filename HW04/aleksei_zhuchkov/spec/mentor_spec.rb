@@ -21,7 +21,7 @@ RSpec.describe Mentor do
                           student: student)
     end
 
-    it 'add homework to student to be a instance of class Homework' do
+    it 'returns the homework of Homework class' do
       expect(homework_test).to be_an_instance_of(Homework)
     end
 
@@ -40,7 +40,7 @@ RSpec.describe Mentor do
         expect(mentor.subscribe_to!(student)).to be_an_instance_of(Array)
       end
 
-      it 'return not empty array of student list' do
+      it 'returns not empty array of student list' do
         mentor.subscribe_to!(student)
         expect(mentor.students_list).not_to be_empty
       end
@@ -49,7 +49,7 @@ RSpec.describe Mentor do
 
   describe '#notification' do
     context 'when notifications do not add' do
-      it 'return value is instanse of class Array' do
+      it 'returns instanse of class Array' do
         expect(mentor.notifications).to be_an_instance_of(Array)
       end
 
@@ -59,7 +59,7 @@ RSpec.describe Mentor do
     end
 
     context 'when notifications add' do
-      it 'return array is not empty' do
+      it 'returns array is not empty' do
         student.to_work!(homework)
         expect(mentor.notifications).not_to be_empty
       end
@@ -67,7 +67,7 @@ RSpec.describe Mentor do
   end
 
   describe '#mark_as_read!' do
-    it 'return empty Array' do
+    it 'returns empty Array' do
       expect(mentor.mark_as_read!).to be_empty
     end
   end
