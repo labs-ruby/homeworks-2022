@@ -5,18 +5,6 @@ require_relative '../lib/notification'
 RSpec.describe Notification do
   let(:notification) { described_class.new('test title', 'test description') }
 
-  describe '#title' do
-    it 'return title' do
-      expect(notification.title).to eq('test title')
-    end
-  end
-
-  describe '#description' do
-    it 'return description' do
-      expect(notification.description).to eq('test description')
-    end
-  end
-
   describe 'notification' do
     context 'when method notification' do
       it 'when notification doesn\'t add' do
