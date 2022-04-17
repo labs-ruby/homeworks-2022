@@ -33,7 +33,7 @@ RSpec.describe Student do
   end
 
   describe '#notifications' do
-    context 'when check method notifications' do
+    context 'when notifications are not add' do
       it 'returns instanse of class Array' do
         expect(student.notifications).to be_an_instance_of(Array)
       end
@@ -41,8 +41,10 @@ RSpec.describe Student do
       it 'in first time notification is empty' do
         expect(student.notifications).to be_empty
       end
+    end
 
-      it 'returns value doesn\'t empty if mentor have notification' do
+    context 'when notifications are add' do
+      it 'returns array is not empty' do
         student.to_work!(homework)
         expect(student.notifications).not_to be_empty
       end
@@ -50,68 +52,58 @@ RSpec.describe Student do
   end
 
   describe '#mark_as_read!' do
-    context 'when check method mark_as_read' do
-      it 'returns clear Array' do
-        expect(student.mark_as_read!).to be_empty
-      end
+    it 'returns clear Array' do
+      expect(student.mark_as_read!).to be_empty
     end
   end
 
   describe '#homeworks' do
-    context 'when check method homeworks' do
-      context 'when we create student' do
-        let(:student) { described_class.new(name: 'student_name', surname: 'student_surname') }
+    context 'when we create student' do
+      let(:student) { described_class.new(name: 'student_name', surname: 'student_surname') }
 
-        it 'returns instance of class Array' do
-          expect(student.homeworks).to be_an_instance_of(Array)
-        end
+      it 'returns instance of class Array' do
+        expect(student.homeworks).to be_an_instance_of(Array)
+      end
 
-        it 'returns empty array' do
-          expect(student.homeworks).to be_empty
-        end
+      it 'returns empty array' do
+        expect(student.homeworks).to be_empty
       end
     end
   end
 
   describe '#to_work!' do
-    context 'when check method to_work!' do
-      it 'change status homework to "in work"' do
-        student.to_work!(homework)
-        expect(homework.status_homework).to eq('in work')
-      end
+    it 'changes status homework to "in work"' do
+      student.to_work!(homework)
+      expect(homework.status_homework).to eq('in work')
+    end
 
-      it 'add notification to mentor' do
-        student.to_work!(homework)
-        expect(mentor.notifications).not_to be_empty
-      end
+    it 'adds notification to mentor' do
+      student.to_work!(homework)
+      expect(mentor.notifications).not_to be_empty
     end
   end
 
   describe '#add_answer!' do
-    context 'when check method add_answer!' do
-      it 'storage_homework_answer doesn\'t empty when we add answer' do
-        student.add_answer!(homework, 'test answer')
-        expect(homework.storage_homework_answer).not_to be_empty
-      end
+    it 'adds question to array for mentor' do
+      student.add_answer!(homework, 'test answer')
+      expect(homework.storage_homework_answer).not_to be_empty
+    end
 
-      it 'add notification to mentor' do
-        student.add_answer!(homework, 'test answer')
-        expect(mentor.notifications).not_to be_empty
-      end
+    it 'adds notification to mentor' do
+      student.add_answer!(homework, 'test answer')
+      expect(mentor.notifications).not_to be_empty
     end
   end
 
   describe '#to_check!' do
-    context 'when check method to_check!' do
-      it 'change status homework to "to check"' do
-        student.to_check!(homework)
-        expect(homework.status_homework).to eq('to check')
-      end
+    it 'change status homework to "to check"' do
+      student.to_check!(homework)
+      expect(homework.status_homework).to eq('to check')
+    end
 
-      it 'add notification to mentor' do
-        student.to_work!(homework)
-        expect(mentor.notifications).not_to be_empty
-      end
+    it 'add notification to mentor' do
+      student.to_work!(homework)
+      expect(mentor.notifications).not_to be_empty
     end
   end
 end

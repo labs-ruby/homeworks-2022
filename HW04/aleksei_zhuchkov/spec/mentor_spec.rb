@@ -25,11 +25,11 @@ RSpec.describe Mentor do
       expect(homework_test).to be_an_instance_of(Homework)
     end
 
-    it 'check right value homework description' do
+    it 'returns the right value homework description' do
       expect(homework_test.description).to eq('test_description')
     end
 
-    it 'check right value homework title' do
+    it 'returns the right value homework title' do
       expect(homework_test.title).to eq('test_title')
     end
   end
@@ -49,11 +49,11 @@ RSpec.describe Mentor do
 
   describe '#notification' do
     context 'when notifications do not add' do
-      it 'returns instanse of class Array' do
+      it 'returns the instanse of class Array' do
         expect(mentor.notifications).to be_an_instance_of(Array)
       end
 
-      it 'in first time notification is empty' do
+      it 'returns array is empty' do
         expect(mentor.notifications).to be_empty
       end
     end
@@ -73,14 +73,14 @@ RSpec.describe Mentor do
   end
 
   describe '#status_homework' do
-    context 'when check method reject_to_work!' do
-      it 'change status homework to rejected' do
+    context 'when used method reject_to_work!' do
+      it 'return status homework "rejected"' do
         mentor.reject_to_work!(homework)
         expect(homework.status_homework).to eq('rejected')
       end
     end
 
-    describe '#accept!' do
+    context 'when used method accepted!' do
       it 'change status homework to accepted' do
         mentor.accept!(homework)
         expect(homework.status_homework).to eq('accepted')
