@@ -35,34 +35,40 @@ RSpec.describe Mentor do
   end
 
   describe '#subscride' do
-    it 'return value is instance of class Array' do
-      expect(mentor.subscribe_to!(student)).to be_an_instance_of(Array)
-    end
+    context 'when mentor subscribe to student' do
+      it 'returns instance of class Array' do
+        expect(mentor.subscribe_to!(student)).to be_an_instance_of(Array)
+      end
 
-    it 'storage can\'t be empy when mentor subsribe to student' do
-      mentor.subscribe_to!(student)
-      expect(mentor.students_list.empty?).to eq(false)
+      it 'return not empty array of student list' do
+        mentor.subscribe_to!(student)
+        expect(mentor.students_list).not_to be_empty
+      end
     end
   end
 
   describe '#notification' do
-    it 'return value is instanse of class Array' do
-      expect(mentor.notifications).to be_an_instance_of(Array)
+    context 'when notifications do not add' do
+      it 'return value is instanse of class Array' do
+        expect(mentor.notifications).to be_an_instance_of(Array)
+      end
+
+      it 'in first time notification is empty' do
+        expect(mentor.notifications).to be_empty
+      end
     end
 
-    it 'in first time notification is empty' do
-      expect(mentor.notifications).to eq([])
-    end
-
-    it 'return value doesn\'t empty if mentor have notification' do
-      student.to_work!(homework)
-      expect(mentor.notifications.empty?).to eq(false)
+    context 'when notifications add' do
+      it 'return array is not empty' do
+        student.to_work!(homework)
+        expect(mentor.notifications).not_to be_empty
+      end
     end
   end
 
   describe '#mark_as_read!' do
-    it 'return clear Array' do
-      expect(mentor.mark_as_read!).to eq([])
+    it 'return empty Array' do
+      expect(mentor.mark_as_read!).to be_empty
     end
   end
 

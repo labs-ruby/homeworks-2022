@@ -15,18 +15,19 @@ RSpec.describe Student do
   end
 
   describe '#storage_homework' do
-    context 'when check method add_homework_to_student_storage' do
-      it 'when create instance class student "storage_homework" is empty' do
-        expect(student.storage_homework.empty?).to eq(true)
+    context 'when homework does not add to student' do
+      it 'return array is empty' do
+        expect(student.storage_homework).to be_empty
       end
 
       it 'return value is instance of class Array' do
         expect(student.storage_homework).to be_an_instance_of(Array)
       end
+    end
 
-      it 'return doesn\'t empty array when we add homework' do
-        expect(student.add_homework_to_student_storage(homework)
-        .empty?).to eq(false)
+    context 'when homework add to student' do
+      it 'return array is not empty' do
+        expect(student.add_homework_to_student_storage(homework)).not_to be_empty
       end
     end
   end
@@ -38,12 +39,12 @@ RSpec.describe Student do
       end
 
       it 'in first time notification is empty' do
-        expect(student.notifications).to eq([])
+        expect(student.notifications).to be_empty
       end
 
       it 'return value doesn\'t empty if mentor have notification' do
         student.to_work!(homework)
-        expect(student.notifications.empty?).to eq(false)
+        expect(student.notifications).not_to be_empty
       end
     end
   end
@@ -51,7 +52,7 @@ RSpec.describe Student do
   describe '#mark_as_read!' do
     context 'when check method mark_as_read' do
       it 'return clear Array' do
-        expect(student.mark_as_read!).to eq([])
+        expect(student.mark_as_read!).to be_empty
       end
     end
   end

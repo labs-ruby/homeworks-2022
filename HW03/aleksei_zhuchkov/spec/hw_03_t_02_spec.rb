@@ -7,12 +7,12 @@ RSpec.describe Homework3 do
 
   describe '#task2' do
     context 'when testing basics things' do
-      it 'return value is Array type' do
+      it 'return instance of Array' do
         expect(obj_hw3.task2('')).to be_an_instance_of(Array)
       end
 
-      it 'empty input - return empty array' do
-        expect(obj_hw3.task2('')).to eq([])
+      it 'return empty data' do
+        expect(obj_hw3.task2('')).to be_empty
       end
     end
 
@@ -25,7 +25,7 @@ RSpec.describe Homework3 do
         LOGS
       end
 
-      it 'return empty array if input-data format was wrong' do
+      it 'return empty array' do
         expect(obj_hw3.task2(log)).to eq([])
       end
     end

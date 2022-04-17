@@ -10,7 +10,7 @@ RSpec.describe Homework3 do
       let(:input_data) { '' }
 
       it 'Check empty string' do
-        expect(obj_hw3.task1(input_data)).to eq('')
+        expect(obj_hw3.task1(input_data)).to be_empty
       end
 
       it 'return value is a string type' do
@@ -30,7 +30,11 @@ RSpec.describe Homework3 do
       end
 
       it 'return empty string' do
-        expect(obj_hw3.task1(input_data)).to eq('')
+        expect(obj_hw3.task1(input_data)).to be_empty
+      end
+
+      it 'return instance of string' do
+        expect(obj_hw3.task1(input_data)).to be_an_instance_of(String)
       end
     end
 
