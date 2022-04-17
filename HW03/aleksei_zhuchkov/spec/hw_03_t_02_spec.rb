@@ -28,7 +28,7 @@ RSpec.describe 'Homework3' do
       end
     end
 
-    context 'when input-data includes rigth information' do
+    context 'when input-data includes right information' do
       let(:log) do
         <<~LOG
           10.6.246.103 - - [23/Apr/2018:20:30:39 +0300] "POST /test/2/messages HTTP/1.1" 200 48 0.0498
