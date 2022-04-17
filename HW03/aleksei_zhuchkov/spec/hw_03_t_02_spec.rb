@@ -5,13 +5,15 @@ require_relative '../aleksei_zhuchkov_hw_03_t_02'
 RSpec.describe Homework3 do
   let(:obj_hw3) { described_class.new }
 
-  describe 'Testing basics things' do
-    it 'return value is Array type' do
-      expect(obj_hw3.task2('')).to be_an_instance_of(Array)
-    end
+  describe '#task2' do
+    context 'when testing basics things' do
+      it 'return value is Array type' do
+        expect(obj_hw3.task2('')).to be_an_instance_of(Array)
+      end
 
-    it 'empty input - return empty array' do
-      expect(obj_hw3.task2('')).to eq([])
+      it 'empty input - return empty array' do
+        expect(obj_hw3.task2('')).to eq([])
+      end
     end
 
     context 'when input-data was wrong' do

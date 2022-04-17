@@ -14,21 +14,27 @@ RSpec.describe Mentor do
                         student: student)
   end
 
-  describe 'check method add_homework' do
+  describe '#add_homework' do
+    let(:homework_test) do
+      mentor.add_homework(title: 'test_title',
+                          description: 'test_description',
+                          student: student)
+    end
+
     it 'add homework to student to be a instance of class Homework' do
-      expect(homework).to be_an_instance_of(Homework)
+      expect(homework_test).to be_an_instance_of(Homework)
     end
 
     it 'check right value homework description' do
-      expect(homework.description).to eq('test_description')
+      expect(homework_test.description).to eq('test_description')
     end
 
     it 'check right value homework title' do
-      expect(homework.title).to eq('test_title')
+      expect(homework_test.title).to eq('test_title')
     end
   end
 
-  describe 'check method subscride' do
+  describe '#subscride' do
     it 'return value is instance of class Array' do
       expect(mentor.subscribe_to!(student)).to be_an_instance_of(Array)
     end
@@ -39,7 +45,7 @@ RSpec.describe Mentor do
     end
   end
 
-  describe 'check method notification' do
+  describe '#notification' do
     it 'return value is instanse of class Array' do
       expect(mentor.notifications).to be_an_instance_of(Array)
     end
@@ -54,23 +60,25 @@ RSpec.describe Mentor do
     end
   end
 
-  describe 'check method mark_as_read' do
+  describe '#mark_as_read!' do
     it 'return clear Array' do
       expect(mentor.mark_as_read!).to eq([])
     end
   end
 
-  describe 'check method reject_to_work!' do
-    it 'change status homework to rejected' do
-      mentor.reject_to_work!(homework)
-      expect(homework.status_homework).to eq('rejected')
+  describe '#status_homework' do
+    context 'when check method reject_to_work!' do
+      it 'change status homework to rejected' do
+        mentor.reject_to_work!(homework)
+        expect(homework.status_homework).to eq('rejected')
+      end
     end
-  end
 
-  describe 'check method accept' do
-    it 'change status homework to accepted' do
-      mentor.accept!(homework)
-      expect(homework.status_homework).to eq('accepted')
+    describe '#accept!' do
+      it 'change status homework to accepted' do
+        mentor.accept!(homework)
+        expect(homework.status_homework).to eq('accepted')
+      end
     end
   end
 end

@@ -10,7 +10,7 @@ RSpec.describe Homework do
   let(:mentor) { Mentor.new(name: 'mentor_name', surname: 'mentor_surname') }
   let(:test_homework) { described_class.new('hw_title', 'hw_description', student, mentor) }
 
-  describe 'check information about student and mentor' do
+  context 'when check information about student and mentor' do
     it 'check right student name' do
       expect(test_homework.student.name).to eq('student_name')
     end
@@ -28,7 +28,7 @@ RSpec.describe Homework do
     end
   end
 
-  describe 'checked method print' do
+  describe '#print_homework' do
     it 'method return instance of Array' do
       expect(test_homework.print_homework).to be_an_instance_of(Array)
     end
