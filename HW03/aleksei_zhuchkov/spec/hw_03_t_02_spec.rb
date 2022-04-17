@@ -2,8 +2,8 @@
 
 require_relative '../aleksei_zhuchkov_hw_03_t_02'
 
-RSpec.describe 'Homework3' do
-  let(:obj_hw3) { Homework3.new }
+RSpec.describe Homework3 do
+  let(:obj_hw3) { described_class.new }
 
   describe 'Testing basics things' do
     it 'return value is Array type' do
