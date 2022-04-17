@@ -25,7 +25,7 @@ RSpec.describe Homework3 do
         LOGS
       end
 
-      it 'returns empty array' do
+      it 'returns an empty array' do
         expect(obj_hw3.task2(log)).to eq([])
       end
     end
