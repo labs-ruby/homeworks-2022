@@ -66,7 +66,7 @@ RSpec.describe Student do
         end
 
         it 'this method return empty array' do
-          expect(student.homeworks.empty?).to eq(true)
+          expect(student.homeworks).to be_empty
         end
       end
     end
@@ -81,7 +81,7 @@ RSpec.describe Student do
 
       it 'add notification to mentor' do
         student.to_work!(homework)
-        expect(mentor.notifications.empty?).to eq(false)
+        expect(mentor.notifications).not_to be_empty
       end
     end
   end
@@ -90,12 +90,12 @@ RSpec.describe Student do
     context 'when check method add_answer!' do
       it 'storage_homework_answer doesn\'t empty when we add answer' do
         student.add_answer!(homework, 'test answer')
-        expect(homework.storage_homework_answer.empty?).to eq(false)
+        expect(homework.storage_homework_answer).not_to be_empty
       end
 
       it 'add notification to mentor' do
         student.add_answer!(homework, 'test answer')
-        expect(mentor.notifications.empty?).to eq(false)
+        expect(mentor.notifications).not_to be_empty
       end
     end
   end
@@ -109,7 +109,7 @@ RSpec.describe Student do
 
       it 'add notification to mentor' do
         student.to_work!(homework)
-        expect(mentor.notifications.empty?).to eq(false)
+        expect(mentor.notifications).not_to be_empty
       end
     end
   end
