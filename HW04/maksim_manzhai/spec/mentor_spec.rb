@@ -21,17 +21,14 @@ RSpec.describe Mentor do
   describe '#mark_as_read!' do
     let(:notification) { Notification.new(title: homework.title, description: 'Homework started') }
 
-    it 'sees empty array of notifications' do
-      expect(subject.notifications).to eq([])
-    end
+    before { subject.notifications << notification }
 
     it 'gets notification' do
-      expect { subject.notifications << notification }.to(change { subject.notifications.size })
+      expect(subject.notifications.size).to eq(1)
     end
 
     it 'marks as read all notifications' do
-      subject.notifications << notification
-      expect { subject.mark_as_read! }.to(change { subject.notifications[0].readed }.to(true))
+      expect { subject.mark_as_read! }.to(change { subject.notifications[0].readed }.from(false).to(true))
     end
   end
 
