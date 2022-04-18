@@ -6,7 +6,7 @@ RSpec.describe Homework3 do
   describe '#task3' do
     subject { described_class.new.task3(log) }
 
-    context 'when the log contains one value' do
+    context 'when the log contains one correct value' do
       let(:log) do
         <<~LOG
           2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event
