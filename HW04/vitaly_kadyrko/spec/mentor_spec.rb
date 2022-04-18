@@ -52,12 +52,11 @@ RSpec.describe Mentor do
 
   describe '#accept!' do
     it 'adds accept_message to student notifications array' do
-      expect(student.notifications[0]).to eq "Homework '#{homework.title}' was accepted"
+      expect { desribed_class.accept!(homework) }.to change(student.notifications).from ([]).to(["Homework '#{homework.title}' was accepted"])
     end
 
     it 'homework status switches to accepted!' do
-      described_class.accept!(homework)
-      expect { desribed_class.accept! }.to change(student, :status).from('Created').to('Accepted')
+      expect { desribed_class.accept!(homework) }.to change(homework.status).from('Created').to('Accepted')
     end
   end
 end
