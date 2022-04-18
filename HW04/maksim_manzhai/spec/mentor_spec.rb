@@ -13,10 +13,10 @@ RSpec.describe Mentor do
   let(:homework) { Homework.new(title: 'HW03', description: 'OOP in Ruby', student: student, mentor: subject) }
 
   describe '#add_homework' do
-    before { @homework_2 = subject.add_homework(title: 'HW03', description: 'OOP in Ruby', student: student) }
+    before { subject.add_homework(title: 'HW03', description: 'OOP in Ruby', student: student) }
 
     it 'returns an object of class Homework' do
-      expect(@homework_2).to be_a(Homework)
+      expect(homework).to be_a(Homework)
     end
 
     it 'student gets notification about new homework' do
@@ -42,8 +42,6 @@ RSpec.describe Mentor do
     it 'rejects homework and student gets notification' do
       expect(subject.reject_to_work!(homework).last).to be_a(Notification)
     end
-
-
   end
 
   describe '#accept!' do
