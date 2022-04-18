@@ -13,26 +13,23 @@ RSpec.describe Student do
   let(:homework) { Homework.new(title: 'HW03', description: 'OOP in Ruby', student: subject, mentor: mentor) }
 
   context 'when student see notification' do
-    it 'sees empty array of notifications' do
-      expect(subject.notifications).to eq([])
-    end
+    before { subject.notifications << notification }
 
     it 'gets notification' do
-      expect { subject.notifications << notification }.to(change { subject.notifications.size })
+      expect(subject.notifications.size).to eq(1)
     end
 
     it 'marks as read all notifications' do
-      subject.notifications << notification
-      expect { subject.mark_as_read! }.to(change { subject.notifications[0].readed }.to(true))
+      expect { subject.mark_as_read! }.to(change { subject.notifications[0].readed }.from(false).to(true))
     end
   end
 
-  describe 'when student see array of homeworks' do
-    it 'is empty' do
+  context 'when student see array of homeworks' do
+    it 'returns an empty array' do
       expect(subject.homeworks).to eql []
     end
 
-    it 'gets homework' do
+    it 'returns array with homework' do
       subject.homeworks << homework
       expect(subject.homeworks).to eql [homework]
     end
