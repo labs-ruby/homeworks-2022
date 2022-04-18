@@ -10,9 +10,11 @@ RSpec.describe Mentor do
   let(:mentor) { described_class.new(name: 'Test', surname: 'Mentor') }
   let(:homework) { desribed_class.add_homework(title: 'Test title', description: 'Test description', student: student) }
 
-  context 'when add_homework method used' do
+  desribe '#add_homework' do
+    subject { desribed_class.add_homework(title: 'Test title', description: 'Test description', student: student) }
+
     it 'returns Homework class object' do
-      expect(homework).to be_a(Homework)
+      expect(subject).to be_an_instance_of(Homework)
     end
 
     it 'adds new_homework_message to student notifications array' do
@@ -24,20 +26,20 @@ RSpec.describe Mentor do
     end
   end
 
-  context 'when subscribe_to! method used' do
+  desribe '#subscribe_to!' do
     it 'adds student to subscriptions array' do
       described_class.subscribe_to!(student)
       expect(described_class.subscriptions).to eq [student]
     end
   end
 
-  context 'when mark_as_read! method used' do
+  describe '#mark_as_read!' do
     it 'returns empty notifications array' do
       expect(described_class.notifications).to eq []
     end
   end
 
-  context 'when reject_to_work! method used' do
+  describe '#reject_to_work!' do
     it 'adds reject_work_message to student notification array' do
       expect { described_class.reject_to_work!(homework) }.to change { student.notifications.size }.to(1)
     end
@@ -48,7 +50,7 @@ RSpec.describe Mentor do
     end
   end
 
-  context 'when accept! method used' do
+  describe '#accept!' do
     it 'adds accept_message to student notifications array' do
       expect(student.notifications[0]).to eq "Homework '#{homework.title}' was accepted"
     end

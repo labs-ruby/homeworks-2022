@@ -34,4 +34,10 @@ RSpec.describe Homework do
       expect(homework.answers).to eq []
     end
   end
+
+  context 'when not all parameters given' do
+    it 'raises ArgumentError' do
+      expect { described_class.new(title: 'Test title', description: 'Test description', student: student) }.to raise_error(ArgumentError)
+    end
+  end
 end
