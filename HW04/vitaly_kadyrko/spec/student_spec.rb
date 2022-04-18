@@ -10,15 +10,17 @@ RSpec.describe Student do
   let(:mentor) { mentor.new(name: 'Test', surname: 'Mentor') }
   let(:homework) { mentor.add_homework(title: 'Test title', description: 'Test description', student: student) }
 
-  context 'when mark_as_read! method used' do
+  describe '#mark_as_read!' do
+    subject { desribed_class.notifications }
+
     it 'returns empty notifications array' do
       described_class.to_work!(homework)
       described_class.mark_as_read!
-      expect(described_class.notifications).to eq []
+      expect(subject).to eq []
     end
   end
 
-  context 'when to_work! method used' do
+  describe '#to_work!' do
     it 'adds new to_work message to mentor notifications array' do
       described_class.to_work!(homework)
       expect(mentor.notifications[0]).to eq "Homework '#{homework.title}' was started"
@@ -30,13 +32,13 @@ RSpec.describe Student do
     end
   end
 
-  context 'when add_answer! method used' do
+  describe '#add_answer!' do
     it 'returns object of homework class' do
       expect(described_class.add_answer!(homework, 'Test answer')).to eq homework.answers
     end
   end
 
-  context 'when to_check! method used' do
+  describe '#to_check!' do
     it 'adds new to_check message to mentor notifications array' do
       described_class.to_check!(homework)
       expect(mentor.notifications[0]).to eq "New answers to homework '#{homework.title}' was added"
