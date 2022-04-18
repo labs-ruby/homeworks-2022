@@ -57,7 +57,7 @@ RSpec.describe Mentor do
 
     it 'homework status switches to accepted!' do
       described_class.accept!(homework)
-      expect(homework.status).to eq 'Accepted'
+      expect { desribed_class.accept! }.to change(student, :status).from('Created').to('Accepted')
     end
   end
 end
