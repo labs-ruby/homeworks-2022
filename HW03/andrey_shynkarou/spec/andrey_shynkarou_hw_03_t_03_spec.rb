@@ -47,9 +47,7 @@ RSpec.describe Homework3 do
           LOGS
         end
 
-        it 'returns 0' do
-          expect(subject).to eq('0')
-        end
+        it { is_expected.to eq('0') }
       end
 
       context 'when there is one valid event' do
@@ -64,9 +62,7 @@ RSpec.describe Homework3 do
           LOGS
         end
 
-        it 'returns 0' do
-          expect(subject).to eq('0')
-        end
+        it { is_expected.to eq('0') }
       end
 
       context 'when there is two valid event' do
