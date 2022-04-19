@@ -6,7 +6,7 @@ RSpec.describe Homework3 do
   let(:obj) { Object.const_get('Homework3').new }
 
   describe '#task1' do
-    context 'when log that has right output' do
+    context 'when log has right output' do
       context 'when logs have one error' do
         let(:log) do
           <<~LOGS

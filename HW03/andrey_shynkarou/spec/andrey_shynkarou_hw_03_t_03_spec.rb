@@ -14,10 +14,10 @@ RSpec.describe Homework3 do
       end
     end
 
-    context 'when log that has right output' do
+    context 'when log has right output' do
       subject { obj.task3(log) }
 
-      context 'when there is more than 2 valid event' do
+      context 'when there are more than 2 valid event' do
         let(:log) do
           <<~LOGS
             2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event
@@ -65,7 +65,7 @@ RSpec.describe Homework3 do
         it { is_expected.to eq('0') }
       end
 
-      context 'when there is two valid event' do
+      context 'when there are two valid events' do
         let(:log) do
           <<~LOGS
             2018-12-31 23:59:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event
