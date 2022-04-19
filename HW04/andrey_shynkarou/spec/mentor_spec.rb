@@ -15,7 +15,7 @@ RSpec.describe Mentor do
     context 'when file exists' do
       let(:file) { File.new("#{File.dirname(__FILE__)}/notification.txt") }
 
-      it 'reads filename and puts text' do
+      it 'reads file and puts text' do
         allow(File).to receive(:open).with('notification.txt', 'r').and_return(file)
         expect { mentor.notifications }.to output.to_stdout
       end
@@ -25,7 +25,7 @@ RSpec.describe Mentor do
   describe '#add_homework' do
     let(:student) { Student.new(name: 'John', surname: 'Doe') }
 
-    context 'when filename exists' do
+    context 'when file exists' do
       let(:message) { "add_homeworkHW03, descriptionfor #{student.name} #{student.surname}.\n" }
       let(:file) { File.new("#{File.dirname(__FILE__)}/homework.txt") }
 
@@ -45,7 +45,7 @@ RSpec.describe Mentor do
   end
 
   describe '#mark_as_read!' do
-    context 'when filename exists' do
+    context 'when file exists' do
       let(:file) { File.new("#{File.dirname(__FILE__)}/notification.txt") }
       let(:message) { '' }
 
@@ -58,7 +58,7 @@ RSpec.describe Mentor do
   end
 
   describe '#accept!' do
-    context 'when filename exists' do
+    context 'when file exists' do
       let(:file) { File.new("#{File.dirname(__FILE__)}/notification.txt") }
       let(:message) { "Homework HW03 description homework is accepted.\n" }
 
@@ -71,7 +71,7 @@ RSpec.describe Mentor do
   end
 
   describe '#reject_to_work!' do
-    context 'when filename exists' do
+    context 'when file exists' do
       let(:file) { File.new("#{File.dirname(__FILE__)}/notification.txt") }
       let(:message) { "Answer for  HW03 description homework is rejected.\n" }
 
@@ -84,7 +84,7 @@ RSpec.describe Mentor do
   end
 
   describe '#subscribe_to!' do
-    context 'when filename exists' do
+    context 'when file exists' do
       let(:student) { Student.new(name: 'John', surname: 'Doe') }
       let(:file) { File.new("#{File.dirname(__FILE__)}/notification.txt") }
       let(:message) { "Mentor #{name} #{surname} is subscribed to #{student.name} #{student.surname}.\n" }

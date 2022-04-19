@@ -15,7 +15,7 @@ RSpec.describe Student do
     context 'when file exists' do
       let(:file) { File.new("#{File.dirname(__FILE__)}/notification.txt") }
 
-      it 'reads filename and puts text' do
+      it 'reads file and puts text' do
         allow(File).to receive(:open).with('notification.txt', 'r').and_return(file)
         expect { student.notifications }.to output.to_stdout
       end
@@ -23,7 +23,7 @@ RSpec.describe Student do
   end
 
   describe '#mark_as_read!' do
-    context 'when filename exists' do
+    context 'when file exists' do
       let(:file) { File.new("#{File.dirname(__FILE__)}/notification.txt") }
       let(:message) { '' }
 
@@ -36,10 +36,10 @@ RSpec.describe Student do
   end
 
   describe '#homeworks' do
-    context 'when filename exists' do
+    context 'when file exists' do
       let(:file) { File.new("#{File.dirname(__FILE__)}/homework.txt") }
 
-      it 'reads filename and puts text' do
+      it 'reads file and puts text' do
         allow(File).to receive(:open).with('homework.txt', 'r').and_return(file)
         expect { student.homeworks }.to output.to_stdout
       end
@@ -47,7 +47,7 @@ RSpec.describe Student do
   end
 
   describe '#to_work!' do
-    context 'when filename exists' do
+    context 'when file exists' do
       let(:file) { File.new("#{File.dirname(__FILE__)}/notification.txt") }
       let(:message) { "#{name} #{surname} left message #{homework.title} is doing.\n" }
 
@@ -60,7 +60,7 @@ RSpec.describe Student do
   end
 
   describe '#add_answer!' do
-    context 'when filename exists' do
+    context 'when file exists' do
       let(:file) { File.new("#{File.dirname(__FILE__)}/notification.txt") }
       let(:message) { "#{name} #{surname} was solved for #{homework.title}. Answer is new students answer.\n" }
 
@@ -73,7 +73,7 @@ RSpec.describe Student do
   end
 
   describe '#to_check!' do
-    context 'when filename exists' do
+    context 'when file exists' do
       let(:file) { File.new("#{File.dirname(__FILE__)}/notification.txt") }
       let(:message) { "#{name} #{surname} left message #{homework.title} needs to check.\n" }
 
