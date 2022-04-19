@@ -9,7 +9,7 @@ RSpec.describe Homework do
   let(:mentor) { Mentor.new(name: 'Test', surname: 'Mentor') }
   let(:homework) { described_class.new(title: 'Test title', description: 'Test description', student: student, mentor: mentor) }
 
-  context 'when all parameters given' do
+  context 'when new homework is created' do
     it 'title transfers correct' do
       expect(homework.title).to eq 'Test title'
     end
@@ -32,12 +32,6 @@ RSpec.describe Homework do
 
     it 'Answers array is empty' do
       expect(homework.answers).to eq []
-    end
-  end
-
-  context 'when not all parameters given' do
-    it 'raises ArgumentError' do
-      expect { described_class.new(title: 'Test title', description: 'Test description', student: student) }.to raise_error(ArgumentError)
     end
   end
 end
