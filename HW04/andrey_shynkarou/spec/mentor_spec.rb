@@ -34,7 +34,6 @@ RSpec.describe Mentor do
         allow(File).to receive(:open).with('homework.txt', 'w').and_return(file)
         allow(file).to receive(:write).with(message)
         expect(File.read("#{File.dirname(__FILE__)}/homework.txt")).to eq(message)
-        # expect(mentor.add_homework(title: 'HW03', description: 'description', student: student)).to eq(message)
       end
 
       it 'add homework contain a homework.object' do
