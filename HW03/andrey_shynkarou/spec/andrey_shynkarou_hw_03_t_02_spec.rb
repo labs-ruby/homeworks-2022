@@ -7,13 +7,13 @@ RSpec.describe Homework3 do
 
   describe '#task2' do
     context 'when log has wrong output' do
-      context 'when text are not given' do
+      context 'when text is not given' do
         it 'returns an empty array' do
           expect(obj.task2('')).to eq([])
         end
       end
 
-      context 'when text given in wrong format' do
+      context 'when text is given in wrong format' do
         let(:log) do
           <<~LOGS
             10.6.246.103 - - "POST /test/2/messages HTTP/1.1" 200 48 0.0498
@@ -28,7 +28,7 @@ RSpec.describe Homework3 do
         end
       end
 
-      context 'when no arguments is given' do
+      context 'when no arguments are given' do
         it 'returns ArgumentError' do
           expect { obj.task2 }.to raise_error(ArgumentError)
         end
@@ -38,7 +38,7 @@ RSpec.describe Homework3 do
     context 'when log has right output' do
       subject { obj.task2(log) }
 
-      context 'when text given in right format' do
+      context 'when text is given in right format' do
         let(:log) do
           <<~LOGS
             10.6.246.103 - - [23/Apr/2018:20:30:39 +0300] "POST /test/2/messages HTTP/1.1" 200 48 0.0498

@@ -61,13 +61,13 @@ RSpec.describe Homework3 do
     end
 
     context 'when log has wrong output' do
-      context 'when text are not given' do
+      context 'when text is not given' do
         it 'returns an empty string' do
           expect(obj.task1('')).to eq('')
         end
       end
 
-      context 'when no arguments is given' do
+      context 'when no arguments are given' do
         it 'returns ArgumentError' do
           expect { obj.task1 }.to raise_error(ArgumentError)
         end

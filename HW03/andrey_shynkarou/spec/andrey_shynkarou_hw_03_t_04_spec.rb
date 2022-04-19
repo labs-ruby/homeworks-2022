@@ -13,7 +13,7 @@ RSpec.describe Homework3 do
         end
       end
 
-      context 'when word consists letters,symbols and digits' do
+      context 'when word consists of letters, symbols and digits' do
         it 'returns number of letters and digits' do
           expect(obj.task4('123_45q-+./,wert')).to eq({ digits: 5, letters: 5 })
         end
@@ -25,7 +25,7 @@ RSpec.describe Homework3 do
         end
       end
 
-      context 'when no arguments is given' do
+      context 'when no arguments are given' do
         it 'returns ArgumentError' do
           expect { obj.task4 }.to raise_error(ArgumentError)
         end
