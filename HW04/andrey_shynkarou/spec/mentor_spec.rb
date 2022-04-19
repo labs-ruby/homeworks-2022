@@ -13,11 +13,10 @@ RSpec.describe Mentor do
 
   describe '#notifications' do
     context 'when file exists' do
-      let(:filename) { 'notification.txt' }
       let(:file) { File.new("#{File.dirname(__FILE__)}/notification.txt") }
 
       it 'reads filename and puts text' do
-        allow(File).to receive(:open).with(filename, 'r').and_return(file)
+        allow(File).to receive(:open).with('notification.txt', 'r').and_return(file)
         expect { mentor.notifications }.to output.to_stdout
       end
     end
@@ -30,15 +29,16 @@ RSpec.describe Mentor do
       let(:message) { "add_homeworkHW03, descriptionfor #{student.name} #{student.surname}.\n" }
       let(:file) { File.new("#{File.dirname(__FILE__)}/homework.txt") }
 
-      it 'adds homework to homework_file' do
+      before do
         allow(File).to receive(:open).with('homework.txt', 'w').and_return(file)
         allow(file).to receive(:write).with(message)
+      end
+
+      it 'adds homework to homework_file' do
         expect(File.read("#{File.dirname(__FILE__)}/homework.txt")).to eq(message)
       end
 
       it 'contains a homework.object' do
-        allow(File).to receive(:open).with('homework.txt', 'w').and_return(file)
-        allow(file).to receive(:write).with(message)
         expect(mentor.add_homework(title: 'HW03', description: 'description', student: student)).to be_a Homework
       end
     end

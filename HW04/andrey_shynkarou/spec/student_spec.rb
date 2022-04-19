@@ -13,11 +13,10 @@ RSpec.describe Student do
 
   describe '#notifications' do
     context 'when file exists' do
-      let(:filename) { 'notification.txt' }
       let(:file) { File.new("#{File.dirname(__FILE__)}/notification.txt") }
 
       it 'reads filename and puts text' do
-        allow(File).to receive(:open).with(filename, 'r').and_return(file)
+        allow(File).to receive(:open).with('notification.txt', 'r').and_return(file)
         expect { student.notifications }.to output.to_stdout
       end
     end
@@ -38,11 +37,10 @@ RSpec.describe Student do
 
   describe '#homeworks' do
     context 'when filename exists' do
-      let(:filename) { 'homework.txt' }
       let(:file) { File.new("#{File.dirname(__FILE__)}/homework.txt") }
 
       it 'reads filename and puts text' do
-        allow(File).to receive(:open).with(filename, 'r').and_return(file)
+        allow(File).to receive(:open).with('homework.txt', 'r').and_return(file)
         expect { student.homeworks }.to output.to_stdout
       end
     end
