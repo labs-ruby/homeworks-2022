@@ -3,7 +3,7 @@
 require_relative '../andrey_shynkarou_hw_03_t_03'
 
 RSpec.describe Homework3 do
-  let(:obj) { Object.const_get('Homework3').new }
+  subject(:obj) { Object.const_get('Homework3').new }
 
   describe '#task3' do
     context 'when log has wrong output' do

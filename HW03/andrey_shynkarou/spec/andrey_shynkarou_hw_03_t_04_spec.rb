@@ -3,7 +3,7 @@
 require_relative '../andrey_shynkarou_hw_03_t_04'
 
 RSpec.describe Homework3 do
-  let(:obj) { Object.const_get('Homework3').new }
+  subject(:obj) { Object.const_get('Homework3').new }
 
   describe '#task4' do
     context 'when counter of letters and digits in the string' do
