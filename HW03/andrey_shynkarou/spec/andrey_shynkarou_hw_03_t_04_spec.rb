@@ -26,7 +26,7 @@ RSpec.describe Homework3 do
       end
 
       context 'when no arguments are given' do
-        it 'returns ArgumentError' do
+        it 'raises ArgumentError' do
           expect { obj.task4 }.to raise_error(ArgumentError)
         end
       end

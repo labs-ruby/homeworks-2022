@@ -8,7 +8,7 @@ RSpec.describe Homework3 do
   describe '#task3' do
     context 'when log has wrong output' do
       context 'when no arguments given' do
-        it 'returns ArgumentError' do
+        it 'raises ArgumentError' do
           expect { obj.task3 }.to raise_error(ArgumentError)
         end
       end
