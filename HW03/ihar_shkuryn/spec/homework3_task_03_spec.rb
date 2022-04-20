@@ -6,7 +6,7 @@ RSpec.describe Homework3 do
   let(:obj) { described_class.new }
 
   describe 'Log has wrong output' do
-    context 'when log is a nil' do
+    context 'when log is not present' do
       let(:log) { nil }
 
       it 'when log.nil?' do
