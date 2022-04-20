@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Person do
   subject(:create) { described_class.new(name: 'John', surname: 'Doe') }
 
@@ -49,3 +50,5 @@ RSpec.describe Person do
     end
   end
 end
+
+# rubocop:enable Metrics/BlockLength

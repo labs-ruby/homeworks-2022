@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Notification do
   subject(:create) { described_class.new('Test', 'Test notification') }
 
@@ -64,3 +65,5 @@ RSpec.describe Notification do
     end
   end
 end
+
+# rubocop:enable Metrics/BlockLength
