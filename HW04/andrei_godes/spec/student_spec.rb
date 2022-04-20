@@ -9,7 +9,7 @@ RSpec.describe Student do
   let(:mentor) { described_class.new(name: 'MentorName', surname: 'MentorSurname') }
   let(:student) { described_class.new(name: 'StudentName', surname: 'StudentSurname') }
 
-  describe 'mark_as_read!' do
+  describe '#mark_as_read!' do
     let(:notification) { Notification.new }
 
     it 'student mark notification as read (clear array of notifications)' do
