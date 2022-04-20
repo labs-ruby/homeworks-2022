@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative "#{File.dirname(__FILE__)}/../../../spec/spec_helper.rb"
-require_relative "#{File.dirname(__FILE__)}/../anastasia_evsihneyeva_hw_03_t_03"
+require_relative '../../../spec/spec_helper'
+require_relative '../anastasia_evsihneyeva_hw_03_t_03'
 
 RSpec.describe Homework3 do
   context 'when passed string is empty' do

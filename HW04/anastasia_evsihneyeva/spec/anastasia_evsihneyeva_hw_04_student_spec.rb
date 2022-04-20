@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "#{File.dirname(__FILE__)}/../lib/homework"
-require_relative "#{File.dirname(__FILE__)}/../lib/mentor"
-require_relative "#{File.dirname(__FILE__)}/../lib/student"
-require_relative "#{File.dirname(__FILE__)}/../lib/notification"
-require_relative "#{File.dirname(__FILE__)}/../../../spec/spec_helper.rb"
+require_relative '../lib/homework'
+require_relative '../lib/mentor'
+require_relative '../lib/student'
+require_relative '../lib/notification'
+require_relative '../../../spec/spec_helper'
 
 RSpec.describe Student do
   subject { described_class.new(name: 'student_name', surname: 'student_surname') }
