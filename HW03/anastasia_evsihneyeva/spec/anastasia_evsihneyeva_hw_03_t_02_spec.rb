@@ -4,6 +4,8 @@ require_relative '../../../spec/spec_helper'
 require_relative '../anastasia_evsihneyeva_hw_03_t_02'
 
 RSpec.describe Homework3 do
+  subject { described_class.new }
+
   let(:log1) do
     "2018-04-23 20:30:42: SSL error, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSLError: System error: Undefined error: 0 - 0>
      2018-04-23 20:30:45: SSL error, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSLError: System error: ScriptError error: 0 - 0>"
@@ -16,13 +18,13 @@ RSpec.describe Homework3 do
 
   context 'when passed string is empty' do
     it 'returns an empty array' do
-      expect(subject { described_class.configuration }.task2('')).to eq []
+      expect(subject.task2('')).to eq []
     end
   end
 
   context 'when string doesn\'t contain suitable information' do
     it 'returns an empty array' do
-      expect(subject { described_class.configuration }.task2(log1)).to eq []
+      expect(subject.task2(log1)).to eq []
     end
   end
 
@@ -32,7 +34,7 @@ RSpec.describe Homework3 do
     end
 
     it 'returns list of strings in suitable format' do
-      expect(subject { described_class.configuration }.task2(log2)).to eq(expected_output)
+      expect(subject.task2(log2)).to eq(expected_output)
     end
   end
 end
