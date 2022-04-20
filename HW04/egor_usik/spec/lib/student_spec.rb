@@ -3,7 +3,7 @@
 require_relative '../../lib/student'
 
 RSpec.describe Student do
-  subject(:create) { described_class.new(name: 'Sam', surname: 'Smith') }
+  subject { described_class.new(name: 'Sam', surname: 'Smith') }
 
   describe '#initialize' do
     context 'when no arguments are given' do
@@ -16,7 +16,7 @@ RSpec.describe Student do
   describe '#homeworks' do
     context 'when no arguments are given' do
       it 'returns nil' do
-        expect(described_class.new).to be_nil
+        expect(subject).to be_nil
       end
     end
   end
