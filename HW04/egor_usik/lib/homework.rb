@@ -12,7 +12,6 @@ class Homework
   include HomeworkStatuses
 
   attr_accessor :title, :description, :creator
-  attr_reader :answers, :status
 
   def initialize(title, description)
     @title = title
@@ -26,14 +25,20 @@ class Homework
     @answers << answer
   end
 
-  def mark_as!(status)
-    raise StandardError, 'The status of accepted homework can not be changed.' if accepted?
-    raise StandardError, 'The status of homework can not be changed to NEW.' if status.zero? && @status != 0
-    if status == 3 && executing?
-      raise StandardError, 'The status of the homework is executing can not be changed to REJECTED.'
-    end
+  def mark_as_executing!
+    @status = HomeworkStatuses::EXECUTING
+  end
 
-    @status = status
+  def mark_as_done!
+    @status = HomeworkStatuses::DONE
+  end
+
+  def mark_as_rejected!
+    @status = HomeworkStatuses::REJECTED
+  end
+
+  def mark_as_accepted!
+    @status = HomeworkStatuses::ACCEPTED
   end
 
   protected

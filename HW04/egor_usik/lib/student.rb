@@ -10,14 +10,13 @@ class Student < Person
   end
 
   def homeworks
-    return [] if number_of_homeworks.zero?
+    return '> There are no new homeworks.' if number_of_homeworks.zero?
 
-    @homeworks
+    puts "Homeworks:\n"
+    @homeworks.each { |hw| puts "- #{hw.title} (#{hw.description})." }
   end
 
   def add_homework(homework)
-    return if homework.nil?
-
     @homeworks << homework
   end
 
@@ -25,7 +24,7 @@ class Student < Person
     homework.creator.add_notification(Notification.new('Homework started.',
                                                        "Student '#{fullname}' \
                                                        has started doing homework '#{homework.title}'."))
-    homework.mark_as!(HomeworkStatuses::EXECUTING)
+    homework.mark_as_executing!
   end
 
   def add_answer!(homework, answer)
@@ -39,7 +38,7 @@ class Student < Person
     homework.creator.add_notification(Notification.new('Homework is done.',
                                                        "Homework '#{homework.title}' \
                                                        needs to be checked."))
-    homework.mark_as!(HomeworkStatuses::DONE)
+    homework.mark_as_done!
   end
 
   private

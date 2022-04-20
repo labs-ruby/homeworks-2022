@@ -15,13 +15,20 @@ class Person
   end
 
   def notifications
-    return [] if number_of_unread_notifications.zero?
+    if number_of_unread_notifications.zero?
+      puts '> There are no new notifications.'
+      return
+    end
 
-    unread_notifications
+    unread_notifications.each do |notification|
+      puts "> New notification for '#{fullname}' \
+      (#{self.class.name}): #{notification.title} \
+      (#{notification.description})"
+    end
   end
 
   def mark_as_read!
-    unread_notifications.map!(&:mark_as_read!)
+    unread_notifications.map!(&:mark_as_read)
   end
 
   protected

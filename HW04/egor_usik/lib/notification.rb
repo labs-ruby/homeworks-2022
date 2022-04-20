@@ -15,11 +15,11 @@ class Notification
     !@read
   end
 
-  def mark_as_read!
+  def mark_as_read
     @read = true
   end
 
-  def mark_as_unread!
+  def mark_as_unread
     @read = false
   end
 end
