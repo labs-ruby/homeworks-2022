@@ -23,7 +23,7 @@ RSpec.describe Mentor do
     end
   end
 
-  describe 'mark_as_read!' do
+  describe '#mark_as_read!' do
     let(:notification) { Notification.new }
 
     it 'clears the array of notifications' do
