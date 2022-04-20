@@ -33,7 +33,7 @@ RSpec.describe Mentor do
     end
   end
 
-  describe '#add homework' do
+  describe '#add_homework' do
     context 'when fields is correct' do
       let(:homework) { obj.add_homework(title: 'HW03', description: 'epam homework', student: student) }
 
@@ -62,6 +62,13 @@ RSpec.describe Mentor do
     it 'student notice added' do
       student.notices.push(notice)
       expect(student.notices).to include(notice)
+    end
+  end
+
+  describe '#subscribe_to!' do
+    it 'returns array of mentor subscriptions' do
+      obj.subscribe_to!(student)
+      expect(obj.subscriptions).to include(student)
     end
   end
 end
