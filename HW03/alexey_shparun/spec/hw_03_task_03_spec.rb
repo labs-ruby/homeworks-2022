@@ -19,7 +19,7 @@ RSpec.describe Homework3 do
         LOGS
       end
 
-      it 'return type of strind' do
+      it 'returns type of string' do
         expect(obj.task3(log)).to be_an_instance_of(String)
       end
     end

@@ -19,7 +19,7 @@ RSpec.describe Homework do
     end
 
     context 'when not all arguments have been passed on' do
-      it 'not all arguments' do
+      it 'raises ArgumentError' do
         expect { described_class.new(description, mentor, student) }.to raise_error(ArgumentError)
       end
     end

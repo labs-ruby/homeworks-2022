@@ -8,9 +8,10 @@ require_relative '../lib/notification'
 RSpec.describe Mentor do
   let(:student) { Student.new(name: 'Alexey', surname: 'Shparun') }
   let(:mentor) { described_class.new(name: 'Vasya', surname: 'Klapan') }
-  let(:hw) { mentor.add_homework(title: 'HW04', description: 'description', student: student) }
+  
 
-  describe 'add_homework' do
+  describe '#add_homework' do
+    let(:hw) { mentor.add_homework(title: 'HW04', description: 'description', student: student) }
     context 'when arguments is correct' do
       it 'return object of class' do
         expect(hw).to be_a(Homework)
@@ -24,7 +25,7 @@ RSpec.describe Mentor do
     end
   end
 
-  describe 'subscribe_to' do
+  describe '#subscribe_to' do
     context 'when mentor subscribe' do
       it 'return student list' do
         expect { mentor.subscribe_to!(student) }.to change(mentor, :student_list).to eq [student]
@@ -32,19 +33,21 @@ RSpec.describe Mentor do
     end
   end
 
-  describe 'mark_as_read!' do
+  describe '#mark_as_read!' do
+    let(:hw) { mentor.add_homework(title: 'HW04', description: 'description', student: student) }
     context 'when mentor marks as read' do
       before do
         student.to_work!(hw)
       end
 
       it 'return empty array' do
-        expect { mentor.mark_as_read! }.to change(mentor, :notifications_list).to eq []
+        expect { mentor.mark_as_read! }.to change(mentor, :notifications_list).from([Notification]).to([])
       end
     end
   end
 
-  describe 'accept!' do
+  describe '#accept!' do
+    let(:hw) { mentor.add_homework(title: 'HW04', description: 'description', student: student) }
     context 'when mentor accept' do
       it 'returns notifications with rejection' do
         expect { mentor.accept!(hw) }.to change { student.notifications_list.length }.to(1)
@@ -52,7 +55,8 @@ RSpec.describe Mentor do
     end
   end
 
-  describe 'reject_to_work!' do
+  describe '#reject_to_work!' do
+    let(:hw) { mentor.add_homework(title: 'HW04', description: 'description', student: student) }
     context 'when mentor reject_to_work' do
       it 'returns notifications with rejection' do
         expect { mentor.reject_to_work!(hw) }.to change { student.notifications_list.length }.to(1)
