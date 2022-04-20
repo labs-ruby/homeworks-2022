@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../../lib/student'
+
 RSpec.describe Student do
   subject(:create) { described_class.new(name: 'Sam', surname: 'Smith') }
 

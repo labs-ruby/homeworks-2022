@@ -3,12 +3,6 @@
 require_relative 'expressions'
 
 class Homework3
-  # def task2(text)
-  #   text.scan(Expressions::POST_REQUEST).map! do |_req|
-  #     "DATE: #{Regexp.last_match(2)} FROM: #{Regexp.last_match(1)} TO: #{Regexp.last_match(3).upcase}"
-  #   end
-  # end
-
   DATE = /\[(.*)\]/
   FROM = /(.*)(?=\ - -)/
   TO = %r{/te(.*)(?=\ H)}

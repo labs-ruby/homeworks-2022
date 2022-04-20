@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../../lib/person'
+
 # rubocop:disable Metrics/BlockLength
 RSpec.describe Person do
   subject(:create) { described_class.new(name: 'John', surname: 'Doe') }

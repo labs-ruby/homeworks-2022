@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../../lib/mentor'
+
 # rubocop:disable Metrics/BlockLength
 RSpec.describe Mentor do
   subject(:create) { described_class.new(name: 'John', surname: 'Doe') }

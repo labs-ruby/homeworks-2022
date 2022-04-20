@@ -4,17 +4,6 @@ require 'date'
 require_relative 'expressions'
 
 class Homework3
-  # def task3(text)
-  #   calling_core_requests = text.scan(Expressions::CALLING_CORE_REQUEST)
-
-  #   return '0' if calling_core_requests.size.zero?
-
-  #   flattened_calling_core_requests = calling_core_requests.flatten
-  #   difference_between_dates = DateTime.parse(flattened_calling_core_requests[1])\
-  # - DateTime.parse(flattened_calling_core_requests.first)
-  #   p (difference_between_dates * 24 * 60 * 60).to_f.to_s
-  # end
-
   NUMS = /(.*)(?=\ ub)/
   SPLIT = /[\ :-]/
   def task3(logs)

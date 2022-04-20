@@ -12,6 +12,7 @@ class Homework
   include HomeworkStatuses
 
   attr_accessor :title, :description, :creator
+  attr_reader :status, :answers
 
   def initialize(title, description)
     @title = title

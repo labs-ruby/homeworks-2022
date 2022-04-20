@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../../lib/notification'
+
 # rubocop:disable Metrics/BlockLength
 RSpec.describe Notification do
   subject(:create) { described_class.new('Test', 'Test notification') }
