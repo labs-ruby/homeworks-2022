@@ -7,7 +7,7 @@ class Homework3
   REGEX_IP = /\d+\.\d+\.\d+\.\d+/
   REGEX_TEXT = %r{/\w+/\d/\w+}
   def task2(log)
-    return [] if log.instance_of?(NilClass)
+    return [] if log.nil?
 
     log.split("\n").delete_if { |string| valid_format?(string) != string }.map { |str| print_string(str) }
   end

@@ -2,7 +2,7 @@
 
 class Homework3
   def task1(log)
-    return '' if log.instance_of?(NilClass)
+    return '' if log.nil?
 
     log.split("\n").find { |message| message.include?('error') }.to_s
   end
