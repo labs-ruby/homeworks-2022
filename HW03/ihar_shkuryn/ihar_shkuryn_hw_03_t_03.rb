@@ -2,7 +2,7 @@
 
 require 'time'
 
-# frozen
+# get log as a string and return differences in seconds in lines including keyword
 class Homework3
   PATTERN = /Calling core with action:/
   def task3(log)
