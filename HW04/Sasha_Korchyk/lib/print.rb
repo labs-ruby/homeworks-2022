@@ -46,6 +46,6 @@ module PrintNotify
   end
 
   def print_ready(homew)
-    puts "Ready > Title: #{homew.title}, description: #{h.description}"
+    puts "Ready > Title: #{homew.title}, description: #{homew.description}"
   end
 end

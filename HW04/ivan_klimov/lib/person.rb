@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'notification'
+
 class Person
   include Notification
   attr_reader :name, :surname, :notifications, :homeworks

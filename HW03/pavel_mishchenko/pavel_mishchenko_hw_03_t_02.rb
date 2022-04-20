@@ -5,6 +5,8 @@ REGEX_DATE = %r{(\[\d+/\w+/\d+:\d+:\d+:\d+ \+\d{4}\])}
 REGEX_MESSAGE = /(".+")/
 class Homework3
   def task2(str)
+    raise TypeError unless str.is_a?(String)
+
     post_requests_log = post_requests(str)
     if post_requests_log.empty?
       post_requests_log

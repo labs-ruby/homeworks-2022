@@ -2,9 +2,11 @@
 
 require 'time'
 
-REGEX_DATE = /(\d+-\d+\d-\d+ \d+:\d+:\d+.\d+)/
+REGEX_LOG_DATE = /(\d+-\d+\d-\d+ \d+:\d+:\d+.\d+)/
 class Homework3
   def task3(log)
+    raise TypeError unless log.is_a?(String)
+
     arr = convert_to_time(core_actions(log))
     duration_of_actions(arr)
   end
@@ -16,7 +18,9 @@ class Homework3
   end
 
   def convert_to_time(arr)
-    arr.map { |line| Time.parse(line.scan(REGEX_DATE).flatten.first) }
+    arr.map do |line|
+      Time.parse(line.scan(REGEX_LOG_DATE).flatten.first) unless line.scan(REGEX_LOG_DATE).empty?
+    end.compact
   end
 
   def duration_of_actions(arr)
