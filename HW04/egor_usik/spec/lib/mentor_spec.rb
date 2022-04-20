@@ -17,7 +17,9 @@ RSpec.describe Mentor do
 
       it 'increments homeworks value by 1' do
         # student = instance_double("Student", :name => 'James', :description => 'Sam')
-        expect { create.add_homework(title: 'Test HW', description: 'Test desc', student: student_class) }.to change { create.homeworks.count }.by(1)
+        expect { create.add_homework(title: 'Test HW', description: 'Test desc', student: student_class) }.to change {
+                                                                                                                create.homeworks.count
+                                                                                                              }.by(1)
       end
     end
 
