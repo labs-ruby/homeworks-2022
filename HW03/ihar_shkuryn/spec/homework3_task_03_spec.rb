@@ -10,7 +10,7 @@ RSpec.describe Homework3 do
       let(:log) { nil }
 
       it 'when log.nil?' do
-        expect { obj.task3(log) }.to raise_error(TypeError, 'Only string are allowed')
+        expect { subject.task3(log) }.to raise_error(TypeError, 'Only string are allowed')
       end
     end
 
@@ -18,11 +18,11 @@ RSpec.describe Homework3 do
       let(:log) { '' }
 
       it 'output is a empty' do
-        expect(obj.task3(log)).to eq('0')
+        expect(subject.task3(log)).to eq('0')
       end
 
       it 'returns a string type' do
-        expect(obj.task3(log)).to be_an_instance_of(String)
+        expect(subject.task3(log)).to be_an_instance_of(String)
       end
     end
 
@@ -30,7 +30,7 @@ RSpec.describe Homework3 do
       let(:log) { ['error']  }
 
       it 'output is a empty' do
-        expect { obj.task3(log) }.to raise_error(TypeError, 'Only string are allowed')
+        expect { subject.task3(log) }.to raise_error(TypeError, 'Only string are allowed')
       end
     end
 
@@ -38,7 +38,7 @@ RSpec.describe Homework3 do
       let(:log) { true }
 
       it 'log  is a boolean' do
-        expect { obj.task3(log) }.to raise_error(TypeError, 'Only string are allowed')
+        expect { subject.task3(log) }.to raise_error(TypeError, 'Only string are allowed')
       end
     end
 
@@ -46,7 +46,7 @@ RSpec.describe Homework3 do
       let(:log) { []  }
 
       it 'returns TypeError in case log == array' do
-        expect { obj.task3(log) }.to raise_error(TypeError, 'Only string are allowed')
+        expect { subject.task3(log) }.to raise_error(TypeError, 'Only string are allowed')
       end
     end
   end

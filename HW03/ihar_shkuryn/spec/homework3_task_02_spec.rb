@@ -3,14 +3,14 @@
 require_relative '../ihar_shkuryn_hw_03_t_02'
 
 RSpec.describe Homework3 do
-  let(:obj) { described_class.new }
+  let(:subject) { described_class.new }
 
   describe 'Log has wrong output' do
     context 'when log is a nil' do
       let(:log) { nil }
 
       it 'output is a empty' do
-        expect(obj.task2(log)).to eq([])
+        expect(subject.task2(log)).to eq([])
       end
     end
 
@@ -18,7 +18,7 @@ RSpec.describe Homework3 do
       let(:log) { '' }
 
       it 'output is a empty array' do
-        expect(obj.task2(log)).to eq([])
+        expect(subject.task2(log)).to eq([])
       end
     end
 
@@ -26,7 +26,7 @@ RSpec.describe Homework3 do
       let(:log) { ['error'] }
 
       it 'output is a empty array' do
-        expect(obj.task2(log)).to eq([])
+        expect(subject.task2(log)).to eq([])
       end
     end
 
@@ -34,7 +34,7 @@ RSpec.describe Homework3 do
       let(:log) { true }
 
       it 'output is a empty' do
-        expect(obj.task2(log)).to eq([])
+        expect(subject.task2(log)).to eq([])
       end
     end
   end
@@ -59,11 +59,11 @@ RSpec.describe Homework3 do
       end
 
       it 'returns an array of formatted strings' do
-        expect(obj.task2(log)).to eq(right_output)
+        expect(subject.task2(log)).to eq(right_output)
       end
 
       it 'returns instance of array' do
-        expect(obj.task2(log)).to be_an_instance_of(Array)
+        expect(subject.task2(log)).to be_an_instance_of(Array)
       end
     end
   end
