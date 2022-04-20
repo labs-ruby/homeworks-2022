@@ -20,17 +20,20 @@ RSpec.describe Student do
     end
 
     it 'marks as read all notifications' do
-      expect { subject.mark_as_read! }.to(change { subject.notifications[0].readed }.from(false).to(true))
+      expect { subject.mark_as_read! }.to(change { subject.notifications.last.readed }.from(false).to(true))
     end
   end
 
-  context 'when student see array of homeworks' do
+  context 'when student see empty array of homeworks' do
     it 'returns an empty array' do
       expect(subject.homeworks).to eql []
     end
+  end
+
+  context 'when student see array with homeworks' do
+    before { subject.homeworks << homework }
 
     it 'returns array with homework' do
-      subject.homeworks << homework
       expect(subject.homeworks).to eql [homework]
     end
   end
