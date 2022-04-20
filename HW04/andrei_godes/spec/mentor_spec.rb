@@ -26,7 +26,7 @@ RSpec.describe Mentor do
   describe 'mark_as_read!' do
     let(:notification) { Notification.new }
 
-    it 'mentor mark notification as read (clear array of notifications)' do
+    it 'clears the array of notifications' do
       expect(mentor.notifications).to eql []
     end
   end
