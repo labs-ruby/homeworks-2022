@@ -10,32 +10,32 @@ require 'byebug'
 RSpec.describe Mentor do
   let(:name) { 'Jack' }
   let(:surname) { 'Gonsales' }
-  let(:obj) { described_class.new(name: name, surname: surname) }
+  let(:subject) { described_class.new(name: name, surname: surname) }
   let(:student) { Student.new(name: 'John', surname: 'Doe') }
 
   describe 'checking fields of instance' do
     context 'when fields is correct' do
       it 'returns instance of Mentor' do
-        expect(obj).to be_an_instance_of(described_class)
+        expect(subject).to be_an_instance_of(described_class)
       end
 
       it 'when name is correct' do
-        expect(obj.name).to eq(name)
+        expect(subject.name).to eq(name)
       end
 
       it 'when surname is correct' do
-        expect(obj.surname).to eq(surname)
+        expect(subject.surname).to eq(surname)
       end
 
       it 'when returns correct presentation' do
-        expect(obj.presentation).to eq("#{name} #{surname}")
+        expect(subject.presentation).to eq("#{name} #{surname}")
       end
     end
   end
 
   describe '#add_homework' do
     context 'when fields is correct' do
-      let(:homework) { obj.add_homework(title: 'HW03', description: 'epam homework', student: student) }
+      let(:homework) { subject.add_homework(title: 'HW03', description: 'epam homework', student: student) }
 
       it 'returns an object of class Homework' do
         expect(homework).to be_an_instance_of(Homework)
@@ -48,6 +48,7 @@ RSpec.describe Mentor do
   end
 
   describe 'notification creation'
+
   context 'when notification created' do
     let(:notice) { Notification.new(title: 'HW03') }
 
@@ -67,8 +68,8 @@ RSpec.describe Mentor do
 
   describe '#subscribe_to!' do
     it 'returns array of mentor subscriptions' do
-      obj.subscribe_to!(student)
-      expect(obj.subscriptions).to include(student)
+      subject.subscribe_to!(student)
+      expect(subject.subscriptions).to include(student)
     end
   end
 end
