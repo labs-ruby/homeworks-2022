@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Homework3' do
-  let(:hw03_task1) { Homework3.new }
+require_relative '../egor_usik_hw_03_t_01.rb'
+
+RSpec.describe Homework3 do
+  subject { described_class.new }
 
   describe '::log that has valid output' do
     context 'when the log file contains only one error line' do
@@ -18,7 +20,7 @@ RSpec.describe 'Homework3' do
       end
 
       it 'returns error line' do
-        expect(hw03_task1.task1(logs)).to eq(valid_error_line)
+        expect(subject.task1(logs)).to eq(valid_error_line)
       end
     end
 
@@ -36,7 +38,7 @@ RSpec.describe 'Homework3' do
       end
 
       it 'returns the first error line' do
-        expect(hw03_task1.task1(logs)).to eq(valid_error_line)
+        expect(subject.task1(logs)).to eq(valid_error_line)
       end
     end
 
@@ -50,13 +52,13 @@ RSpec.describe 'Homework3' do
       end
 
       it 'returns an empty string' do
-        expect(hw03_task1.task1(logs)).to eq('')
+        expect(subject.task1(logs)).to eq('')
       end
     end
 
     context 'when the log file contains no error lines' do
       it 'returns an empty string' do
-        expect(hw03_task1.task1('My invalid logfile')).to eq('')
+        expect(subject.task1('My invalid logfile')).to eq('')
       end
     end
   end
@@ -64,19 +66,19 @@ RSpec.describe 'Homework3' do
   describe '::log that has wrong output' do
     context 'when empty string is given' do
       it 'returns an empty string' do
-        expect(hw03_task1.task1('')).to eq('')
+        expect(subject.task1('')).to eq('')
       end
     end
 
     context 'when nil is given' do
       it 'returns an empty string' do
-        expect(hw03_task1.task1(nil)).to eq('')
+        expect(subject.task1(nil)).to eq('')
       end
     end
 
     context 'when no arguments are given' do
       it 'returns ArgumentError' do
-        expect { hw03_task1.task1 }.to raise_error(ArgumentError)
+        expect { subject.task1 }.to raise_error(ArgumentError)
       end
     end
   end

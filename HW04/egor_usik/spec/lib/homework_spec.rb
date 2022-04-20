@@ -78,4 +78,5 @@ RSpec.describe Homework do
     end
   end
 end
+
 # rubocop:enable Metrics/BlockLength

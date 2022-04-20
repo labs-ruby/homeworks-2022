@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Homework3' do
-  let(:obj) { Object.const_get(:Homework3).new }
+require_relative '../egor_usik_hw_03_t_02.rb'
+
+RSpec.describe Homework3 do
+  subject { described_class.new }
 
   describe '::log that has valid output' do
-    subject(:create) { obj.task2(logs) }
-
     context 'when the log file is given contains an error line' do
       let(:logs) do
         <<~LOGS
@@ -24,7 +24,7 @@ RSpec.describe 'Homework3' do
       end
 
       it 'returns an array' do
-        expect(create).to eq(right_logs)
+        expect(subject.task2(logs)).to eq(right_logs)
       end
     end
 
@@ -48,7 +48,7 @@ RSpec.describe 'Homework3' do
       end
 
       it 'returns an array' do
-        expect(create).to eq(right_logs)
+        expect(subject.task2(logs)).to eq(right_logs)
       end
     end
 
@@ -69,7 +69,7 @@ RSpec.describe 'Homework3' do
       end
 
       it 'returns an array' do
-        expect(create).to eq(right_logs)
+        expect(subject.task2(logs)).to eq(right_logs)
       end
     end
 
@@ -83,7 +83,7 @@ RSpec.describe 'Homework3' do
       end
 
       it 'returns an empty array' do
-        expect(create).to eq([])
+        expect(subject.task2(logs)).to eq([])
       end
     end
 
@@ -98,7 +98,7 @@ RSpec.describe 'Homework3' do
       end
 
       it 'returns an empty array' do
-        expect(create).to eq([])
+        expect(subject.task2(logs)).to eq([])
       end
     end
   end
@@ -106,19 +106,19 @@ RSpec.describe 'Homework3' do
   describe '::log that has invalid output' do
     context 'when empty string is given' do
       it 'returns an empty array' do
-        expect(obj.task2('')).to eq([])
+        expect(subject.task2('')).to eq([])
       end
     end
 
     context 'when nil is given' do
       it 'returns an empty array' do
-        expect(obj.task2(nil)).to eq([])
+        expect(subject.task2(nil)).to eq([])
       end
     end
 
     context 'when no arguments are given' do
       it 'returns an error' do
-        expect { obj.task2 }.to raise_error(ArgumentError)
+        expect { subject.task2 }.to raise_error(ArgumentError)
       end
     end
   end
