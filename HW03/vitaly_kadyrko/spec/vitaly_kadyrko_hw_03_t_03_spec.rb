@@ -21,7 +21,7 @@ RSpec.describe Homework3 do
     end
 
     it 'returns the firs two durations of the action' do
-      expect(t3_obj.task3(log)).to eq(['49.1', '60.0'])
+      expect(subject.task3(log)).to eq(['49.1', '60.0'])
     end
   end
 end

@@ -24,7 +24,7 @@ RSpec.describe Homework3 do
     end
 
     it 'returns array with corrected strings' do
-      expect(t2_obj.task2(log)).to eq(correct_output)
+      expect(subject.task2(log)).to eq(correct_output)
     end
   end
 end

@@ -19,7 +19,7 @@ RSpec.describe Homework3 do
     end
 
     it 'returns full line with double error' do
-      expect(t1_obj.task1(log)).to eq(double_error_line)
+      expect(subject.task1(log)).to eq(double_error_line)
     end
   end
 
@@ -34,7 +34,7 @@ RSpec.describe Homework3 do
     end
 
     it 'returns empty string' do
-      expect(t1_obj.task1(log)).to eq('')
+      expect(subject.task1(log)).to eq('')
     end
   end
 end

@@ -11,11 +11,7 @@ RSpec.describe Mentor do
   let(:homework) { desribed_class.add_homework(title: 'Test title', description: 'Test description', student: student) }
 
   desribe '#add_homework' do
-    subject { desribed_class.add_homework(title: 'Test title', description: 'Test description', student: student) }
-
-    it 'returns Homework class object' do
-      expect(subject).to be_an_instance_of(Homework)
-    end
+    before { desribed_class.add_homework(title: 'Test title', description: 'Test description', student: student) }
 
     it 'adds new_homework_message to student notifications array' do
       expect(student.notifications[0]).to eq "New homework '#{homework.title}' was added"
