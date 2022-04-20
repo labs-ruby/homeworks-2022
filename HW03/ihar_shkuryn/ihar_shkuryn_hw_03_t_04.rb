@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# frozen
+# get log as a string and return a hash containing count digits and letters
 class Homework3
   def task4(log)
     raise ArgumentError, 'Only string are allowed' unless log.is_a?(String)
