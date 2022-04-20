@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../egor_usik_hw_03_t_01.rb'
+require_relative '../egor_usik_hw_03_t_01'
 
 RSpec.describe Homework3 do
   subject { described_class.new }
