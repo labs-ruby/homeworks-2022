@@ -4,6 +4,8 @@ require_relative '../anastasia_evsihneyeva_hw_03_t_01'
 require_relative '../../../spec/spec_helper'
 
 RSpec.describe Homework3 do
+  subject { described_class.new }
+
   let(:log) do
     "2018-04-23 20:30:42: SSL error, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSLError: System error: Undefined error: 0 - 0>
     2018-04-23 20:30:45: SSL error, peer: 10.6.246.101, peer cert: , #<Puma::MiniSSL::SSLError: System error: ScriptError error: 0 - 0>
@@ -12,7 +14,7 @@ RSpec.describe Homework3 do
 
   context 'when there is no error strings in logs' do
     it 'returns empty string' do
-      expect(subject { described_class.configuration }.task1('blablabla')).to eq ''
+      expect(subject.task1('blablabla')).to eq ''
     end
   end
 
@@ -22,7 +24,7 @@ RSpec.describe Homework3 do
     end
 
     it 'returns first string' do
-      expect(subject { described_class.configuration }.task1(log)).to eq(expected_output)
+      expect(subject.task1(log)).to eq(expected_output)
     end
   end
 end
