@@ -6,13 +6,13 @@ require_relative 'spec_helper'
 RSpec.describe Homework3 do
   subject { described_class.new }
 
-  context 'when string consists letters and digits' do
+  context 'when string consists of letters and digits' do
     it 'returns number of letters and digits' do
       expect(subject.task4('aefgh455fd67')).to eq({ digits: 5, letters: 7 })
     end
   end
 
-  context 'when string consists letters, digits and symbols' do
+  context 'when string consists of letters, digits and symbols' do
     it 'returns number of letters and digits' do
       expect(subject.task4('1654bjh78-=0kjjhv')).to eq({ digits: 7, letters: 8 })
     end
