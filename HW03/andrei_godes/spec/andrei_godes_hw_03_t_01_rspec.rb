@@ -4,7 +4,7 @@ require_relative '../andrei_godes_hw_03_t_01'
 require_relative 'spec_helper'
 
 RSpec.describe Homework3 do
-  subject { described_class.new }
+  subject { described_class.new.task1(log) }
 
   context 'when there is no error' do
     let(:log) do
@@ -15,9 +15,7 @@ RSpec.describe Homework3 do
       LOG
     end
 
-    it 'returns the empty string' do
-      expect(subject.task1(log)).to eq('')
-    end
+    it { is_expected.to be_empty }
   end
 
   context 'when there is an error' do
@@ -33,8 +31,6 @@ RSpec.describe Homework3 do
       LOG
     end
 
-    it 'returns full text of the first line with an error' do
-      expect(subject.task1(log)).to eq(text_with_error)
-    end
+    it { is_expected.to eq(text_with_error) }
   end
 end
