@@ -4,7 +4,7 @@ require_relative '../andrei_godes_hw_03_t_03'
 require_relative 'spec_helper'
 
 RSpec.describe Homework3 do
-  subject { described_class.new }
+  subject { described_class.new.task3(log) }
 
   context 'when there is three or more valid event' do
     let(:log) do
@@ -21,9 +21,9 @@ RSpec.describe Homework3 do
       LOGS
     end
 
-    it 'returns duration of the action in seconds between all of the events' do
-      expect(subject.task3(log)).to eq(['49.1', '60.0', '670.0'])
-    end
+    
+    it { is_expected.to eq(['49.1', '60.0', '670.0'])}
+    
   end
 
   context 'when there is two valid events' do
@@ -39,9 +39,9 @@ RSpec.describe Homework3 do
       LOGS
     end
 
-    it 'returns duration of the action in seconds between these events' do
-      expect(subject.task3(log)).to eq('49.1')
-    end
+    
+      it { is_expected.to eq('49.1')}
+  end
 
     context 'when there is only one valid event' do
       let(:log) do
@@ -51,9 +51,9 @@ RSpec.describe Homework3 do
         LOGS
       end
 
-      it 'returns 0' do
-        expect(subject.task3(log)).to eq('0')
-      end
+      
+      it { is_expected.to eq('0')}
+      
     end
 
     context 'when there is no valid event' do
@@ -64,9 +64,9 @@ RSpec.describe Homework3 do
         LOGS
       end
 
-      it 'returns 0' do
-        expect(subject.task3(log)).to eq('0')
-      end
+      
+        it { is_expected.to eq('0')}
+      
     end
-  end
+  
 end
