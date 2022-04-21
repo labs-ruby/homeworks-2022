@@ -4,12 +4,15 @@ require_relative '../andrei_godes_hw_03_t_02'
 require_relative 'spec_helper'
 
 RSpec.describe Homework3 do
-  subject { described_class.new }
+  subject { described_class.new.task2(log) }
 
   context 'when the input is empty' do
-    it 'returns an empty array' do
-      expect(subject.task2('')).to eq([])
-    end
+    # it 'returns an empty array' do
+    #   expect(subject.task2('')).to eq([])
+    # end
+    subject { [] }
+
+    it { is_expected.to eq([]) }
   end
 
   context 'when some strings are in the right format' do
@@ -29,9 +32,7 @@ RSpec.describe Homework3 do
       ]
     end
 
-    it 'returns array only with format-matched strings' do
-      expect(subject.task2(log)).to eq(output)
-    end
+    it { is_expected.to eq(output) }
   end
 
   context 'when there are no mathing strings in the input' do
@@ -44,9 +45,7 @@ RSpec.describe Homework3 do
       LOG
     end
 
-    it 'returns an empty array' do
-      expect(subject.task2(log)).to eq([])
-    end
+    it { is_expected.to eq([]) }
   end
 
   context 'when all input is in the right format' do
@@ -65,8 +64,6 @@ RSpec.describe Homework3 do
       ]
     end
 
-    it 'returns array with all strings in right format' do
-      expect(subject.task2(log)).to eq(output)
-    end
+    it { is_expected.to eq(output) }
   end
 end
