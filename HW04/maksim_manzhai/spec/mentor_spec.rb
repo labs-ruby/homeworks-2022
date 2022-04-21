@@ -17,7 +17,7 @@ RSpec.describe Mentor do
       expect(homework).to be_a(Homework)
     end
 
-    it 'student gets notification about new homework' do
+    it 'sends notification to student about new homework' do
       expect { subject.add_homework(title: 'HW03', description: 'OOP in Ruby', student: student) }.to change { student.notifications.size }.from(0).to(1)
     end
   end
@@ -25,14 +25,18 @@ RSpec.describe Mentor do
   describe '#mark_as_read!' do
     let(:notification) { Notification.new(title: homework.title, description: 'Homework started') }
 
-    before { subject.notifications << notification }
-
-    it 'gets notification' do
-      # expect {  }.to change { subject.notifications.size }.from(0).to(1)
+    context 'when mentor gets notification' do
+      it 'increases number of notifications' do
+        expect { subject.notifications << notification }.to change { subject.notifications.size }.from(0).to(1)
+      end
     end
 
-    it 'marks as read all notifications' do
-      expect { subject.mark_as_read! }.to(change { subject.notifications.last.readed }.from(false).to(true))
+    context 'when mentor marks as read all notifications' do
+      before { subject.notifications << notification }
+
+      it 'marks all notifications as read' do
+        expect { subject.mark_as_read! }.to(change { subject.notifications.last.readed }.from(false).to(true))
+      end
     end
   end
 
