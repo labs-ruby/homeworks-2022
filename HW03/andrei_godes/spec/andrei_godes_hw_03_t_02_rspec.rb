@@ -7,9 +7,7 @@ RSpec.describe Homework3 do
   subject { described_class.new.task2(log) }
 
   context 'when the input is empty' do
-    # it 'returns an empty array' do
-    #   expect(subject.task2('')).to eq([])
-    # end
+    
     subject { [] }
 
     it { is_expected.to eq([]) }
