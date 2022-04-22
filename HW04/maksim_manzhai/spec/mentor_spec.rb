@@ -41,14 +41,14 @@ RSpec.describe Mentor do
   end
 
   describe '#reject_to_work!' do
-    it 'rejects homework and student gets notification' do
-      expect(subject.reject_to_work!(homework).last).to be_a(Notification)
+    it 'sends notification to student about reject homework' do
+      expect { subject.reject_to_work!(homework) }.to change { student.notifications.size }.from(0).to(1)
     end
   end
 
   describe '#accept!' do
-    it 'returns notification about acception of homework' do
-      expect(subject.accept!(homework).last).to be_a(Notification)
+    it 'sends notification to student about accept homework' do
+      expect { subject.accept!(homework) }.to change { student.notifications.size }.from(0).to(1)
     end
 
     it 'makes status of homework acceptable' do
