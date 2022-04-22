@@ -35,7 +35,7 @@ RSpec.describe Mentor do
       before { subject.notifications << notification }
 
       it 'marks all notifications as read' do
-        expect { subject.mark_as_read! }.to(change { subject.notifications.last.readed }.from(false).to(true))
+        expect { subject.mark_as_read! }.to change { subject.notifications.last.readed }.from(false).to(true)
       end
     end
   end
@@ -52,7 +52,7 @@ RSpec.describe Mentor do
     end
 
     it 'makes status of homework acceptable' do
-      expect { subject.accept!(homework) }.to(change(homework, :acceptable).from(false).to(true))
+      expect { subject.accept!(homework) }.to change(homework, :acceptable).from(false).to(true)
     end
   end
 end
