@@ -21,9 +21,7 @@ RSpec.describe Homework3 do
       LOGS
     end
 
-    
-    it { is_expected.to eq(['49.1', '60.0', '670.0'])}
-    
+    it { is_expected.to eq(['49.1', '60.0', '670.0']) }
   end
 
   context 'when there is two valid events' do
@@ -39,34 +37,28 @@ RSpec.describe Homework3 do
       LOGS
     end
 
-    
-      it { is_expected.to eq('49.1')}
+    it { is_expected.to eq('49.1') }
   end
 
-    context 'when there is only one valid event' do
-      let(:log) do
-        <<~LOGS
-          2018-12-31 23:59:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event
-          2018-12-31 23:59:49.7 ubuntu-xenial[14319] Debug - connecting to: 10.6.246.101
-        LOGS
-      end
-
-      
-      it { is_expected.to eq('0')}
-      
+  context 'when there is only one valid event' do
+    let(:log) do
+      <<~LOGS
+        2018-12-31 23:59:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event
+        2018-12-31 23:59:49.7 ubuntu-xenial[14319] Debug - connecting to: 10.6.246.101
+      LOGS
     end
 
-    context 'when there is no valid event' do
-      let(:log) do
-        <<~LOGS
-          2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - connecting to: 10.6.246.101
-          2018-04-23 17:17:49.8 ubuntu-xenial[14319] Debug - docker event processed
-        LOGS
-      end
+    it { is_expected.to eq('0') }
+  end
 
-      
-        it { is_expected.to eq('0')}
-      
+  context 'when there is no valid event' do
+    let(:log) do
+      <<~LOGS
+        2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - connecting to: 10.6.246.101
+        2018-04-23 17:17:49.8 ubuntu-xenial[14319] Debug - docker event processed
+      LOGS
     end
-  
+
+    it { is_expected.to eq('0') }
+  end
 end
