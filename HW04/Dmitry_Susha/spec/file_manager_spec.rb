@@ -11,14 +11,14 @@ RSpec.describe FileManager do
         File.delete('spec/helpers/test.txt')
       end
 
-      it 'file created' do
+      it 'creates file' do
         expect(foo_class.new.create_file(dir, file_name)).to be_a_kind_of(File)
       end
     end
   end
 
   describe '.add_data' do
-    context 'when succes add data in file' do
+    context 'when data present' do
       before do
         File.open('spec/helpers/test.txt', 'a+')
         3.times do
