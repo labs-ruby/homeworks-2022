@@ -13,10 +13,6 @@ RSpec.describe Student do
   let(:homework) { Homework.new(title: 'HW03', description: 'OOP in Ruby', student: subject, mentor: mentor) }
 
   describe '#mark_as_read!' do
-    it 'increases number of notifications' do
-      expect { subject.notifications << notification }.to change { subject.notifications.size }.from(0).to(1)
-    end
-
     context 'when student marks as read all notifications' do
       before { subject.notifications << notification }
 
