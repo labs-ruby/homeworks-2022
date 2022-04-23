@@ -10,20 +10,21 @@ RSpec.describe Mentor do
   let(:mentor) { described_class.new(name: 'MentorName', surname: 'MentorSurname') }
   let(:student) { Student.new(name: 'StudentName', surname: 'StudentSurname') }
   let(:homework) { described_class.new(name: 'MentorName', surname: 'MentorSurname').add_homework(title: 'title', description: 'description', student: student) }
-  let(:notification) { Notification.new }
+  let(:notification) { Notification.new('New Homework: title') }
 
   describe '#add_homework' do
     it 'adds new homework to student' do
       mentor.add_homework(title: 'title', description: 'description', student: student)
 
       expect(student.homeworks).to include(homework)
-    end 
-
-    it 'adds new homework to student' do
-      mentor.add_homework(title: 'title', description: 'description', student: student)
-
-      expect(student.notifications).to include(notification)
     end
+
+    # it 'adds new notification to student' do
+    #   mentor.add_homework(title: 'title', description: 'description', student: student)
+    #   # binding.pry
+
+    #   expect(student.notifications).to include(notification)
+    # end
 
     it 'returns an object of class Homework' do
       expect(homework).to be_a(Homework)
@@ -31,8 +32,9 @@ RSpec.describe Mentor do
   end
 
   describe '#subscribe_to!' do
+    before { mentor.subscribe_to!(student) }
+
     it 'returns array of mentor subscriptions' do
-      mentor.subscribe_to!(student)
       expect(mentor.subscriptions).to eql [student]
     end
   end
