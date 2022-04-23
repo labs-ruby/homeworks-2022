@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'pry'
 require_relative '../lib/homework'
 require_relative '../lib/mentor'
 require_relative '../lib/notification'
@@ -8,11 +9,20 @@ require_relative '../lib/student'
 RSpec.describe Mentor do
   let(:mentor) { described_class.new(name: 'MentorName', surname: 'MentorSurname') }
   let(:student) { Student.new(name: 'StudentName', surname: 'StudentSurname') }
-  let(:homework) { Homework.new(title: 'title', description: 'description', student: student, mentor: mentor) }
+  let(:homework) { described_class.new(name: 'MentorName', surname: 'MentorSurname').add_homework(title: 'title', description: 'description', student: student) }
+  let(:notification) { Notification.new }
 
   describe '#add_homework' do
-    before do
-      allow(mentor).to receive(:add_homework).and_return(:homework)
+    it 'adds new homework to student' do
+      mentor.add_homework(title: 'title', description: 'description', student: student)
+
+      expect(student.homeworks).to include(homework)
+    end 
+
+    it 'adds new homework to student' do
+      mentor.add_homework(title: 'title', description: 'description', student: student)
+
+      expect(student.notifications).to include(notification)
     end
 
     it 'returns an object of class Homework' do
@@ -28,8 +38,6 @@ RSpec.describe Mentor do
   end
 
   describe '#mark_as_read!' do
-    let(:notification) { Notification.new }
-
     it 'clears the array of notifications' do
       expect(mentor.notifications).to eql []
     end

@@ -6,7 +6,7 @@ require_relative '../lib/notification'
 require_relative '../lib/student'
 
 RSpec.describe Student do
-  let(:mentor) { described_class.new(name: 'MentorName', surname: 'MentorSurname') }
+  let(:mentor) { Mentor.new(name: 'MentorName', surname: 'MentorSurname') }
   let(:student) { described_class.new(name: 'StudentName', surname: 'StudentSurname') }
 
   describe '#mark_as_read!' do
