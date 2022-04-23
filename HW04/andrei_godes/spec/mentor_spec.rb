@@ -40,9 +40,11 @@ RSpec.describe Mentor do
   end
 
   describe '#mark_as_read!' do
-    it 'clears the array of notifications' do
-      expect(mentor.notifications).to eql []
-    end
+    subject { mentor.mark_as_read! }
+
+    before { mentor.notifications.push(notification) }
+
+    it { expect { subject }.to change { mentor.notifications.size }.from(1).to(0) }
   end
 
   describe '#reject_to_work!' do
