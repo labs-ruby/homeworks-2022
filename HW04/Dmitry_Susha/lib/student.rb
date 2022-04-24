@@ -14,7 +14,7 @@ class Student < User
     homework.to_work!
   end
 
-  def add_answer!(homework, answer)
+  def add_answer!(homework, answer = '')
     homework.add_answer!(answer)
   end
 
