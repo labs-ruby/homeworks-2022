@@ -10,11 +10,13 @@ RSpec.describe Student do
   let(:student) { described_class.new(name: 'StudentName', surname: 'StudentSurname') }
 
   describe '#mark_as_read!' do
-    let(:notification) { Notification.new }
+    subject { student.mark_as_read! }
 
-    it 'student mark notification as read (clear array of notifications)' do
-      expect(student.notifications).to eql []
-    end
+    let(:notification) { Notification.new('New Homework: title') }
+
+    before { student.notifications.push(notification) }
+
+    it { expect { subject }.to change { student.notifications.size }.from(1).to(0) }
   end
 
   describe '#to_work!' do

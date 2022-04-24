@@ -10,7 +10,6 @@ RSpec.describe Mentor do
   let(:mentor) { described_class.new(name: 'MentorName', surname: 'MentorSurname') }
   let(:student) { Student.new(name: 'StudentName', surname: 'StudentSurname') }
   let(:homework) { described_class.new(name: 'MentorName', surname: 'MentorSurname').add_homework(title: 'title', description: 'description', student: student) }
-  let(:notification) { Notification.new('New Homework: title') }
 
   describe '#add_homework' do
     it 'adds new homework to student' do
@@ -18,13 +17,6 @@ RSpec.describe Mentor do
 
       expect(student.homeworks).to include(homework)
     end
-
-    # it 'adds new notification to student' do
-    #   mentor.add_homework(title: 'title', description: 'description', student: student)
-    #   # binding.pry
-
-    #   expect(student.notifications).to include(notification)
-    # end
 
     it 'returns an object of class Homework' do
       expect(homework).to be_a(Homework)
@@ -42,14 +34,22 @@ RSpec.describe Mentor do
   describe '#mark_as_read!' do
     subject { mentor.mark_as_read! }
 
+    let(:notification) { Notification.new('New Homework: title') }
+
     before { mentor.notifications.push(notification) }
 
     it { expect { subject }.to change { mentor.notifications.size }.from(1).to(0) }
   end
 
   describe '#reject_to_work!' do
-    it 'mentor reject homework and student get notification' do
-      expect(mentor.reject_to_work!(homework)).to be_an_instance_of(Array)
+    context 'when reject to work it change status' do
+      subject { mentor.reject_to_work!(homework) }
+
+      let(:notification) { Notification.new('Homework: title rejected') }
+
+      it 'changes status of homework' do
+        expect { subject }.to change(homework, :status).to 'rejected'
+      end
     end
   end
 
