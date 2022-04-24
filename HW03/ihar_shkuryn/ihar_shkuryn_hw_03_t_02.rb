@@ -7,6 +7,8 @@ class Homework3
   ADDRESS = /.*?POST ([^)]*)\ HTTP.*/
 
   def task2(log)
+    return [] unless log.respond_to? :split
+
     arr_lines = find_lines_by_pattern(log)
     return [] unless arr_lines.size.positive?
 
